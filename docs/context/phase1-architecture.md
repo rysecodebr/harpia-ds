@@ -1,6 +1,13 @@
 # Fase 1 — arquitetura e contrato de importação
 
-Estado: **análise realizada; decisões arquiteturais pendentes**. Data: 04/11/2026. Escopo de evidência: Aurum UI 1.0.18 e Aurum-Smart. Nenhum pacote ou código Harpia foi criado.
+Estado: **em andamento; decisões parciais registradas**. Data: 04/11/2026. Escopo de evidência local: Aurum UI 1.0.18 e Aurum-Smart. Nenhum pacote ou código Harpia foi criado.
+
+## Decisões do analista
+
+- **Plataforma inicial:** usar a versão estável mais recente do Angular. Na verificação de 04/11/2026, [`@angular/core` marcava 22.2.4 como `latest`](https://www.npmjs.com/package/%40angular/core?activeTab=versions); a [página oficial de versões](https://angular.dev/reference/releases) identifica Angular 22 como versão ativa. Portanto, **Angular 22.2.4 é a referência atual de planejamento**, sujeita a nova consulta antes de criar o projeto. Angular 21 é a versão da fonte Aurum, não a plataforma inicial escolhida para Harpia. Compatibilidade com Angular 21 ainda não foi aprovada nem testada.
+- **Distribuição:** npm público, com publicação somente após a conclusão do projeto. O identificador `@rysecode/harpia-ui` continua candidato preferencial, condicionado ao controle do escopo. Nenhum feed privado Harpia foi aprovado.
+- **Licença:** MIT para o Harpia DS. Se código Aurum for reaproveitado, preservar o aviso e a atribuição da fonte conforme a licença existente. O arquivo de licença do Harpia será criado na etapa de implementação apropriada.
+- **Imports:** o analista pediu esclarecimento sobre a proposta de entrada pública TypeScript e entrada única de estilos; essa escolha continua aberta.
 
 ## Evidência atual
 
@@ -17,21 +24,21 @@ Estado: **análise realizada; decisões arquiteturais pendentes**. Data: 04/11/2
 
 ## Proposta de contrato mínimo para decisão
 
-1. **Plataforma:** começar com biblioteca Angular, pois é a plataforma verificada da fonte e da vitrine. Definir versões exatas suportadas após decidir se o Harpia precisa coexistir com Aurum UI 1.0.18 nas mesmas aplicações. Suporte a outros frameworks permanece fora de decisão.
+1. **Plataforma:** começar com biblioteca Angular na versão estável mais recente, atualmente 22.2.4. Definir versões exatas suportadas após avaliar se o Harpia precisa coexistir com Aurum UI 1.0.18 nas mesmas aplicações. Suporte a outros frameworks permanece fora de decisão.
 2. **Consumo:** apresentar uma única instrução de instalação, um único ponto de carregamento de estilos e imports TypeScript somente por entrypoints públicos. A API e os caminhos concretos serão definidos quando existirem recursos Harpia aprovados; nenhum import fictício é apresentado como executável.
 3. **Estilos:** avaliar uma entrada canônica para tokens e estilos base, carregada uma vez pela aplicação. A comparação inicial é de **uma entrada proposta** contra **oito `@use` atuais** no Aurum-Smart. Testar se a entrada única emite CSS completo, em ordem estável e sem duplicação antes de firmar esse contrato.
 4. **Dependências:** incluir somente peers exigidos pelos componentes aprovados. Lucide, mapas e geração de PDF devem ser avaliados por recurso antes de integrar o núcleo. Registrar versões e custo de instalação após selecionar a primeira família.
-5. **Distribuição:** decidir registro público npm ou feed privado Harpia. Se usar Azure Artifacts, definir feed próprio ou compartilhamento explicitamente; configurar escopo no consumidor e autenticação pelo mecanismo seguro do ambiente. Não registrar token. A fonte de verdade do registro deve ser única para build, instalação, lockfile e publicação.
+5. **Distribuição:** preparar para npm público, sem publicação até o projeto estar concluído. Confirmar controle do escopo `@rysecode`, configurar o registro público para esse escopo no consumidor e usar autenticação segura apenas no processo de publicação. Não registrar token. A fonte de verdade do registro deve ser única para build, instalação, lockfile e publicação.
 6. **Versões e utilitários:** definir SemVer, política de compatibilidade Angular e se utilitários CSS terão entrada separada. Se coexistirem com Aurum ou Bootstrap/Tailwind, definir prefixo e ordem de carregamento após análise de colisões reais.
 
 ## Decisões a obter do analista
 
 | Decisão | Opções a avaliar | Condição de fechamento |
 | --- | --- | --- |
-| Plataforma inicial | Angular 21 como baseline; outra faixa Angular mediante testes | Matriz de versões suportadas e estratégia de atualização aprovadas |
-| Registro | npm público com escopo controlado; feed Azure Artifacts identificado | Titularidade, permissões e acesso de instalação/publicação verificados |
+| Plataforma inicial | Angular estável mais recente: 22.2.4 na consulta atual | Revalidar versão no início da implementação; definir matriz de compatibilidade com Aurum/Angular 21 |
+| Registro | npm público aprovado; publicação após conclusão | Titularidade, permissões e acesso de publicação verificados antes de publicar |
 | Identificador | Candidato `@rysecode/harpia-ui`; alternativa se escopo indisponível | Consulta renovada, escopo confirmado e decisão registrada |
-| Licença Harpia | MIT com atribuição Aurum quando houver cópia; outra licença compatível a avaliar | Texto e titularidade aprovados antes de distribuir código |
+| Licença Harpia | MIT aprovada; atribuição Aurum quando houver cópia | Registrar aviso e titularidade antes de distribuir código |
 | Estrutura | Entry point único inicial; secundários somente com benefício demonstrado | Primeiro conjunto de recursos e importação de exemplo definidos |
 | CSS | Entrada global única; entrada separada de utilitários se necessária | Resultado de teste de ordem, duplicação e coexistência |
 | Dependências | Núcleo mínimo; recursos pesados opcionais ou pacotes separados | Seleção de componentes e análise de custo/compatibilidade |
@@ -39,4 +46,4 @@ Estado: **análise realizada; decisões arquiteturais pendentes**. Data: 04/11/2
 
 ## Porta de saída
 
-Ainda **não atendida**: faltam decisões de plataforma suportada, registro/escopo, licença, política de versões e contrato concreto de importação. Este documento fornece o diagnóstico e a proposta para revisão; não representa aprovação de implementação. A fase 0 permanece concluída.
+Ainda **não atendida**: faltam confirmar o escopo npm, a matriz de compatibilidade, a política de versões e o contrato concreto de importação e estilos. A versão Angular, o registro público e a licença MIT estão decididos nos termos acima. A fase 0 permanece concluída.
