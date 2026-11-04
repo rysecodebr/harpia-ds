@@ -19,6 +19,8 @@ Em cada etapa de componente, registre na matriz: selector atual, elemento HTML r
 
 ## Fase 0 — Fechar o inventário e os critérios
 
+**Acompanhamento em 04/11/2026:** inventário estático de Aurum UI e Aurum-Smart registrado em [phase0-inventory.md](phase0-inventory.md). Escopo reduzido a esses dois projetos por decisão do solicitante. A fase 0 permanece **em andamento**: falta a decisão do analista sobre implementação nova, reaproveitamento e coexistência, além da validação dinâmica dos cenários. O `package.json` do Smart declara 1.0.18, enquanto lockfile e instalação estão em 1.0.17; resolver essa divergência antes de estabelecer baseline executável da 1.0.18. Outros consumidores não entram na porta de saída desta execução.
+
 **Ações:** levantar exports, selectors, classes, tokens, dependências e padrões efetivamente usados em Aurum-Smart e nos demais consumidores identificados. Comparar contratos e testes dos grupos listados na auditoria. Definir cenários de referência: botão, tabela, formulário responsivo, agrupador simples, overlay e tema. Registrar licença/autoria de qualquer ativo candidato a reaproveitamento.
 
 **Entrega:** matriz `recurso atual → consumidor → comportamento necessário → destino proposto → risco`, com evidência por projeto; critérios de simplicidade mensuráveis (instalação, número de imports, marcação necessária, CSS gerado) e matriz de acessibilidade.
