@@ -33,7 +33,8 @@
     { "id": "name-collision-check", "path": "docs/context/name-collision-check.md" },
     { "id": "phase1-architecture", "path": "docs/context/phase1-architecture.md" },
     { "id": "phase2-tokens", "path": "docs/context/phase2-tokens.md" },
-    { "id": "phase2-color-source", "path": "docs/context/phase2-color-source.md" }
+    { "id": "phase2-color-source", "path": "docs/context/phase2-color-source.md" },
+    { "id": "phase2-contract-proposal", "path": "docs/context/phase2-contract-proposal.md" }
   ],
   "relatedRepositories": [
     { "id": "Aurum-UI", "relation": "existing-design-system", "status": "verified", "evidence": "../Aurum-UI/aurum-workspace/angular.json" },
