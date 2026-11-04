@@ -2,7 +2,7 @@
 
 ## Decisão inicial
 
-O nome de trabalho do novo projeto é **Harpia DS** (Harpia Design System). A motivação informada pelo solicitante é evitar o nome Aurum para o novo design system e adotar uma identidade ligada ao Brasil. Isso não confirma disponibilidade jurídica, de domínio ou de pacote; essas verificações permanecem abertas.
+O nome oficial aprovado é **Harpia Design System**, com **Harpia DS** como forma curta. **Harpia UI** designa a futura biblioteca de interface dentro do design system; não é o nome do sistema inteiro. O nome técnico do pacote npm e da aplicação de vitrine ainda não foi decidido. A motivação informada pelo solicitante é evitar o nome Aurum para o novo design system e adotar uma identidade ligada ao Brasil. Isso não confirma disponibilidade jurídica, de domínio ou de pacote; essas verificações permanecem abertas.
 
 O projeto começa independente, somente com documentação. Nenhum código, contrato público, identidade visual, pacote ou estratégia de publicação do Harpia DS foi definido.
 

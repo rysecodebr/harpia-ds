@@ -33,6 +33,8 @@ Em cada etapa de componente, registre na matriz: selector atual, elemento HTML r
 
 **Ações:** confirmar plataforma alvo e versões suportadas; nome do pacote, licença, dependências, estrutura de módulos, entrypoints, estilos distribuídos, política de versões e feed. Projetar um caminho canônico para instalar a biblioteca, carregar tokens/estilos uma vez e importar apenas os recursos usados. Decidir se utilitários CSS terão entrada separada e como serão prefixados para evitar colisões.
 
+**Nomenclatura já decidida:** Harpia Design System é o sistema; Harpia DS é a forma curta; Harpia UI é a biblioteca de interface. O identificador do pacote npm e o nome técnico da vitrine permanecem decisões desta fase.
+
 **Entrega:** decisão arquitetural e guia de instalação **proposto**, com comparação de consumo frente aos oito imports de tokens hoje presentes em `Aurum-Smart/src/styles.scss`. Documentar origem segura e pontos de configuração do feed; nunca registrar credenciais.
 
 **Porta de saída:** um consumidor de exemplo consegue ser descrito sem imports internos ou configuração ambígua. Nenhum nome de pacote ou feed é publicado antes de validar disponibilidade e distribuição.

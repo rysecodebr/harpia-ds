@@ -1,5 +1,7 @@
 # Instruções do Harpia DS
 
+Nome oficial: **Harpia Design System**. Use **Harpia DS** como forma curta; reserve **Harpia UI** para a biblioteca de interface. Não presuma o identificador do pacote npm ou o nome da vitrine.
+
 Leia [docs/context/index.md](docs/context/index.md) e siga os nós relevantes antes de analisar ou implementar.
 
 - Diferencie fatos verificados nos projetos existentes, decisões aprovadas e propostas ainda abertas.

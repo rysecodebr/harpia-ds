@@ -1,6 +1,13 @@
 {
   "schemaVersion": 1,
   "repository": "Harpia-DS",
+  "naming": {
+    "official": "Harpia Design System",
+    "short": "Harpia DS",
+    "uiLibrary": "Harpia UI",
+    "packageName": null,
+    "showcaseName": null
+  },
   "status": "planning-only",
   "phase0": {
     "status": "validated-for-planning",
