@@ -4,7 +4,7 @@ Estado: **em andamento; decisões parciais registradas**. Data: 04/11/2026. Esco
 
 ## Decisões do analista
 
-- **Plataforma inicial:** usar a versão estável mais recente do Angular. Na verificação de 04/11/2026, [`@angular/core` marcava 22.2.4 como `latest`](https://www.npmjs.com/package/%40angular/core?activeTab=versions); a [página oficial de versões](https://angular.dev/reference/releases) identifica Angular 22 como versão ativa. Portanto, **Angular 22.2.4 é a referência atual de planejamento**, sujeita a nova consulta antes de criar o projeto. Angular 21 é a versão da fonte Aurum, não a plataforma inicial escolhida para Harpia. Compatibilidade com Angular 21 ainda não foi aprovada nem testada.
+- **Plataforma inicial e compatibilidade:** usar a versão estável mais recente do Angular no desenvolvimento e **suportar Angular 21 ou superior**, conforme decisão do analista. Na verificação de 04/11/2026, [`@angular/core` marcava 22.2.4 como `latest`](https://www.npmjs.com/package/%40angular/core?activeTab=versions); a [página oficial de versões](https://angular.dev/reference/releases) identifica Angular 22 como versão ativa. **Angular 22.2.4 é a referência de desenvolvimento atual**, sujeita a nova consulta antes de criar o projeto. Angular 21 é a versão da fonte Aurum. Suporte real a Angular 21 e 22 depende de build/testes em ambas; versões futuras acima de 22 entram na intenção de compatibilidade, mas só podem ser declaradas como validadas depois do lançamento e dos testes correspondentes. A [matriz oficial](https://angular.dev/reference/versions) mostra faixas distintas de TypeScript para Angular 21 (`>=5.9 <6.0`) e 22 (`>=6.0 <6.1`), ponto a tratar no empacotamento e na matriz de CI.
 - **Distribuição:** npm público, com publicação somente após a conclusão do projeto. O identificador `@rysecode/harpia-ui` continua candidato preferencial, condicionado ao controle do escopo. Nenhum feed privado Harpia foi aprovado.
 - **Licença:** MIT para o Harpia DS. Se código Aurum for reaproveitado, preservar o aviso e a atribuição da fonte conforme a licença existente. O arquivo de licença do Harpia será criado na etapa de implementação apropriada.
 - **Imports:** adotar inicialmente **um entrypoint público para TypeScript** e **uma entrada única de estilos**, carregada uma vez pela aplicação. Os caminhos concretos serão definidos quando os primeiros recursos forem aprovados. **Revisar o contrato antes da publicação no npm**, verificando necessidade de entrypoints adicionais, CSS emitido, ordem de carregamento, duplicação, custo de pacote e compatibilidade com aplicações consumidoras. A direção aprovada não equivale a uma API já implementada.
@@ -24,7 +24,13 @@ Estado: **em andamento; decisões parciais registradas**. Data: 04/11/2026. Esco
 
 ## Proposta de contrato mínimo para decisão
 
-1. **Plataforma:** começar com biblioteca Angular na versão estável mais recente, atualmente 22.2.4. Definir versões exatas suportadas após avaliar se o Harpia precisa coexistir com Aurum UI 1.0.18 nas mesmas aplicações. Suporte a outros frameworks permanece fora de decisão.
+### Caminhos concretos a validar
+
+- **TypeScript:** o caminho proposto é a raiz do pacote, `@rysecode/harpia-ui`, para todos os símbolos públicos iniciais. Os nomes dos símbolos dependerão dos componentes aprovados; não há API Harpia implementada.
+- **Estilos:** o caminho proposto é `@rysecode/harpia-ui/styles.css`, incluído uma vez na configuração global de estilos da aplicação. Esse arquivo ainda não existe. A decisão entre CSS pronto e entrada SCSS, bem como a relação entre estilos base e tokens customizáveis, exige uma prova de empacotamento antes de fechar o caminho.
+- **Verificação:** gerar um pacote experimental local, instalar em consumidores de prova Angular 21 e 22, importar pela raiz, carregar os estilos uma vez, compilar, conferir CSS e comparar o custo com os oito imports SCSS do Aurum-Smart. A revisão final desses caminhos ocorrerá antes da publicação.
+
+1. **Plataforma:** começar com biblioteca Angular na versão estável mais recente, atualmente 22.2.4, e validar consumidores Angular 21 e 22. Avaliar coexistência com Aurum UI 1.0.18; futuras versões Angular exigirão validação quando lançadas. Suporte a outros frameworks permanece fora de decisão.
 2. **Consumo:** apresentar uma única instrução de instalação, um entrypoint público inicial para TypeScript e um único ponto de carregamento de estilos. A API e os caminhos concretos serão definidos quando existirem recursos Harpia aprovados; nenhum import fictício é apresentado como executável.
 3. **Estilos:** projetar uma entrada canônica para tokens e estilos base, carregada uma vez pela aplicação. A comparação inicial é de **uma entrada aprovada como direção** contra **oito `@use` atuais** no Aurum-Smart. Testar CSS emitido, ordem e duplicação; revisar antes da publicação.
 4. **Dependências:** incluir somente peers exigidos pelos componentes aprovados. Lucide, mapas e geração de PDF devem ser avaliados por recurso antes de integrar o núcleo. Registrar versões e custo de instalação após selecionar a primeira família.
@@ -35,7 +41,7 @@ Estado: **em andamento; decisões parciais registradas**. Data: 04/11/2026. Esco
 
 | Decisão | Opções a avaliar | Condição de fechamento |
 | --- | --- | --- |
-| Plataforma inicial | Angular estável mais recente: 22.2.4 na consulta atual | Revalidar versão no início da implementação; definir matriz de compatibilidade com Aurum/Angular 21 |
+| Plataforma inicial | Desenvolver na versão estável mais recente; requisito de suporte Angular 21 ou superior | Revalidar versão no início da implementação; testar pelo menos Angular 21 e 22 e definir matriz de CI |
 | Registro | npm público aprovado; publicação após conclusão | Titularidade, permissões e acesso de publicação verificados antes de publicar |
 | Identificador | Candidato `@rysecode/harpia-ui`; alternativa se escopo indisponível | Consulta renovada, escopo confirmado e decisão registrada |
 | Licença Harpia | MIT aprovada; atribuição Aurum quando houver cópia | Registrar aviso e titularidade antes de distribuir código |
@@ -46,4 +52,4 @@ Estado: **em andamento; decisões parciais registradas**. Data: 04/11/2026. Esco
 
 ## Porta de saída
 
-Ainda **não atendida**: faltam confirmar o escopo npm, a matriz de compatibilidade, a política de versões e os caminhos concretos de importação e estilos. A versão Angular, o registro público, a licença MIT e a direção de entrada única para TypeScript e estilos estão decididos nos termos acima. A revisão do contrato de importação é obrigatória antes da publicação. A fase 0 permanece concluída.
+Ainda **não atendida**: faltam confirmar o escopo npm, validar a matriz de compatibilidade, definir a política de versões do pacote e os caminhos concretos de importação e estilos. O requisito Angular 21 ou superior, o registro público, a licença MIT e a direção de entrada única para TypeScript e estilos estão decididos nos termos acima. A revisão do contrato de importação é obrigatória antes da publicação. A fase 0 permanece concluída.
