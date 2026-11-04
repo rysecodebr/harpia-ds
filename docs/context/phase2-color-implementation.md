@@ -31,3 +31,15 @@ Esses testes verificam os dados e a geração, **não** compilam o Dart nem exec
 2. **Mapeamento Flutter:** `ColorScheme` expõe apenas parte dos 36 papéis; todos estão disponíveis em `HarpiaColorTokens`. Verificar compilação e comportamento real dos widgets Material quando houver SDK.
 3. **Compatibilidade Angular:** o CSS é independente da versão, mas a importação junto da futura biblioteca deve ser testada em Angular 21 e na versão estável corrente, como exigido na fase 1.
 4. **Fase 2 restante:** tipografia, espaçamento, dimensões, raios, sombras, camadas, movimento, breakpoints e provas de contraste/foco/escala ainda não foram implementados. O catálogo de cores é somente a primeira entrega.
+
+### Alternativa para texto atenuado no tema escuro — proposta, sem implementação
+
+O analista rejeitou usar `#94a3b8`, pois coincide com o texto secundário. A alternativa recomendada é **`#8493a9`**, derivada da mistura de aproximadamente um terço de `#64748b` (cinza 600) e dois terços de `#94a3b8` (cinza 500) da paleta aprovada, com arredondamento dos canais RGB. É um **novo valor derivado**, não uma cor já declarada no Aurum, e precisa de aprovação antes de alterar `tokens/dark.json`.
+
+| Cor para texto atenuado | Sobre `#151a23` (superfície) | Sobre `#111722` (superfície discreta) | Sobre `#1f2937` (cinza 850) |
+| --- | ---: | ---: | ---: |
+| Atual `#64748b` | 3,67:1 | 3,77:1 | 3,08:1 |
+| Proposta `#8493a9` | 5,59:1 | 5,75:1 | 4,70:1 |
+| Texto secundário `#94a3b8` | 6,80:1 | 7,00:1 | 5,72:1 |
+
+As relações foram calculadas pela fórmula de luminância relativa da [WCAG 2.2](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum) para pares opacos. A cor proposta permanece mais discreta que o texto secundário, embora a diferença visual seja pequena; testar nos tamanhos e superfícies reais antes de concluir. Se o analista preferir não acrescentar uma cor derivada, outra saída é restringir o papel de texto atenuado a usos não textuais e usar um papel de texto já aprovado para conteúdo legível, mas isso muda a semântica da API.
