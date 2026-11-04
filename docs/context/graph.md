@@ -6,15 +6,15 @@ Linha contínua indica relação verificada nos arquivos locais. Linha tracejada
 flowchart LR
     AurumUI["Aurum-UI: biblioteca aurum-ui"]
     AurumDocs["Aurum-UI: aurum-docs"]
-    Smart["Aurum-Smart: aplicação de referência"]
+    Smart["Aurum-Smart: apresentação do Aurum UI"]
     Harpia["Harpia DS: somente contexto"]
     Consumers["Outros consumidores: inventário pendente"]
 
     AurumDocs -->|imports e exemplos| AurumUI
-    Smart -->|dependência npm aurum-ui 1.0.18| AurumUI
+    Smart -->|demonstra e declara dependência npm aurum-ui 1.0.18| AurumUI
     Consumers -->|consumo parcial registrado no contexto Aurum UI| AurumUI
     Harpia -.->|estratégia de relação a decidir| AurumUI
-    Harpia -.->|adoção futura a decidir| Smart
+    Harpia -.->|referência de apresentação; relação futura a decidir| Smart
 ```
 
 Evidências: `Aurum-UI/aurum-workspace/angular.json`, `Aurum-UI/docs/context/graph.md`, `Aurum-UI/aurum-workspace/projects/aurum-ui/package.json` e `Aurum-Smart/package.json`. Arestas futuras não autorizam mudanças nesses repositórios.

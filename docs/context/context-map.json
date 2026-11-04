@@ -14,7 +14,7 @@
   ],
   "relatedRepositories": [
     { "id": "Aurum-UI", "relation": "existing-design-system", "status": "verified", "evidence": "../Aurum-UI/aurum-workspace/angular.json" },
-    { "id": "Aurum-Smart", "relation": "current-aurum-ui-consumer", "status": "verified", "evidence": "../Aurum-Smart/package.json" }
+    { "id": "Aurum-Smart", "relation": "aurum-ui-showcase", "status": "verified", "evidence": "../Aurum-Smart/README.md" }
   ],
   "implementation": [],
   "plannedCapabilities": ["simple-adoption", "component-variants", "grid", "rows", "simple-groups", "form-groups"],

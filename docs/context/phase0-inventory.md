@@ -1,11 +1,11 @@
 # Fase 0 — inventário Aurum UI e Aurum-Smart
 
-Estado: **análise concluída; decisão de estratégia pendente**. Data: 04/11/2026. Escopo limitado expressamente a `Aurum-UI` e `Aurum-Smart`. Nenhuma implementação ou alteração foi feita nesses dois repositórios.
+Estado: **análise concluída; decisão de estratégia pendente**. Data: 04/11/2026. Escopo limitado expressamente a `Aurum-UI` e `Aurum-Smart`. O Aurum-Smart é a vitrine de apresentação do Aurum UI, conforme esclarecimento do analista, e não um piloto de migração. Nenhuma implementação ou alteração foi feita nesses dois repositórios.
 
 ## Evidência e método
 
 - Fonte do contrato: `Aurum-UI/aurum-workspace/projects/aurum-ui/src/public-api.ts`, módulos exportados em `src/lib`, `package.json`, `ng-package.json`, `LICENSE`, testes dos componentes e rotas do portal de documentação.
-- Fonte do uso: `Aurum-Smart/package.json`, `.npmrc`, `src/styles.scss`, arquivos `.ts`, `.html` e `.scss` em `src`; excluídos arquivos `.spec.ts` da contagem de imports. Arquivos `src/app/core/implementation/` foram contabilizados separadamente como exemplos textuais.
+- Fonte dos exemplos: `Aurum-Smart/package.json`, `.npmrc`, `src/styles.scss`, arquivos `.ts`, `.html` e `.scss` em `src`; excluídos arquivos `.spec.ts` da contagem de imports. Arquivos `src/app/core/implementation/` foram contabilizados separadamente como exemplos textuais.
 - O [CSV da API pública](phase0-public-api.csv) lista símbolos declarados nos módulos reexportados, caminho do módulo, ocorrências de import fora dos exemplos e ocorrências nos exemplos. `não encontrado` significa apenas que a varredura estática não localizou import direto no Aurum-Smart; não prova que o recurso seja dispensável, pois pode ser usado indiretamente ou em outra aplicação. O CSV inclui tipos, interfaces, funções e constantes, além de classes.
 - Contagens de tags e classes são ocorrências textuais nos templates, não instâncias de execução. Há alterações locais preexistentes em `Aurum-Smart/package.json` e nas páginas de tabelas; o inventário leu o estado atual e não atribui essas mudanças ao Harpia DS.
 
@@ -17,9 +17,9 @@ Estado: **análise concluída; decisão de estratégia pendente**. Data: 04/11/2
 | Aurum-Smart declara `aurum-ui@1.0.18`, mas lockfile e `node_modules` estão em `1.0.17` | `Aurum-Smart/package.json`, `package-lock.json`, `node_modules/aurum-ui/package.json`; `npm ls aurum-ui --depth=0` retornou `ELSPROBLEMS` | O workspace está inconsistente. A matriz estática lê a fonte local do Aurum UI 1.0.18 e os templates atuais, mas não comprova que o consumidor execute esse contrato. Corrigir lockfile/instalação exige etapa própria no Aurum-Smart e consentimento do analista. |
 | Oito imports SCSS de tokens | `Aurum-Smart/src/styles.scss` | Baseline de esforço de instalação: oito linhas de tokens. |
 | Feed privado configurado | `Aurum-Smart/.npmrc`; `Aurum-UI/azure-pipelines.yml` | Mudança de pacote exigirá origem, autenticação e ordem de publicação definidas; nenhum segredo foi lido ou registrado. |
-| 134 símbolos públicos importados fora dos arquivos de exemplos; 2 aparecem somente em exemplos | Varredura estática dos imports em `.ts`; [CSV](phase0-public-api.csv) | Migração ampla; não limitar análise a componentes visualmente mais frequentes. |
+| 134 símbolos públicos importados fora dos arquivos de exemplos; 2 aparecem somente em exemplos | Varredura estática dos imports em `.ts`; [CSV](phase0-public-api.csv) | A vitrine demonstra superfície ampla. Isso não representa demanda de uma aplicação de negócio nem define escopo de migração. |
 | 90 nomes de tags `aurum-*` e 20 nomes de atributos `aurumX` encontrados em `.html` | Varredura estática dos templates | Elementos próprios e diretivas já coexistem. Métrica de baseline para simplificação de marcação, sem presumir que todos devam mudar. |
-| `row`, `cl-*` e `gap-*` usados diretamente em templates | `Aurum-Smart/src/app/pages/utilities/responsive-grid/responsive-grid.html` e outros | A migração precisa cobrir tanto componentes Angular quanto classes CSS públicas. |
+| `row`, `cl-*` e `gap-*` usados diretamente em templates | `Aurum-Smart/src/app/pages/utilities/responsive-grid/responsive-grid.html` e outros | A documentação do Harpia deve explicar tanto componentes/diretivas quanto classes CSS, se forem adotadas. |
 
 ## Matriz de recursos para decisão
 
@@ -57,9 +57,9 @@ Não há meta numérica aprovada para bytes, quantidade de imports ou redução 
 
 ## Decisões ainda necessárias para encerrar a fase 0
 
-1. Escolher entre implementação nova, reaproveitamento autorizado de partes do Aurum UI ou coexistência prolongada. **Proposta para análise:** desenvolver a nova API no Harpia DS e manter Aurum UI instalado durante a adoção gradual do Aurum-Smart. Esta nota não aprova nem implementa a proposta.
-2. Definir quais cenários do Aurum-Smart serão o primeiro piloto e quais capacidades avançadas da tabela entram na primeira versão.
+1. Escolher entre implementação nova e reaproveitamento autorizado de partes do Aurum UI. Definir se o Harpia DS terá uma vitrine própria e qual relação ela terá com o Aurum-Smart. **Proposta para análise:** criar uma vitrine própria do Harpia DS e manter o Aurum-Smart como apresentação do Aurum UI. Esta nota não aprova nem implementa a proposta.
+2. Definir quais cenários demonstrados no Aurum-Smart ajudam a validar a primeira versão do Harpia DS e quais capacidades avançadas da tabela realmente entram nela. A vitrine mostra possibilidades, não prioridade de produto automaticamente.
 3. Se houver reaproveitamento de código/ativos, registrar autoria e cumprimento da licença MIT localizada em `Aurum-UI/aurum-workspace/projects/aurum-ui/LICENSE` (copyright 2026 MkG); o manifesto declara autor RYSECODE. A licença permite reutilização sob suas condições, mas a estratégia concreta não foi decidida.
 4. Resolver a divergência entre manifesto 1.0.18 e lockfile/instalação 1.0.17 em escopo autorizado, antes de usar build ou testes como baseline da versão 1.0.18. Confirmar visualmente os tokens suspeitos após estabelecer esse baseline. A análise estática não substitui essa verificação.
 
-**Porta de saída:** o inventário dos dois projetos e os cenários estão registrados. A fase 0 continua em andamento até decisão explícita do analista sobre estratégia e piloto; a fase 1 ainda não começa.
+**Porta de saída:** o inventário dos dois projetos e os cenários estão registrados. A fase 0 continua em andamento até decisão explícita do analista sobre estratégia e vitrine; a fase 1 ainda não começa. Bootstrap e Tailwind CSS aparecem apenas como referências comparativas na [auditoria inicial](audit-aurum.md); não foram instalados nem importados.

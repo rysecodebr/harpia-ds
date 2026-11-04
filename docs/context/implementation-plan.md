@@ -19,15 +19,15 @@ Em cada etapa de componente, registre na matriz: selector atual, elemento HTML r
 
 ## Fase 0 — Fechar o inventário e os critérios
 
-**Acompanhamento em 04/11/2026:** inventário estático de Aurum UI e Aurum-Smart registrado em [phase0-inventory.md](phase0-inventory.md). Escopo reduzido a esses dois projetos por decisão do solicitante. A fase 0 permanece **em andamento**: falta a decisão do analista sobre implementação nova, reaproveitamento e coexistência, além da validação dinâmica dos cenários. O `package.json` do Smart declara 1.0.18, enquanto lockfile e instalação estão em 1.0.17; resolver essa divergência antes de estabelecer baseline executável da 1.0.18. Outros consumidores não entram na porta de saída desta execução.
+**Acompanhamento em 04/11/2026:** inventário estático de Aurum UI e de sua vitrine Aurum-Smart registrado em [phase0-inventory.md](phase0-inventory.md). Escopo reduzido a esses dois projetos por decisão do solicitante. A fase 0 permanece **em andamento**: falta a decisão do analista sobre implementação nova ou reaproveitamento e sobre a relação futura entre as vitrines, além da validação dinâmica dos cenários. O `package.json` do Smart declara 1.0.18, enquanto lockfile e instalação estão em 1.0.17; resolver essa divergência antes de estabelecer baseline executável da 1.0.18. Bootstrap e Tailwind CSS são referências comparativas da auditoria, sem instalação ou importação. Outros consumidores não entram nesta execução.
 
-**Ações:** levantar exports, selectors, classes, tokens, dependências e padrões efetivamente usados em Aurum-Smart e nos demais consumidores identificados. Comparar contratos e testes dos grupos listados na auditoria. Definir cenários de referência: botão, tabela, formulário responsivo, agrupador simples, overlay e tema. Registrar licença/autoria de qualquer ativo candidato a reaproveitamento.
+**Ações:** levantar exports, selectors, classes, tokens, dependências e padrões demonstrados no Aurum-Smart. Comparar contratos e testes dos grupos listados na auditoria e usar Bootstrap/Tailwind CSS apenas como referências de ergonomia. Definir cenários de referência: botão, tabela, formulário responsivo, agrupador simples, overlay e tema. Registrar licença/autoria de qualquer ativo candidato a reaproveitamento.
 
 **Entrega:** matriz `recurso atual → consumidor → comportamento necessário → destino proposto → risco`, com evidência por projeto; critérios de simplicidade mensuráveis (instalação, número de imports, marcação necessária, CSS gerado) e matriz de acessibilidade.
 
-**Porta de saída:** inventário dos consumidores que participarão da primeira adoção; decisão explícita de implementação nova, reaproveitamento ou coexistência. O restante do ecossistema fica identificado como não auditado, sem promessa de compatibilidade implícita.
+**Porta de saída:** inventário de Aurum UI e de sua vitrine; decisão explícita de implementação nova ou reaproveitamento, relação com a vitrine atual e cenários a demonstrar no Harpia DS. Aplicações consumidoras de negócio ficam fora desta fase, sem promessa de compatibilidade implícita.
 
-**Roteiro verificável:** começar por `AU/api` e `AU/lib/components`; cruzar com `Aurum-Smart/package.json`, `src/styles.scss`, templates e imports da aplicação. Para cada export, marcar `usado`, `não encontrado no consumidor analisado` ou `não auditado`. Confirmar o que `Smart.App` e outros consumidores importam antes de incluí-los no piloto. Ler os testes e exemplos específicos antes de classificar qualquer par como repetido.
+**Roteiro verificável:** começar por `AU/api` e `AU/lib/components`; cruzar com `Aurum-Smart/package.json`, `src/styles.scss`, templates e imports da vitrine. Para cada export, marcar `demonstrado`, `não encontrado na vitrine` ou `não auditado`. Ler os testes e exemplos específicos antes de classificar qualquer par como repetido.
 
 ## Fase 1 — Definir arquitetura e contrato de importação
 
@@ -121,17 +121,17 @@ Após **cada** passo, atualizar a matriz de equivalência e obter decisão do an
 
 **Checklist de importação:** pacote instala com lockfile reproduzível; tema e estilos são carregados exatamente uma vez; diretivas são importadas pelo entrypoint público; nenhuma aplicação usa caminho interno; não há seletor, classe ou variável que colida silenciosamente com Aurum durante coexistência; peers e assets empacotados correspondem ao manifesto; exemplos copiados da documentação compilam. Registrar o tamanho de JS e CSS da aplicação de prova antes/depois, sem prometer meta numérica ainda não definida.
 
-## Fase 7 — Adoção piloto e migração gradual
+## Fase 7 — Vitrine do Harpia DS e validação dos exemplos
 
-**Pré-condição:** autorização explícita para alterar o repositório consumidor. O Aurum-Smart é candidato natural a piloto por já ser aplicação de referência, mas sua adoção não está aprovada por este plano. Há alterações locais nesse repositório que deverão ser preservadas.
+**Pré-condição:** decisão explícita do analista sobre criar uma vitrine própria do Harpia DS e sobre aproveitar ou não exemplos do Aurum-Smart. O Aurum-Smart continua sendo a vitrine do Aurum UI; este plano não determina sua migração ou alteração.
 
-**Sequência por aplicação:** (1) registrar baseline e alterações locais; (2) instalar Harpia conforme guia, mantendo Aurum UI; (3) migrar uma página pequena com tokens/layout e elementos nativos; (4) comparar visual, semântica, teclado, bundle e CSS; (5) migrar por família de componentes; (6) remover imports e dependências Aurum somente quando não houver uso residual; (7) validar build, testes e experiência em produção/homologação conforme o consumidor.
+**Sequência da vitrine, se aprovada:** (1) escolher cenários representativos; (2) instalar o pacote Harpia como um consumidor real; (3) apresentar tokens/layout e elementos nativos; (4) acrescentar exemplos por família de componentes; (5) comparar visual, semântica, teclado, bundle e CSS com os critérios da fase 0; (6) validar build, testes e documentação. A vitrine do Aurum UI serve de referência, sem migração presumida.
 
-**Entrega:** mapa de equivalência, incompatibilidades, adaptações necessárias, procedimento de retorno e release notes por consumidor.
+**Entrega:** exemplos executáveis, mapa de equivalência conceitual com o Aurum UI, diferenças intencionais e limites documentados.
 
-**Porta de saída:** paridade dos fluxos exigidos e nenhuma referência residual ao pacote antigo na aplicação migrada. Outras aplicações entram em ciclos próprios; não há troca simultânea presumida.
+**Porta de saída:** cenários de demonstração funcionando com o pacote Harpia publicado experimentalmente, usando somente sua API pública. Migração de aplicações de negócio é assunto posterior e fora deste plano.
 
-**Ordem sugerida dentro do piloto, sujeita ao inventário da fase 0:** tokens e tema → container/linha/grid → botão e ícone → campos e grupos → tabela e paginação → card/panel → overlays → controles avançados → shell/navegação. Antes de cada troca, localizar o uso real no template, estilo, TypeScript e teste; registrar equivalência e regressões. Se uma família não tiver paridade suficiente, manter Aurum nessa família e continuar apenas nas áreas independentes.
+**Ordem sugerida dos exemplos:** tokens e tema → container/linha/grid → botão e ícone → campos e grupos → tabela e paginação → card/panel → overlays → controles avançados → shell/navegação. Cada exemplo deve demonstrar a API Harpia realmente implementada; não copiar marcação Aurum como se fosse equivalente.
 
 ## Ordem de publicação e compatibilidade
 

@@ -20,7 +20,7 @@ Essas diretrizes são requisitos para o planejamento do Harpia DS, não descriç
 ## Estado observado em 04/11/2026
 
 - `Aurum-UI` contém a biblioteca Angular `aurum-ui` e a aplicação `aurum-docs`, conforme `Aurum-UI/aurum-workspace/angular.json`. O manifesto da biblioteca declara `aurum-ui@1.0.18`; a entrada pública é `projects/aurum-ui/src/public-api.ts`.
-- `Aurum-Smart` é uma aplicação Angular de referência e declara `aurum-ui@1.0.18` em `package.json`. Seu README ainda cita `1.0.16` em trechos, divergência documental a considerar em análise futura.
+- `Aurum-Smart` é o projeto de apresentação e demonstração do Aurum UI, conforme esclarecimento do analista. Tecnicamente, importa o pacote e declara `aurum-ui@1.0.18` em `package.json`; isso não o torna uma aplicação de negócio nem o designa como piloto de migração. Seu README ainda cita `1.0.16` em trechos, divergência documental a considerar em análise futura.
 - O pipeline do Aurum UI referencia o feed `aurum-ui-feed`. Publicação e disponibilidade efetiva do novo projeto não foram verificadas.
 - Há outros consumidores registrados no contexto do Aurum UI, como `Smart.App`. O inventário completo de consumidores não foi confirmado nesta etapa.
 
