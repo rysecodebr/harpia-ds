@@ -1,0 +1,9 @@
+# Preferências pessoais do vault Obsidian
+.obsidian/
+
+# Dependências e artefatos futuros
+node_modules/
+dist/
+coverage/
+.angular/
+*.log

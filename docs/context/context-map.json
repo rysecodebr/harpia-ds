@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "repository": "Harpia-DS",
+  "status": "planning-only",
+  "areas": [
+    { "id": "foundation", "path": "docs/context/foundation.md" },
+    { "id": "graph", "path": "docs/context/graph.md" },
+    { "id": "workflow", "path": "docs/context/workflow.md" },
+    { "id": "obsidian", "path": "docs/context/obsidian.md" },
+    { "id": "audit-aurum", "path": "docs/context/audit-aurum.md" },
+    { "id": "implementation-plan", "path": "docs/context/implementation-plan.md" }
+  ],
+  "relatedRepositories": [
+    { "id": "Aurum-UI", "relation": "existing-design-system", "status": "verified", "evidence": "../Aurum-UI/aurum-workspace/angular.json" },
+    { "id": "Aurum-Smart", "relation": "current-aurum-ui-consumer", "status": "verified", "evidence": "../Aurum-Smart/package.json" }
+  ],
+  "implementation": [],
+  "plannedCapabilities": ["simple-adoption", "component-variants", "grid", "rows", "simple-groups", "form-groups"],
+  "designReferences": ["Bootstrap", "Tailwind CSS"],
+  "markupPrinciple": "native-html-first; attribute-or-directive-when-needed; custom-element-when-justified",
+  "openDecisions": ["architecture", "reuse-or-migration", "package-identity", "consumer-inventory", "brand-availability", "component-consolidation", "layout-contracts", "group-contracts"]
+}
