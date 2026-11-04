@@ -11,7 +11,7 @@
     "color.background.overlay": "rgba(5, 6, 8, 0.72)",
     "color.text.primary": "{color.gray.300}",
     "color.text.secondary": "{color.gray.500}",
-    "color.text.muted": "{color.gray.600}",
+    "color.text.muted": "#8493a9",
     "color.text.disabled": "rgba(226, 232, 240, 0.42)",
     "color.text.inverted": "{color.black}",
     "color.border.subtle": "rgba(255, 255, 255, 0.08)",

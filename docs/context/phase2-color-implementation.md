@@ -20,21 +20,21 @@ A classe Flutter e o seletor CSS são o **primeiro contrato local**, sujeito à 
 
 - `npm run tokens:build`: 37 cores base e 36 papéis por tema gerados.
 - `npm run tokens:check`: saídas versionadas atuais.
-- `npm test`: quatro testes aprovados.
+- `npm test`: cinco testes aprovados, incluindo contraste estático do texto atenuado escuro.
 - A cópia de `licenses/Aurum-UI-MIT.txt` tem o mesmo SHA-256 do arquivo `LICENSE` da fonte Aurum.
 
 Esses testes verificam os dados e a geração, **não** compilam o Dart nem executam Angular ou Flutter. O SDK Flutter/Dart não apareceu no PATH desta sessão; não foi feita prova visual ou de acessibilidade em aplicativos locais.
 
 ## Riscos e próximos passos
 
-1. **Contraste escuro:** `color.text.muted` herdou `#64748b`; sobre a superfície `#151a23`, a relação calculada é aproximadamente 3,67:1. Se usado como texto comum, está abaixo de 4,5:1 exigidos pela [WCAG 2.2](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum). A correção desse papel precisa de decisão do analista antes de alterar a paleta semântica.
+1. **Contraste escuro:** `color.text.muted` herdava `#64748b`; sobre a superfície `#151a23`, a relação calculada era aproximadamente 3,67:1. Após aprovação do analista, o catálogo usa `#8493a9`, valor derivado da paleta, com 5,59:1 sobre essa superfície e 4,70:1 sobre `#1f2937`. O teste estático verifica os pares; ainda falta validação renderizada.
 2. **Mapeamento Flutter:** `ColorScheme` expõe apenas parte dos 36 papéis; todos estão disponíveis em `HarpiaColorTokens`. Verificar compilação e comportamento real dos widgets Material quando houver SDK.
 3. **Compatibilidade Angular:** o CSS é independente da versão, mas a importação junto da futura biblioteca deve ser testada em Angular 21 e na versão estável corrente, como exigido na fase 1.
 4. **Fase 2 restante:** tipografia, espaçamento, dimensões, raios, sombras, camadas, movimento, breakpoints e provas de contraste/foco/escala ainda não foram implementados. O catálogo de cores é somente a primeira entrega.
 
-### Alternativa para texto atenuado no tema escuro — proposta, sem implementação
+### Correção de texto atenuado no tema escuro — aprovada e implementada
 
-O analista rejeitou usar `#94a3b8`, pois coincide com o texto secundário. A alternativa recomendada é **`#8493a9`**, derivada da mistura de aproximadamente um terço de `#64748b` (cinza 600) e dois terços de `#94a3b8` (cinza 500) da paleta aprovada, com arredondamento dos canais RGB. É um **novo valor derivado**, não uma cor já declarada no Aurum, e precisa de aprovação antes de alterar `tokens/dark.json`.
+O analista rejeitou usar `#94a3b8`, pois coincide com o texto secundário, e aprovou **`#8493a9`** para o papel de texto atenuado legível no escuro. O valor é derivado da mistura de aproximadamente um terço de `#64748b` (cinza 600) e dois terços de `#94a3b8` (cinza 500) da paleta aprovada, com arredondamento dos canais RGB. É um **novo valor derivado**, não uma cor declarada no Aurum. Foi aplicado a `tokens/dark.json`; CSS e Dart são gerados desse catálogo.
 
 | Cor para texto atenuado | Sobre `#151a23` (superfície) | Sobre `#111722` (superfície discreta) | Sobre `#1f2937` (cinza 850) |
 | --- | ---: | ---: | ---: |
@@ -42,4 +42,4 @@ O analista rejeitou usar `#94a3b8`, pois coincide com o texto secundário. A alt
 | Proposta `#8493a9` | 5,59:1 | 5,75:1 | 4,70:1 |
 | Texto secundário `#94a3b8` | 6,80:1 | 7,00:1 | 5,72:1 |
 
-As relações foram calculadas pela fórmula de luminância relativa da [WCAG 2.2](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum) para pares opacos. A cor proposta permanece mais discreta que o texto secundário, embora a diferença visual seja pequena; testar nos tamanhos e superfícies reais antes de concluir. Se o analista preferir não acrescentar uma cor derivada, outra saída é restringir o papel de texto atenuado a usos não textuais e usar um papel de texto já aprovado para conteúdo legível, mas isso muda a semântica da API.
+As relações foram calculadas pela fórmula de luminância relativa da [WCAG 2.2](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum) para pares opacos. A cor corrigida permanece mais discreta que o texto secundário, embora a diferença visual seja pequena; testar nos tamanhos e superfícies reais antes de concluir.

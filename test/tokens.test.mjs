@@ -35,6 +35,26 @@ test('approved light muted text and light default are preserved', () => {
   assert.match(output.dart, /static ThemeData get dark/);
 });
 
+test('dark muted text remains readable and distinct from secondary text', () => {
+  const output = buildOutputs(palette, light, dark);
+  const muted = output.dark['color.text.muted'];
+  assert.equal(muted, '#8493a9');
+  assert.notEqual(muted, output.dark['color.text.secondary']);
+  const luminance = (hex) => {
+    const channels = parseColor(hex).slice(0, 3).map((channel) => channel / 255);
+    const [red, green, blue] = channels.map((channel) =>
+      channel <= 0.04045 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4);
+    return 0.2126 * red + 0.7152 * green + 0.0722 * blue;
+  };
+  const contrast = (a, b) => {
+    const [lighter, darker] = [luminance(a), luminance(b)].sort((x, y) => y - x);
+    return (lighter + 0.05) / (darker + 0.05);
+  };
+  for (const background of ['#151a23', '#111722', '#1f2937']) {
+    assert.ok(contrast(muted, background) >= 4.5, `Insufficient contrast on ${background}`);
+  }
+});
+
 test('invalid references and divergent theme surfaces fail generation', () => {
   const badLight = structuredClone(light);
   badLight.colors['color.text.primary'] = '{color.missing}';

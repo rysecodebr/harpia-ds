@@ -35,7 +35,8 @@
     { "id": "phase2-tokens", "path": "docs/context/phase2-tokens.md" },
     { "id": "phase2-color-source", "path": "docs/context/phase2-color-source.md" },
     { "id": "phase2-contract-proposal", "path": "docs/context/phase2-contract-proposal.md" },
-    { "id": "phase2-color-implementation", "path": "docs/context/phase2-color-implementation.md" }
+    { "id": "phase2-color-implementation", "path": "docs/context/phase2-color-implementation.md" },
+    { "id": "phase2-next-families", "path": "docs/context/phase2-next-families.md" }
   ],
   "relatedRepositories": [
     { "id": "Aurum-UI", "relation": "existing-design-system", "status": "verified", "evidence": "../Aurum-UI/aurum-workspace/angular.json" },
@@ -50,7 +51,8 @@
   "themeSelection": "explicit-dark-option-approved; api-pending",
   "tokenSource": "platform-neutral-catalog-approved; format-pending",
   "lightReadableMutedText": "#4b5563",
+  "darkReadableMutedText": "#8493a9",
   "designReferences": ["Bootstrap", "Tailwind CSS"],
   "markupPrinciple": "native-html-first; attribute-or-directive-when-needed; custom-element-when-justified",
-  "openDecisions": ["flutter-runtime-validation", "flutter-distribution", "remaining-token-families", "dark-muted-text-contrast", "package-import-review", "specific-reuse-scope", "package-identity", "consumer-inventory", "brand-availability", "component-consolidation", "layout-contracts", "group-contracts"]
+  "openDecisions": ["flutter-runtime-validation", "flutter-distribution", "remaining-token-families", "package-import-review", "specific-reuse-scope", "package-identity", "consumer-inventory", "brand-availability", "component-consolidation", "layout-contracts", "group-contracts"]
 }

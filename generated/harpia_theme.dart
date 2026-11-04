@@ -129,7 +129,7 @@ class HarpiaTheme {
     'color.status.warning.text': Color(0xFFF59E0B),
     'color.text.disabled': Color(0x6BE2E8F0),
     'color.text.inverted': Color(0xFF0F0F0F),
-    'color.text.muted': Color(0xFF64748B),
+    'color.text.muted': Color(0xFF8493A9),
     'color.text.primary': Color(0xFFE2E8F0),
     'color.text.secondary': Color(0xFF94A3B8),
   });
