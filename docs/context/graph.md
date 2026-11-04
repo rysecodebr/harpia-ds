@@ -7,7 +7,7 @@ flowchart LR
     AurumUI["Aurum-UI: biblioteca aurum-ui"]
     AurumDocs["Aurum-UI: aurum-docs"]
     Smart["Aurum-Smart: apresentação do Aurum UI"]
-    Harpia["Harpia DS: somente contexto"]
+    Harpia["Harpia DS: contexto e tokens de cor locais"]
     Consumers["Outros consumidores: inventário pendente"]
 
     AurumDocs -->|imports e exemplos| AurumUI

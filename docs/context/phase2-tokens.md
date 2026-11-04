@@ -1,10 +1,10 @@
 # Fase 2 — fundação visual e tokens
 
-Estado: **inventário e proposta em andamento; nenhum token Harpia implementado**. Data: 04/11/2026. Fonte local: Aurum UI 1.0.18 e sua vitrine Aurum-Smart. **Decisão do analista:** o Harpia Design System deve oferecer suporte a Flutter, além de Angular. O primeiro recorte Flutter incluirá **tokens e temas**; componentes serão acrescentados em etapas posteriores. A forma de distribuição Flutter ainda não foi definida.
+Estado: **fase 2 em andamento; cores e temas iniciais implementados localmente**. Data: 04/11/2026. Fonte local: Aurum UI 1.0.18 e sua vitrine Aurum-Smart. **Decisão do analista:** o Harpia Design System deve oferecer suporte a Flutter, além de Angular. O primeiro recorte Flutter incluirá **tokens e temas**; componentes serão acrescentados em etapas posteriores. A forma de distribuição Flutter ainda não foi definida. Ver [implementação parcial](phase2-color-implementation.md).
 
 ## Consequência para a arquitetura
 
-O analista aprovou **um catálogo de tokens independente de Angular e Flutter como fonte de verdade**, versionado no Harpia DS. Ele deve registrar nome, função semântica, valor por tema, unidades, estados, escopo e mapeamento das duas plataformas. O formato do arquivo e a estratégia de geração ainda não foram decididos. Evitar considerar uma variável `--aurum-*` como contrato universal.
+O analista aprovou **um catálogo de tokens independente de Angular e Flutter como fonte de verdade**, versionado no Harpia DS. O formato JSON, a geração de CSS/Dart e o prefixo `--harpia-` foram aprovados e implementados para cores. O catálogo registra valores base e papéis semânticos por tema; metadados completos de função, unidades e exceções serão ampliados para as próximas famílias. Evitar considerar uma variável `--aurum-*` como contrato universal.
 
 **Paleta e temas aprovados:** o analista decidiu reaproveitar a paleta do Aurum UI 1.0.18, **iniciar pelo tema claro** em Angular e Flutter e permitir **seleção explícita do tema escuro pela aplicação**. O [catálogo de origem](phase2-color-source.md) registra valores e papéis atuais. O mecanismo/API dessa seleção ainda será definido. Seguir automaticamente o tema do sistema operacional não foi aprovado nem descartado. Nomes públicos Harpia e outros ajustes exigidos por contraste ainda serão definidos e validados nas duas plataformas.
 
@@ -67,7 +67,7 @@ Referências exatas: `Aurum-UI/aurum-workspace/projects/aurum-ui/src/lib/tokens/
 
 - A paleta Aurum, o tema claro inicial, a seleção explícita do escuro e a correção do texto atenuado legível estão aprovados. Faltam nomes e papéis semânticos Harpia, API de seleção de tema e eventuais outros ajustes indicados pelos testes.
 - O recorte inicial Flutter está decidido: tokens e temas. Quais cenários de prova deverão demonstrar a paridade visual antes dos componentes?
-- O catálogo único é a fonte de verdade aprovada. Faltam formato, processo de geração/manutenção e mapeamento concreto para CSS/SCSS e Dart.
+- O catálogo JSON e a geração CSS/Dart já existem para cores. Faltam integração executável Flutter/Angular e extensão para as demais famílias de tokens.
 - Quais componentes entram primeiro, para determinar tokens realmente necessários?
 
-**Porta de saída ainda aberta:** catálogo aprovado, saídas Angular e Flutter para tokens/temas, tabela de paridade preenchida e testes reais de contraste, foco, escala e movimento. Nenhum valor ou nome de token Harpia foi presumido neste inventário.
+**Porta de saída ainda aberta:** ampliar catálogo além de cor, compilar e testar os temas em Angular e Flutter, preencher a tabela de paridade completa e executar testes reais de contraste, foco, escala e movimento. Os nomes e valores de cor implementados estão em `tokens/`; veja os riscos no [registro de implementação](phase2-color-implementation.md).

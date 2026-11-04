@@ -8,7 +8,7 @@
     "packageName": null,
     "showcaseName": null
   },
-  "status": "planning-only",
+  "status": "local-partial-implementation",
   "phase0": {
     "status": "validated-for-planning",
     "sourceRepository": "Aurum-UI",
@@ -34,13 +34,14 @@
     { "id": "phase1-architecture", "path": "docs/context/phase1-architecture.md" },
     { "id": "phase2-tokens", "path": "docs/context/phase2-tokens.md" },
     { "id": "phase2-color-source", "path": "docs/context/phase2-color-source.md" },
-    { "id": "phase2-contract-proposal", "path": "docs/context/phase2-contract-proposal.md" }
+    { "id": "phase2-contract-proposal", "path": "docs/context/phase2-contract-proposal.md" },
+    { "id": "phase2-color-implementation", "path": "docs/context/phase2-color-implementation.md" }
   ],
   "relatedRepositories": [
     { "id": "Aurum-UI", "relation": "existing-design-system", "status": "verified", "evidence": "../Aurum-UI/aurum-workspace/angular.json" },
     { "id": "Aurum-Smart", "relation": "aurum-ui-showcase", "status": "verified", "evidence": "../Aurum-Smart/README.md" }
   ],
-  "implementation": [],
+  "implementation": [{ "id": "color-tokens-and-themes", "status": "local-partial", "evidence": "docs/context/phase2-color-implementation.md" }],
   "plannedCapabilities": ["simple-adoption", "component-variants", "grid", "rows", "simple-groups", "form-groups", "flutter-support"],
   "platformRequirements": ["angular-21-or-newer", "flutter"],
   "flutterInitialScope": ["tokens", "themes"],
@@ -51,5 +52,5 @@
   "lightReadableMutedText": "#4b5563",
   "designReferences": ["Bootstrap", "Tailwind CSS"],
   "markupPrinciple": "native-html-first; attribute-or-directive-when-needed; custom-element-when-justified",
-  "openDecisions": ["flutter-architecture", "flutter-distribution", "token-catalog-format", "token-generation-strategy", "harpia-token-names", "theme-selection-api", "specific-reuse-scope", "package-identity", "consumer-inventory", "brand-availability", "component-consolidation", "layout-contracts", "group-contracts"]
+  "openDecisions": ["flutter-runtime-validation", "flutter-distribution", "remaining-token-families", "dark-muted-text-contrast", "package-import-review", "specific-reuse-scope", "package-identity", "consumer-inventory", "brand-availability", "component-consolidation", "layout-contracts", "group-contracts"]
 }

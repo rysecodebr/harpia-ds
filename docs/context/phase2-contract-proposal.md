@@ -1,6 +1,6 @@
 # Fase 2 — proposta de contrato para implementação
 
-Estado: **proposta para decisão do analista; nenhum item desta página é API implementada**. Data: 04/11/2026. Base: [inventário da fase 2](phase2-tokens.md), [paleta de origem](phase2-color-source.md), [decisões da fase 1](phase1-architecture.md) e diretrizes em `AGENTS.md`.
+Estado: **contrato técnico aprovado pelo analista e parcialmente implementado para cores**. Data: 04/11/2026. Base: [inventário da fase 2](phase2-tokens.md), [paleta de origem](phase2-color-source.md), [decisões da fase 1](phase1-architecture.md) e diretrizes em `AGENTS.md`. Ver [resultado local](phase2-color-implementation.md).
 
 ## Decisões já aprovadas
 
@@ -20,7 +20,7 @@ Estado: **proposta para decisão do analista; nenhum item desta página é API i
 | Processo | Gerar as saídas CSS e Dart a partir do JSON no repositório, manter os resultados versionados e detectar divergência no CI. | Alterar um valor no catálogo muda ambas as saídas; execução repetida não produz diferenças. |
 | Escopo inicial | Cores base, papéis de superfície, texto, ação, borda, foco e status nos dois temas. Tipografia, espaçamento, raio, sombra, camadas e movimento entram em seguida na fase 2, após catálogo e provas de cor. | Catálogo de cor não é declarado como fase 2 completa; registrar itens restantes. |
 
-Os caminhos de arquivos, prefixo CSS, nomes Dart e seletor de tema acima **não estão aprovados**. São exemplos concretos para revisão. O nome do pacote npm continua candidato e não é necessário para gerar/testar saídas locais.
+O analista aprovou o contrato JSON/CSS/Dart e sua implementação inicial. Os caminhos e nomes locais constam no [registro de implementação](phase2-color-implementation.md). Sua importação como pacote ainda será revisada antes da publicação, conforme fase 1. O nome do pacote npm continua candidato.
 
 ## Critérios de integridade entre plataformas
 

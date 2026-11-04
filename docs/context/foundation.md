@@ -8,7 +8,7 @@ A [verificação de nomes](name-collision-check.md) confirmou `harpia` ocupado n
 
 O analista aprovou **`@rysecode/harpia-ui` como candidato preferencial** para o pacote npm. O identificador final permanece pendente da confirmação de titularidade do escopo e de nova verificação no registro e no feed de destino. Esta decisão não inicia implementação nem publicação.
 
-O projeto começa independente, somente com documentação. Nenhum código, contrato público, identidade visual, pacote ou estratégia de publicação do Harpia DS foi definido.
+O projeto começou independente, somente com documentação. Na fase 2, foram implementados localmente catálogo de cores e saídas iniciais CSS/Dart, conforme [registro de implementação](phase2-color-implementation.md). Ainda não há biblioteca completa, pacote publicado ou vitrine. Os contratos públicos serão revisados antes de publicar.
 
 ## Decisões da fase 0 — 04/11/2026
 

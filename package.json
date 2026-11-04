@@ -1,0 +1,10 @@
+{
+  "name": "harpia-ds-local",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "tokens:build": "node tools/build-tokens.mjs",
+    "tokens:check": "node tools/build-tokens.mjs --check",
+    "test": "node --test"
+  }
+}
