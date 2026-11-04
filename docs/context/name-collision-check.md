@@ -1,6 +1,10 @@
 # Verificação de nomes e pacotes
 
-Data: 04/11/2026. Escopo: possíveis colisões de nomes no npm e em outros catálogos/projetos. Esta nota não altera o nome aprovado **Harpia Design System** nem define o nome do pacote. Disponibilidade de pacote e situação de marca são verificações distintas.
+Data: 04/11/2026. Escopo: possíveis colisões de nomes no npm e em outros catálogos/projetos. Esta nota não altera o nome aprovado **Harpia Design System**. Disponibilidade de pacote e situação de marca são verificações distintas.
+
+## Direção aprovada pelo analista
+
+O analista concordou em **priorizar `@rysecode/harpia-ui` como candidato ao pacote npm**. A escolha definitiva do identificador e sua publicação dependem da confirmação de titularidade e acesso ao escopo `@rysecode`, de nova verificação no registro e no feed de destino e da decisão de publicação da etapa correspondente. A concordância não autoriza criar ou publicar um pacote neste momento.
 
 ## Resultado por nome
 
@@ -27,4 +31,4 @@ Data: 04/11/2026. Escopo: possíveis colisões de nomes no npm e em outros catá
 2. Antes de fixar `package.json`, feed, documentação de instalação ou domínio, verificar novamente o registro npm e o feed corporativo; confirmar controle do escopo `@rysecode`; consultar as regras aplicáveis ao nome despublicado; reservar/publicar somente após decisão do analista. Nomes podem mudar entre a consulta e a publicação.
 3. Para marca no Brasil, consultar a [base oficial de marcas do INPI](https://servicos.busca.inpi.gov.br/marcas/) e, quando necessário, a [Revista da Propriedade Industrial](https://www.gov.br/inpi/pt-br/servicos/marcas/guia-basico), considerando grafias e classes pertinentes. Esta pesquisa preliminar não executou uma busca conclusiva de marcas.
 
-**Encaminhamento recomendado:** manter o nome de projeto aprovado; evitar o pacote sem escopo `harpia`; usar `@rysecode/harpia-ui` apenas como candidato até verificar controle do escopo e disponibilidade no registro escolhido. Não registrar o identificador como decisão aprovada ainda.
+**Encaminhamento registrado:** manter o nome de projeto aprovado; evitar o pacote sem escopo `harpia`; priorizar `@rysecode/harpia-ui` nas próximas verificações, preservando as condições acima.

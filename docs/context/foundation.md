@@ -6,6 +6,8 @@ O nome oficial aprovado é **Harpia Design System**, com **Harpia DS** como form
 
 A [verificação de nomes](name-collision-check.md) confirmou `harpia` ocupado no npm, `harpia-ui` despublicado em 2024 e ausência de pacote público retornado para `harpia-ds`, `harpia-design-system` e os candidatos sob `@rysecode` na consulta de 04/11/2026. Isso não confirma possibilidade de publicação nem titularidade do escopo. Não fixar identificador técnico apenas com base em `E404`.
 
+O analista aprovou **`@rysecode/harpia-ui` como candidato preferencial** para o pacote npm. O identificador final permanece pendente da confirmação de titularidade do escopo e de nova verificação no registro e no feed de destino. Esta decisão não inicia implementação nem publicação.
+
 O projeto começa independente, somente com documentação. Nenhum código, contrato público, identidade visual, pacote ou estratégia de publicação do Harpia DS foi definido.
 
 ## Decisões da fase 0 — 04/11/2026
