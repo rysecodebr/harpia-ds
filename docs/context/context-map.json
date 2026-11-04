@@ -32,7 +32,8 @@
     { "id": "phase0-public-api", "path": "docs/context/phase0-public-api.csv" },
     { "id": "name-collision-check", "path": "docs/context/name-collision-check.md" },
     { "id": "phase1-architecture", "path": "docs/context/phase1-architecture.md" },
-    { "id": "phase2-tokens", "path": "docs/context/phase2-tokens.md" }
+    { "id": "phase2-tokens", "path": "docs/context/phase2-tokens.md" },
+    { "id": "phase2-color-source", "path": "docs/context/phase2-color-source.md" }
   ],
   "relatedRepositories": [
     { "id": "Aurum-UI", "relation": "existing-design-system", "status": "verified", "evidence": "../Aurum-UI/aurum-workspace/angular.json" },
@@ -42,7 +43,8 @@
   "plannedCapabilities": ["simple-adoption", "component-variants", "grid", "rows", "simple-groups", "form-groups", "flutter-support"],
   "platformRequirements": ["angular-21-or-newer", "flutter"],
   "flutterInitialScope": ["tokens", "themes"],
+  "colorSource": { "repository": "Aurum-UI", "version": "1.0.18", "status": "approved-for-reuse", "catalog": "docs/context/phase2-color-source.md" },
   "designReferences": ["Bootstrap", "Tailwind CSS"],
   "markupPrinciple": "native-html-first; attribute-or-directive-when-needed; custom-element-when-justified",
-  "openDecisions": ["flutter-architecture", "flutter-distribution", "cross-platform-token-source", "visual-identity", "specific-reuse-scope", "package-identity", "consumer-inventory", "brand-availability", "component-consolidation", "layout-contracts", "group-contracts"]
+  "openDecisions": ["flutter-architecture", "flutter-distribution", "cross-platform-token-source", "harpia-token-names", "default-theme", "specific-reuse-scope", "package-identity", "consumer-inventory", "brand-availability", "component-consolidation", "layout-contracts", "group-contracts"]
 }

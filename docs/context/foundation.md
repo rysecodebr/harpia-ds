@@ -22,6 +22,7 @@ Essas decisões aprovam a direção do projeto. Não aprovam automaticamente a c
 
 - O design system deve oferecer uma experiência simples de implementar nas aplicações consumidoras. A simplicidade de uso é critério de avaliação da API, da documentação e dos exemplos.
 - O Harpia Design System deve oferecer suporte também a **Flutter**, além de Angular. O primeiro recorte Flutter terá **tokens e temas**; componentes serão acrescentados em etapas posteriores. A linguagem visual e os tokens compartilhados devem manter integridade entre as plataformas. A distribuição Flutter ainda precisa de definição; o pacote npm candidato corresponde à biblioteca web.
+- A paleta de cores existente no Aurum UI 1.0.18 será reaproveitada como base do Harpia DS, conforme [catálogo de origem](phase2-color-source.md). Nomes públicos, tema padrão e eventuais ajustes por acessibilidade ainda dependem de decisão e validação nas duas plataformas.
 - Bootstrap e Tailwind CSS são referências explícitas para estudar composição, utilitários e ergonomia. Ainda não foi decidido copiar suas APIs, classes, arquitetura ou forma de distribuição.
 - Componentes com diferenças pequenas devem ser analisados como candidatos a uma base comum com atributos ou variantes. A fusão depende da comparação de semântica, comportamento, acessibilidade e compatibilidade; a semelhança visual, isoladamente, não basta.
 - O escopo deve contemplar sistemas de grid e linhas, agrupadores simples e agrupadores de formulários. Os contratos, nomes e responsabilidades exatos ainda serão definidos.

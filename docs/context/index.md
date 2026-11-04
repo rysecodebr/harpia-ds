@@ -15,5 +15,6 @@ Este índice roteia somente o contexto necessário. O projeto ainda não tem có
 | Colisões de nomes em pacotes e projetos | [Verificação de nomes](name-collision-check.md) |
 | Arquitetura, instalação e distribuição da fase 1 | [Análise da fase 1](phase1-architecture.md) |
 | Tokens e suporte Angular/Flutter da fase 2 | [Inventário da fase 2](phase2-tokens.md) |
+| Paleta Aurum aprovada como base de cor | [Paleta de origem](phase2-color-source.md) |
 
 Fontes externas de evidência: `../../../../Aurum-UI/docs/context/index.md`, `../../../../Aurum-Smart/README.md` e `../../../../docs/context/index.md`. Consulte os respectivos `AGENTS.md` ao entrar nesses repositórios.

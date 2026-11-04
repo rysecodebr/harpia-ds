@@ -45,6 +45,8 @@ Em cada etapa de componente, registre na matriz: selector atual, elemento HTML r
 
 **Requisito acrescentado pelo analista:** Harpia DS deve oferecer suporte a Flutter além de Angular. A primeira entrega Flutter compreenderá tokens e temas; componentes serão planejados em etapas posteriores. A [análise da fase 2](phase2-tokens.md) registra o contrato de paridade: significado e valores compartilhados, conversões e exceções documentadas, validação das duas saídas. Nenhum pacote, widget ou ferramenta de geração Flutter foi escolhido. As propostas abaixo devem ser verificadas para as duas plataformas quando aplicáveis.
 
+**Paleta decidida:** reaproveitar os valores de cor do Aurum UI 1.0.18 como base, conforme [catálogo de origem](phase2-color-source.md). Os nomes públicos Harpia, o tema padrão e alterações para contraste continuam por decidir.
+
 **Correções:** eliminar no novo contrato referências sem definição, como o caso observado de `--aurum-shadow-xl`; mapear fallbacks locais e resolver colisões entre as duas escalas de z-index. **Simplificações:** separar paleta, tokens semânticos, tokens locais e aliases de migração, com nomenclatura única. **Melhorias:** definir motion (duração/easing/redução), foco, estados, contraste, tipografia, espaçamento, raios, elevação, camadas e dimensões de controle. Definir a fonte de verdade dos breakpoints; não usar CSS custom property como se fosse interpolável em media query.
 
 **Entrega:** catálogo de tokens com função, valor por tema, regra de customização, escopo público e exemplos; temas claro/escuro, matriz de estados e tabela de paridade Angular/Flutter.

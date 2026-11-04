@@ -6,6 +6,8 @@ Estado: **inventário e proposta em andamento; nenhum token Harpia implementado*
 
 O contrato de tokens deve ser descrito de forma independente da sintaxe de CSS/SCSS e Dart. A proposta é registrar nome, função semântica, valor por tema, unidades, estados e escopo em uma fonte de verdade revisável; definir depois como Angular e Flutter consomem essa definição. A forma da fonte, geração automática ou manutenção manual ainda não foi aprovada. Evitar considerar uma variável `--aurum-*` como contrato universal ou copiar valores de cor Aurum como identidade Harpia sem decisão.
 
+**Paleta aprovada:** o analista decidiu reaproveitar a paleta do Aurum UI 1.0.18. O [catálogo de origem](phase2-color-source.md) registra valores e papéis atuais. A decisão aprova os valores existentes como base; nomes públicos Harpia, tema padrão e eventuais ajustes exigidos por contraste ainda serão definidos e validados em Angular e Flutter.
+
 **Integridade entre plataformas:** o analista exige que Angular e Flutter mantenham a mesma linguagem visual. Para cada token compartilhado, registrar uma chave conceitual e o mesmo significado nos dois destinos; documentar conversões de unidade, aproximações e exceções justificadas. Diferenças próprias da plataforma podem existir, mas não devem alterar silenciosamente cor semântica, hierarquia tipográfica, espaçamento ou estado. Alterações em um token compartilhado exigirão avaliação das duas saídas e atualização conjunta da documentação e dos testes.
 
 No Flutter, a documentação oficial descreve temas por `ThemeData`, `ColorScheme` e `TextTheme`; [`ThemeExtension`](https://api.flutter.dev/flutter/material/ThemeExtension-class.html) permite acrescentar propriedades próprias ao tema. Essas são **opções de integração a avaliar**, não implementação escolhida. Consultar [guia oficial de temas](https://docs.flutter.dev/cookbook/design/themes). O pacote npm candidato cobre a biblioteca web; nome, distribuição e versões do pacote Flutter permanecem abertos.
@@ -14,7 +16,7 @@ No Flutter, a documentação oficial descreve temas por `ThemeData`, `ColorSchem
 
 | Família | Evidência | Tratamento proposto para Harpia, sujeito a aprovação |
 | --- | --- | --- |
-| Cores e temas | `tokens/colors.scss` separa paleta de marca, paleta base, estados, aliases e cores semânticas; define tema escuro em `:root`, `[data-theme='dark']` e `[data-aurum-theme='dark']`, e tema claro por atributos. | Definir identidade Harpia e papéis semânticos antes de valores; registrar paridade claro/escuro em Angular e Flutter. Aliases Aurum são insumo de migração, não nomes Harpia automáticos. |
+| Cores e temas | `tokens/colors.scss` separa paleta de marca, paleta base, estados, aliases e cores semânticas; define tema escuro em `:root`, `[data-theme='dark']` e `[data-aurum-theme='dark']`, e tema claro por atributos. | Reaproveitar os valores da paleta conforme decisão; definir papéis e nomes semânticos Harpia, com paridade claro/escuro em Angular e Flutter. Aliases Aurum são insumo de migração, não nomes Harpia automáticos. |
 | Tipografia | `typography.scss` define famílias, escala, alturas de linha, pesos e tracking; há escala de acessibilidade. | Definir fontes licenciadas, hierarquia e escala compartilhada; medir diferenças de renderização entre web e Flutter. |
 | Espaçamento e tamanho | `spacing.scss` define escala, controles pequeno/médio/grande e alvo de toque; combina com escala de layout. | Distinguir espaçamento de dimensões de controle e alvos de interação; registrar unidade/conversão por plataforma. |
 | Raios, sombras e scrollbar | `radius.scss`, `shadows.scss` e `scrollbar.scss`. `--aurum-shadow-xl` é usado em Card, Panel e RichTextEditor em tela cheia, mas não é definido em `shadows.scss`. | Não levar referência sem definição ao novo contrato; comparar elevação visual e comportamento real antes de definir escala Harpia. Scrollbar pode ser específico da plataforma. |
@@ -40,7 +42,7 @@ Referências exatas: `Aurum-UI/aurum-workspace/projects/aurum-ui/src/lib/tokens/
 
 ## Sequência para implementar após decisões
 
-1. Aprovar identidade visual e temas Harpia, incluindo o que pode ou não ser reaproveitado de Aurum.
+1. Partir da paleta Aurum aprovada; decidir tema padrão, nomes e papéis Harpia, e validar eventuais ajustes de contraste antes de implementá-los.
 2. Aprovar a taxonomia da fonte de verdade: valores base, papéis semânticos, estados, valores locais e aliases de migração.
 3. Catalogar tokens necessários ao primeiro conjunto de temas e aos futuros componentes selecionados; para cada token compartilhado, preencher o contrato de paridade acima.
 4. Resolver a hierarquia de camadas e o caso de sombra indefinida antes de adaptar Card/Panel/overlays.
@@ -49,7 +51,7 @@ Referências exatas: `Aurum-UI/aurum-workspace/projects/aurum-ui/src/lib/tokens/
 
 ## Decisões pendentes e porta de saída
 
-- Qual é a identidade visual Harpia e quais valores Aurum, se algum, devem ser reaproveitados?
+- A paleta Aurum foi aprovada como base. Qual será o tema padrão Harpia e como os papéis semânticos serão nomeados? Ajustes de valores por acessibilidade exigirão decisão registrada.
 - O recorte inicial Flutter está decidido: tokens e temas. Quais cenários de prova deverão demonstrar a paridade visual antes dos componentes?
 - Qual será a fonte de verdade e como se relacionará com CSS/SCSS e Dart? Nenhuma ferramenta de geração foi escolhida.
 - Quais componentes entram primeiro, para determinar tokens realmente necessários?
