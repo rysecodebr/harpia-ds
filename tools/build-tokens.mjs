@@ -62,7 +62,7 @@ function resolveColors(palette, theme) {
 }
 
 function cssName(key) {
-  return `--harpia-${key.replace(/^color\./, 'color-').replace(/([a-z])([A-Z])/g, '$1-$2').replaceAll('.', '-').toLowerCase()}`;
+  return `--harpia-${key.replace(/([a-z])([A-Z])/g, '$1-$2').replaceAll('.', '-').toLowerCase()}`;
 }
 
 function dartName(key) {
@@ -74,7 +74,48 @@ function dartColor(value) {
   return `Color(0x${[alpha, red, green, blue].map((part) => part.toString(16).padStart(2, '0')).join('').toUpperCase()})`;
 }
 
-export function buildOutputs(paletteDocument, lightDocument, darkDocument) {
+function validateDimensions(document) {
+  if (document.kind !== 'dimensions' || document.unit !== 'reference-px-at-16px-root' ||
+      !document.source || !document.values || Array.isArray(document.values)) {
+    throw new Error('Invalid dimensions document');
+  }
+  for (const [key, value] of Object.entries(document.values)) {
+    if (!/^(spacing|size|radius)\.[A-Za-z0-9][A-Za-z0-9.-]*$/.test(key) ||
+        typeof value !== 'number' || !Number.isFinite(value) || value < 0) {
+      throw new Error(`Invalid dimension: ${key}`);
+    }
+  }
+}
+
+function dimensionCssValue(key, value) {
+  if (value === 0) return '0';
+  if (key === 'spacing.px' || key === 'radius.full') return `${value}px`;
+  return `${value / 16}rem`;
+}
+
+function dimensionDartName(key) {
+  return key.split('.').map((part, index) => {
+    const normalized = part.replaceAll('-', '_');
+    return index ? normalized[0].toUpperCase() + normalized.slice(1) : normalized;
+  }).join('');
+}
+
+export function buildDimensions(document) {
+  validateDimensions(document);
+  const keys = Object.keys(document.values).sort();
+  const css = keys.map((key) => `  ${cssName(key)}: ${dimensionCssValue(key, document.values[key])};`);
+  const dart = [
+    '// Generated from tokens/dimensions.json. Values use reference pixels / Flutter logical pixels.',
+    'class HarpiaDimensions {',
+    '  HarpiaDimensions._();',
+    ...keys.map((key) => `  static const double ${dimensionDartName(key)} = ${document.values[key].toFixed(1)}; // ${key}`),
+    '}',
+    ''
+  ].join('\n');
+  return { keys, css, dart };
+}
+
+export function buildOutputs(paletteDocument, lightDocument, darkDocument, dimensionsDocument) {
   validateDocument(paletteDocument, 'palette');
   validateDocument(lightDocument, 'theme', 'light');
   validateDocument(darkDocument, 'theme', 'dark');
@@ -89,6 +130,7 @@ export function buildOutputs(paletteDocument, lightDocument, darkDocument) {
   const dark = resolveColors(palette, darkDocument.colors);
   const paletteKeys = Object.keys(palette).sort();
   const semanticKeys = lightKeys.sort();
+  const dimensions = buildDimensions(dimensionsDocument);
   const baseCss = paletteKeys.map((key) => `  ${cssName(key)}: ${light[key]};`);
   const themeCss = (values) => semanticKeys.map((key) => `  ${cssName(key)}: ${values[key]};`);
   const css = [
@@ -98,6 +140,7 @@ export function buildOutputs(paletteDocument, lightDocument, darkDocument) {
     '  color-scheme: light;',
     ...baseCss,
     ...themeCss(light),
+    ...dimensions.css,
     '}',
     '',
     '[data-harpia-theme="dark"] {',
@@ -170,14 +213,15 @@ export function buildOutputs(paletteDocument, lightDocument, darkDocument) {
     '}',
     ''
   ].join('\n');
-  return { css, dart, paletteKeys, semanticKeys, light, dark };
+  return { css, dart, dimensions, paletteKeys, semanticKeys, light, dark };
 }
 
 async function main() {
-  const output = buildOutputs(await readJson('palette.json'), await readJson('light.json'), await readJson('dark.json'));
+  const output = buildOutputs(await readJson('palette.json'), await readJson('light.json'), await readJson('dark.json'), await readJson('dimensions.json'));
   const files = [
     [path.join(outputDir, 'harpia-tokens.css'), output.css],
-    [path.join(outputDir, 'harpia_theme.dart'), output.dart]
+    [path.join(outputDir, 'harpia_theme.dart'), output.dart],
+    [path.join(outputDir, 'harpia_dimensions.dart'), output.dimensions.dart]
   ];
   if (process.argv.includes('--check')) {
     for (const [file, expected] of files) {
@@ -188,7 +232,7 @@ async function main() {
     await mkdir(outputDir, { recursive: true });
     for (const [file, contents] of files) await writeFile(file, contents, 'utf8');
   }
-  process.stdout.write(`Validated ${output.paletteKeys.length} palette and ${output.semanticKeys.length} theme colors.\n`);
+  process.stdout.write(`Validated ${output.paletteKeys.length} palette colors, ${output.semanticKeys.length} theme colors and ${output.dimensions.keys.length} dimensions.\n`);
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

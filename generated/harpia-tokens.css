@@ -75,6 +75,39 @@
   --harpia-color-text-muted: #4b5563;
   --harpia-color-text-primary: #1f2a44;
   --harpia-color-text-secondary: #64748b;
+  --harpia-radius-2xl: 1rem;
+  --harpia-radius-3xl: 1.5rem;
+  --harpia-radius-full: 9999px;
+  --harpia-radius-lg: 0.5rem;
+  --harpia-radius-md: 0.375rem;
+  --harpia-radius-none: 0;
+  --harpia-radius-sm: 0.25rem;
+  --harpia-radius-xl: 0.75rem;
+  --harpia-radius-xs: 0.125rem;
+  --harpia-size-control-lg: 3rem;
+  --harpia-size-control-md: 2.5rem;
+  --harpia-size-control-sm: 2rem;
+  --harpia-size-touch-target-min: 2.75rem;
+  --harpia-spacing-0: 0;
+  --harpia-spacing-0-5: 0.125rem;
+  --harpia-spacing-1: 0.25rem;
+  --harpia-spacing-1-5: 0.375rem;
+  --harpia-spacing-10: 2.5rem;
+  --harpia-spacing-12: 3rem;
+  --harpia-spacing-14: 3.5rem;
+  --harpia-spacing-16: 4rem;
+  --harpia-spacing-2: 0.5rem;
+  --harpia-spacing-2-5: 0.625rem;
+  --harpia-spacing-20: 5rem;
+  --harpia-spacing-24: 6rem;
+  --harpia-spacing-3: 0.75rem;
+  --harpia-spacing-3-5: 0.875rem;
+  --harpia-spacing-4: 1rem;
+  --harpia-spacing-5: 1.25rem;
+  --harpia-spacing-6: 1.5rem;
+  --harpia-spacing-7: 1.75rem;
+  --harpia-spacing-8: 2rem;
+  --harpia-spacing-px: 1px;
 }
 
 [data-harpia-theme="dark"] {

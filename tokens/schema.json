@@ -3,7 +3,8 @@
   "title": "Harpia color token catalog",
   "oneOf": [
     { "$ref": "#/$defs/palette" },
-    { "$ref": "#/$defs/theme" }
+    { "$ref": "#/$defs/theme" },
+    { "$ref": "#/$defs/dimensions" }
   ],
   "$defs": {
     "colorValue": {
@@ -38,6 +39,25 @@
         "name": { "enum": ["light", "dark"] },
         "source": { "type": "string" },
         "colors": { "$ref": "#/$defs/colors" }
+      },
+      "additionalProperties": false
+    },
+    "dimensions": {
+      "type": "object",
+      "required": ["kind", "source", "unit", "values"],
+      "properties": {
+        "$schema": { "type": "string" },
+        "kind": { "const": "dimensions" },
+        "source": { "type": "string" },
+        "unit": { "const": "reference-px-at-16px-root" },
+        "values": {
+          "type": "object",
+          "minProperties": 1,
+          "patternProperties": {
+            "^(spacing|size|radius)\\.[A-Za-z0-9][A-Za-z0-9.-]*$": { "type": "number", "minimum": 0 }
+          },
+          "additionalProperties": false
+        }
       },
       "additionalProperties": false
     }

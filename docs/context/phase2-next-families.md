@@ -1,6 +1,6 @@
 # Fase 2 — próximas famílias de tokens para decisão
 
-Estado: **proposta; sem implementação destas famílias**. Fonte: `Aurum-UI/aurum-workspace/projects/aurum-ui/src/lib/tokens/` na versão 1.0.18. A paleta já foi aprovada e as cores estão [implementadas localmente](phase2-color-implementation.md). O analista aprovou a correção `#8493a9` para texto atenuado legível no tema escuro; saídas CSS/Dart e teste de contraste foram atualizados.
+Estado: **espaçamento, dimensões de controle e raios implementados localmente; demais famílias pendentes**. Fonte: `Aurum-UI/aurum-workspace/projects/aurum-ui/src/lib/tokens/` na versão 1.0.18. A paleta e as cores estão [implementadas localmente](phase2-color-implementation.md). O [lote de dimensões](phase2-dimension-implementation.md) foi aprovado e gerado em CSS/Dart. O analista aprovou a correção `#8493a9` para texto atenuado legível no tema escuro.
 
 | Família | Evidência na fonte Aurum | Próxima decisão concreta |
 | --- | --- | --- |
@@ -12,4 +12,4 @@ Estado: **proposta; sem implementação destas famílias**. Fonte: `Aurum-UI/aur
 | Breakpoints | `layout.scss` declara 360/480/768/1024/1280 px e usa esses números literalmente em media queries; `form-group` usa 720 px. | Tratar na fase 3 junto de grid/layout responsivo e da adaptação Flutter, evitando congelar números antes dos cenários. |
 | Movimento | Não há tokens globais de duração/easing em `tokens/index.scss`; vários componentes usam valores locais. | Inventariar usos compartilhados antes de propor escala; implementar redução de movimento em cada plataforma. |
 
-**Lote sugerido para próxima implementação:** espaçamento, dimensões de controle e raios, com valores da fonte Aurum como ponto inicial, nomes semânticos Harpia no mesmo catálogo JSON e saídas CSS/Dart. A autorização da paleta não abrange automaticamente essas famílias. Tipografia, sombras, camadas e movimento seguem em decisões próprias. O lote deve incluir teste de paridade de valores e prova visual em ambas as plataformas antes de ser declarado concluído.
+**Lote executado:** espaçamento, dimensões de controle e raios, com valores da fonte Aurum como ponto inicial, no catálogo JSON e nas saídas CSS/Dart. A prova visual em ambas as plataformas ainda é necessária antes de declarar paridade concluída. Tipografia, sombras, camadas e movimento seguem em decisões próprias.

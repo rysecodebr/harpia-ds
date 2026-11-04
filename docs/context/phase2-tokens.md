@@ -1,6 +1,6 @@
 # Fase 2 — fundação visual e tokens
 
-Estado: **fase 2 em andamento; cores e temas iniciais implementados localmente**. Data: 04/11/2026. Fonte local: Aurum UI 1.0.18 e sua vitrine Aurum-Smart. **Decisão do analista:** o Harpia Design System deve oferecer suporte a Flutter, além de Angular. O primeiro recorte Flutter incluirá **tokens e temas**; componentes serão acrescentados em etapas posteriores. A forma de distribuição Flutter ainda não foi definida. Ver [implementação parcial](phase2-color-implementation.md).
+Estado: **fase 2 em andamento; cores, temas e dimensões iniciais implementados localmente**. Data: 04/11/2026. Fonte local: Aurum UI 1.0.18 e sua vitrine Aurum-Smart. **Decisão do analista:** o Harpia Design System deve oferecer suporte a Flutter, além de Angular. O primeiro recorte Flutter incluirá **tokens e temas**; componentes serão acrescentados em etapas posteriores. A forma de distribuição Flutter ainda não foi definida. Ver [cores](phase2-color-implementation.md) e [dimensões](phase2-dimension-implementation.md).
 
 ## Consequência para a arquitetura
 
@@ -72,4 +72,4 @@ Referências exatas: `Aurum-UI/aurum-workspace/projects/aurum-ui/src/lib/tokens/
 - O catálogo JSON e a geração CSS/Dart já existem para cores. Faltam integração executável Flutter/Angular e extensão para as demais famílias de tokens.
 - Quais componentes entram primeiro, para determinar tokens realmente necessários?
 
-**Porta de saída ainda aberta:** ampliar catálogo além de cor, compilar e testar os temas em Angular e Flutter, preencher a tabela de paridade completa e executar testes reais de contraste, foco, escala e movimento. Os nomes e valores de cor implementados estão em `tokens/`; veja os riscos no [registro de implementação](phase2-color-implementation.md).
+**Porta de saída ainda aberta:** ampliar catálogo para tipografia, sombras, camadas, movimento e demais fundamentos aprovados; compilar e testar temas/dimensões em Angular e Flutter; preencher a tabela de paridade completa e executar testes reais de contraste, foco, escala e movimento. Os valores já implementados estão em `tokens/`; veja [cores](phase2-color-implementation.md) e [dimensões](phase2-dimension-implementation.md).

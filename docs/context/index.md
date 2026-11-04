@@ -19,5 +19,6 @@ Este índice roteia somente o contexto necessário. O projeto tem uma primeira i
 | Contrato técnico da fase 2 para decisão | [Proposta de implementação](phase2-contract-proposal.md) |
 | Primeira implementação local de cores e temas | [Implementação de cores](phase2-color-implementation.md) |
 | Próximas famílias de tokens para decisão | [Proposta de sequência](phase2-next-families.md) |
+| Espaçamento, tamanhos e raios locais | [Implementação de dimensões](phase2-dimension-implementation.md) |
 
 Fontes externas de evidência: `../../../../Aurum-UI/docs/context/index.md`, `../../../../Aurum-Smart/README.md` e `../../../../docs/context/index.md`. Consulte os respectivos `AGENTS.md` ao entrar nesses repositórios.
