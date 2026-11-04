@@ -40,6 +40,18 @@ Referências exatas: `Aurum-UI/aurum-workspace/projects/aurum-ui/src/lib/tokens/
 
 **Controle de mudanças proposto:** manter uma tabela de paridade versionada; nenhum token compartilhado entra como concluído se uma saída estiver ausente ou divergente sem justificativa aprovada. A estratégia técnica para gerar ou manter as saídas ainda exige decisão. Tokens exclusivos de web, como scrollbar, ficam explicitamente marcados e não são forçados no Flutter.
 
+## Contrato proposto para revisão do analista
+
+| Decisão | Proposta concreta | Motivo e verificação |
+| --- | --- | --- |
+| Fonte de verdade | Um catálogo neutro à plataforma, versionado no repositório Harpia, com chaves conceituais, valores por tema e metadados de paridade. Formato do arquivo e geração automática ainda a escolher. | Evita editar CSS e Dart separadamente sem rastrear diferenças; comparar saídas com o catálogo nos testes. |
+| Taxonomia | `base` para valores da paleta; `semantic` para função no tema; `component` só quando o uso real justificar; `platform` para exceções específicas. Aliases Aurum ficam no mapa de migração, não no núcleo. | Distingue valor repetido de papel diferente e limita duplicação. |
+| Nomes | Chaves conceituais descritivas, por exemplo `color.background.page`, `color.text.primary`, `color.action.primary`. Prefixo web e nomes Dart derivados de convenção a aprovar, sem API pública criada. | O mesmo papel pode ter valores diferentes em claro/escuro e representação diferente por plataforma. |
+| Tema inicial | Claro como padrão. Escuro disponível por seleção explícita da aplicação; seguir automaticamente o sistema operacional fica como capacidade opcional a decidir. | Evita que o tema inicial mude silenciosamente entre web e Flutter. |
+| Paridade | Mesma chave e valor de cor aprovado em ambas as plataformas; diferenças de renderização e conversão documentadas. | Conferir valores gerados e amostras visuais em ambos os temas. |
+
+**Checagem de contraste inicial:** no [catálogo de origem](phase2-color-source.md), texto atenuado claro `#94a3b8` sobre branco mede cerca de 2,56:1, abaixo de 4,5:1 para texto comum pela [WCAG 2.2](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum). A decisão de reaproveitar a paleta não aprova aplicar esse par a texto comum. Verificar usos e propor correção antes de implementar esse papel.
+
 ## Sequência para implementar após decisões
 
 1. Partir da paleta Aurum aprovada e do tema claro inicial; decidir nomes e papéis Harpia, e validar eventuais ajustes de contraste antes de implementá-los.

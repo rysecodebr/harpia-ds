@@ -36,4 +36,39 @@ Há valores coincidentes entre grupos, como azul médio e azul 500, ou azul prof
 | Aviso: texto | `#f59e0b` | `#92400e` |
 | Perigo: texto | `#ea868f` | `#991b1b` |
 
+### Demais papéis do tema claro verificados na fonte
+
+| Papel Aurum | Valor no tema claro |
+| --- | --- |
+| Superfície elevada | `#ffffff` |
+| Overlay | `rgba(15, 23, 42, 0.4)` |
+| Texto desabilitado | `rgba(31, 42, 68, 0.42)` |
+| Texto invertido | `#ffffff` |
+| Borda sutil / padrão / forte | `rgba(31, 42, 68, 0.1)` / `rgba(31, 42, 68, 0.16)` / `rgba(31, 42, 68, 0.24)` |
+| Ação secundária / hover | `#1f2a44` / `#0f0f0f` |
+| Superfície hover / ativa / desabilitada | `rgba(31, 42, 68, 0.05)` / `rgba(47, 111, 237, 0.1)` / `rgba(31, 42, 68, 0.06)` |
+| Sucesso: fundo / borda | `rgba(32, 201, 151, 0.12)` / `rgba(32, 201, 151, 0.34)` |
+| Informação: fundo / borda | `rgba(13, 202, 240, 0.12)` / `rgba(13, 202, 240, 0.34)` |
+| Aviso: fundo / borda | `rgba(245, 158, 11, 0.12)` / `rgba(245, 158, 11, 0.36)` |
+| Perigo: fundo / borda | `rgba(234, 134, 143, 0.14)` / `rgba(234, 134, 143, 0.38)` |
+
+Os aliases `bg-muted`, `bg-subtle`, `surface-page`, `surface-card`, `surface-muted`, `text-tertiary`, `text-placeholder`, `text-on-primary`, `brand-*`, `action-primary-*` e os aliases de estado apontam para papéis já listados no arquivo de origem. Não criá-los como valores independentes no Harpia apenas para reproduzir a duplicação.
+
+## Checagem inicial de contraste do tema claro
+
+Relação calculada a partir dos valores hexadecimais opacos acima, pelo método de luminância relativa da [WCAG 2.2](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum). O limiar AA para texto comum é 4,5:1; esta checagem estática não substitui avaliação do componente renderizado.
+
+| Par avaliado | Relação aproximada | Leitura |
+| --- | ---: | --- |
+| Texto principal `#1f2a44` / superfície branca | 14,26:1 | Acima de 4,5:1 |
+| Texto secundário `#64748b` / superfície branca | 4,76:1 | Acima de 4,5:1, com margem pequena |
+| Texto atenuado `#94a3b8` / superfície branca | 2,56:1 | **Abaixo de 4,5:1 se usado como texto comum** |
+| Branco / ação primária `#2f6fed` | 4,55:1 | Acima de 4,5:1, com margem pequena |
+| Sucesso `#0f766e` / branco | 5,47:1 | Acima de 4,5:1 |
+| Informação `#0369a1` / branco | 5,93:1 | Acima de 4,5:1 |
+| Aviso `#92400e` / branco | 7,09:1 | Acima de 4,5:1 |
+| Perigo `#991b1b` / branco | 8,31:1 | Acima de 4,5:1 |
+
+**Tratamento pendente:** `Aurum-UI/.../components/forms/field-hint/aurum-field-hint/aurum-field-hint.scss:8` e `forms/field-label/aurum-field-label/aurum-field-label.scss:40` usam `--aurum-color-text-muted`, portanto há uso potencial em texto legível. Confirmar fundo e tamanho renderizados. Se for texto comum sobre branco, propor valor alternativo da paleta aprovada ou restringir o uso do papel; qualquer mudança de valor requer decisão do analista e paridade Angular/Flutter. Pares com transparência, fundo composto, bordas e foco exigem cálculo contextual próprio.
+
 Esses papéis mostram que reutilizar a paleta **não implica usar a mesma cor para cada papel nos dois temas**. O arquivo de origem ainda contém superfícies adicionais, bordas, overlays, estados e aliases. Antes de implementar, completar o inventário desses papéis, aprovar a taxonomia Harpia e validar contraste e renderização nas duas plataformas. **O Harpia começará pelo tema claro**, por decisão do analista; o padrão escuro descrito na fonte pertence ao Aurum.
