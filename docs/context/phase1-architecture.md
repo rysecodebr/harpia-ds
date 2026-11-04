@@ -1,0 +1,42 @@
+# Fase 1 — arquitetura e contrato de importação
+
+Estado: **análise realizada; decisões arquiteturais pendentes**. Data: 04/11/2026. Escopo de evidência: Aurum UI 1.0.18 e Aurum-Smart. Nenhum pacote ou código Harpia foi criado.
+
+## Evidência atual
+
+| Assunto | Estado verificado | Fonte |
+| --- | --- | --- |
+| Plataforma | Aurum UI é biblioteca Angular construída com `@angular/build:ng-packagr`; workspace usa Angular 21.2.x, TypeScript 5.9.x, Node 24.x no pipeline e npm 11.11.0. Aurum-Smart também usa Angular 21.2.x e npm 11.11.0. Isso descreve os projetos existentes, não estabelece suporte Harpia. | `Aurum-UI/aurum-workspace/angular.json`, `package.json`, `azure-pipelines.yml`; `Aurum-Smart/package.json` |
+| API | Aurum UI exporta os recursos por um único `src/public-api.ts`. Aurum-Smart importa símbolos de `aurum-ui`; os arquivos SCSS são importados por subcaminhos `aurum-ui/tokens/*`. | `projects/aurum-ui/src/public-api.ts`, `Aurum-Smart/src` e `src/styles.scss` |
+| Dependências pares | Angular common/core/forms/router, Lucide, Leaflet e Google Maps estão em `peerDependencies` do Aurum UI. | `projects/aurum-ui/package.json` |
+| Dependências empacotadas | `jspdf`, `jspdf-autotable` e `tslib` estão em `dependencies`; os dois primeiros constam em `allowedNonPeerDependencies`. Não há evidência de que todo componente Harpia precise deles. | `projects/aurum-ui/package.json`, `ng-package.json` |
+| Estilos | O pacote Aurum copia nove arquivos SCSS da pasta `tokens`, inclusive `index.scss`. A vitrine importa oito arquivos individuais: cores, layout, tipografia, espaçamento, raio, scrollbar, sombras e z-index. `index.scss` encaminha os oito. | `ng-package.json`, `src/lib/tokens/index.scss`, `Aurum-Smart/src/styles.scss` |
+| Distribuição | Aurum UI publica em `aurum-ui-feed` via Azure Pipeline, com autenticação `npmAuthenticate@0`. Os `.npmrc` dos projetos apontam o registro inteiro para esse feed. A forma de autenticação local e o acesso ao feed Harpia não foram confirmados. | `Aurum-UI/azure-pipelines.yml`, `aurum-workspace/.npmrc`, `Aurum-Smart/.npmrc` |
+| Licença | A fonte Aurum declara MIT; o arquivo de licença contém copyright 2026 MkG. Reaproveitamento de partes exige preservar atribuição e aviso aplicável. Licença própria do Harpia ainda não foi decidida. | `projects/aurum-ui/package.json`, `LICENSE` |
+| Nome | `@rysecode/harpia-ui` foi aprovado como candidato preferencial, condicionado à titularidade do escopo e à verificação de publicação. | [Verificação de nomes](name-collision-check.md) |
+
+## Proposta de contrato mínimo para decisão
+
+1. **Plataforma:** começar com biblioteca Angular, pois é a plataforma verificada da fonte e da vitrine. Definir versões exatas suportadas após decidir se o Harpia precisa coexistir com Aurum UI 1.0.18 nas mesmas aplicações. Suporte a outros frameworks permanece fora de decisão.
+2. **Consumo:** apresentar uma única instrução de instalação, um único ponto de carregamento de estilos e imports TypeScript somente por entrypoints públicos. A API e os caminhos concretos serão definidos quando existirem recursos Harpia aprovados; nenhum import fictício é apresentado como executável.
+3. **Estilos:** avaliar uma entrada canônica para tokens e estilos base, carregada uma vez pela aplicação. A comparação inicial é de **uma entrada proposta** contra **oito `@use` atuais** no Aurum-Smart. Testar se a entrada única emite CSS completo, em ordem estável e sem duplicação antes de firmar esse contrato.
+4. **Dependências:** incluir somente peers exigidos pelos componentes aprovados. Lucide, mapas e geração de PDF devem ser avaliados por recurso antes de integrar o núcleo. Registrar versões e custo de instalação após selecionar a primeira família.
+5. **Distribuição:** decidir registro público npm ou feed privado Harpia. Se usar Azure Artifacts, definir feed próprio ou compartilhamento explicitamente; configurar escopo no consumidor e autenticação pelo mecanismo seguro do ambiente. Não registrar token. A fonte de verdade do registro deve ser única para build, instalação, lockfile e publicação.
+6. **Versões e utilitários:** definir SemVer, política de compatibilidade Angular e se utilitários CSS terão entrada separada. Se coexistirem com Aurum ou Bootstrap/Tailwind, definir prefixo e ordem de carregamento após análise de colisões reais.
+
+## Decisões a obter do analista
+
+| Decisão | Opções a avaliar | Condição de fechamento |
+| --- | --- | --- |
+| Plataforma inicial | Angular 21 como baseline; outra faixa Angular mediante testes | Matriz de versões suportadas e estratégia de atualização aprovadas |
+| Registro | npm público com escopo controlado; feed Azure Artifacts identificado | Titularidade, permissões e acesso de instalação/publicação verificados |
+| Identificador | Candidato `@rysecode/harpia-ui`; alternativa se escopo indisponível | Consulta renovada, escopo confirmado e decisão registrada |
+| Licença Harpia | MIT com atribuição Aurum quando houver cópia; outra licença compatível a avaliar | Texto e titularidade aprovados antes de distribuir código |
+| Estrutura | Entry point único inicial; secundários somente com benefício demonstrado | Primeiro conjunto de recursos e importação de exemplo definidos |
+| CSS | Entrada global única; entrada separada de utilitários se necessária | Resultado de teste de ordem, duplicação e coexistência |
+| Dependências | Núcleo mínimo; recursos pesados opcionais ou pacotes separados | Seleção de componentes e análise de custo/compatibilidade |
+| Vitrine | Nome técnico e hospedagem ainda não definidos | Decisão antes de criar aplicação |
+
+## Porta de saída
+
+Ainda **não atendida**: faltam decisões de plataforma suportada, registro/escopo, licença, política de versões e contrato concreto de importação. Este documento fornece o diagnóstico e a proposta para revisão; não representa aprovação de implementação. A fase 0 permanece concluída.
