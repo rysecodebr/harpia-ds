@@ -37,7 +37,7 @@ Em cada etapa de componente, registre na matriz: selector atual, elemento HTML r
 
 **Entrega:** decisão arquitetural e guia de instalação **proposto**, com comparação de consumo frente aos oito imports de tokens hoje presentes em `Aurum-Smart/src/styles.scss`. Documentar origem segura e pontos de configuração do feed; nunca registrar credenciais.
 
-**Porta de saída:** um consumidor de exemplo consegue ser descrito sem imports internos ou configuração ambígua. Nenhum nome de pacote ou feed é publicado antes de validar disponibilidade e distribuição.
+**Porta de saída para avançar:** um consumidor de exemplo consegue ser descrito sem imports internos ou configuração ambígua. O analista aprovou adiar a validação executável do pacote, dos caminhos e do escopo npm para depois da implementação e dos testes locais. Essas validações continuam obrigatórias antes de publicar.
 
 **Referências a comparar:** `Aurum-UI/aurum-workspace/projects/aurum-ui/package.json`, `ng-package.json`, `AU/api`, `Aurum-UI/aurum-workspace/angular.json`, `Aurum-UI/azure-pipelines.yml`, `Aurum-Smart/package.json`, `.npmrc` e `src/styles.scss`. Registrar separadamente dependências pares, dependências empacotadas, assets SCSS, autenticação do feed e configuração local do consumidor. Não reutilizar automaticamente nomes, feed ou pipeline Aurum.
 
@@ -144,4 +144,4 @@ Após **cada** passo, atualizar a matriz de equivalência e obter decisão do an
 
 ## Registro de acompanhamento
 
-Cada fase deve receber estado `pendente`, `em andamento`, `validada` ou `bloqueada`, responsável, evidências, decisões e riscos residuais. A fase 0 está **validada para planejamento**; as fases 1–7 continuam **pendentes**. Nenhum recurso do Harpia DS foi implementado.
+Cada fase deve receber estado `pendente`, `em andamento`, `validada` ou `bloqueada`, responsável, evidências, decisões e riscos residuais. A fase 0 está **validada para planejamento**. A fase 1 está **validada para avançar à implementação**, com verificações de escopo npm, compatibilidade, caminhos e versionamento adiadas por decisão do analista para depois da implementação e dos testes locais; publicação segue bloqueada até fechá-las. As fases 2–7 continuam **pendentes**. Nenhum recurso do Harpia DS foi implementado.

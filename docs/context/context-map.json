@@ -17,6 +17,10 @@
     "strategy": "reuse-selected-parts",
     "showcase": "separate-harpia-showcase"
   },
+  "phase1": {
+    "status": "validated-to-proceed",
+    "publicationChecksPending": ["npm-scope-control", "angular-compatibility-tests", "package-version-policy", "typescript-import-path", "styles-import-path"]
+  },
   "areas": [
     { "id": "foundation", "path": "docs/context/foundation.md" },
     { "id": "graph", "path": "docs/context/graph.md" },

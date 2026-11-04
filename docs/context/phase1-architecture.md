@@ -1,6 +1,6 @@
 # Fase 1 — arquitetura e contrato de importação
 
-Estado: **em andamento; decisões parciais registradas**. Data: 04/11/2026. Escopo de evidência local: Aurum UI 1.0.18 e Aurum-Smart. Nenhum pacote ou código Harpia foi criado.
+Estado: **direção arquitetural aprovada para avançar à implementação; validações locais e publicação pendentes**. Data: 04/11/2026. Escopo de evidência local: Aurum UI 1.0.18 e Aurum-Smart. Nenhum pacote ou código Harpia foi criado.
 
 ## Decisões do analista
 
@@ -8,6 +8,7 @@ Estado: **em andamento; decisões parciais registradas**. Data: 04/11/2026. Esco
 - **Distribuição:** npm público, com publicação somente após a conclusão do projeto. O identificador `@rysecode/harpia-ui` continua candidato preferencial, condicionado ao controle do escopo. Nenhum feed privado Harpia foi aprovado.
 - **Licença:** MIT para o Harpia DS. Se código Aurum for reaproveitado, preservar o aviso e a atribuição da fonte conforme a licença existente. O arquivo de licença do Harpia será criado na etapa de implementação apropriada.
 - **Imports:** adotar inicialmente **um entrypoint público para TypeScript** e **uma entrada única de estilos**, carregada uma vez pela aplicação. Os caminhos concretos serão definidos quando os primeiros recursos forem aprovados. **Revisar o contrato antes da publicação no npm**, verificando necessidade de entrypoints adicionais, CSS emitido, ordem de carregamento, duplicação, custo de pacote e compatibilidade com aplicações consumidoras. A direção aprovada não equivale a uma API já implementada.
+- **Sequência de validação:** o analista decidiu tratar a confirmação do escopo npm, os caminhos efetivos de importação e estilos, a compatibilidade executável e os detalhes de versão **após a implementação e os testes locais**. Esses pontos não bloqueiam o início das etapas de implementação autorizadas, mas bloqueiam a publicação até serem resolvidos e registrados.
 
 ## Evidência atual
 
@@ -52,4 +53,4 @@ Estado: **em andamento; decisões parciais registradas**. Data: 04/11/2026. Esco
 
 ## Porta de saída
 
-Ainda **não atendida**: faltam confirmar o escopo npm, validar a matriz de compatibilidade, definir a política de versões do pacote e os caminhos concretos de importação e estilos. O requisito Angular 21 ou superior, o registro público, a licença MIT e a direção de entrada única para TypeScript e estilos estão decididos nos termos acima. A revisão do contrato de importação é obrigatória antes da publicação. A fase 0 permanece concluída.
+**Atendida para iniciar as próximas etapas:** plataforma e requisito de compatibilidade, destino de publicação, licença, candidato a nome e direção do contrato de importação estão registrados. **Não atendida para publicação:** confirmar o escopo npm, validar Angular 21 e a versão estável corrente em consumidores de prova, fixar os caminhos reais de importação/estilos e a política de versões do pacote, revisar o contrato e concluir os testes locais. A fase 0 permanece concluída. Nenhum recurso foi autorizado por esta decisão genérica; cada implementação concreta segue as diretrizes do agente.
