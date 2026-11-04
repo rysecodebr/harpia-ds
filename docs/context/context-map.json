@@ -25,7 +25,8 @@
     { "id": "audit-aurum", "path": "docs/context/audit-aurum.md" },
     { "id": "implementation-plan", "path": "docs/context/implementation-plan.md" },
     { "id": "phase0-inventory", "path": "docs/context/phase0-inventory.md" },
-    { "id": "phase0-public-api", "path": "docs/context/phase0-public-api.csv" }
+    { "id": "phase0-public-api", "path": "docs/context/phase0-public-api.csv" },
+    { "id": "name-collision-check", "path": "docs/context/name-collision-check.md" }
   ],
   "relatedRepositories": [
     { "id": "Aurum-UI", "relation": "existing-design-system", "status": "verified", "evidence": "../Aurum-UI/aurum-workspace/angular.json" },

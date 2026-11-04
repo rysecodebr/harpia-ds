@@ -4,6 +4,8 @@
 
 O nome oficial aprovado é **Harpia Design System**, com **Harpia DS** como forma curta. **Harpia UI** designa a futura biblioteca de interface dentro do design system; não é o nome do sistema inteiro. O nome técnico do pacote npm e da aplicação de vitrine ainda não foi decidido. A motivação informada pelo solicitante é evitar o nome Aurum para o novo design system e adotar uma identidade ligada ao Brasil. Isso não confirma disponibilidade jurídica, de domínio ou de pacote; essas verificações permanecem abertas.
 
+A [verificação de nomes](name-collision-check.md) confirmou `harpia` ocupado no npm, `harpia-ui` despublicado em 2024 e ausência de pacote público retornado para `harpia-ds`, `harpia-design-system` e os candidatos sob `@rysecode` na consulta de 04/11/2026. Isso não confirma possibilidade de publicação nem titularidade do escopo. Não fixar identificador técnico apenas com base em `E404`.
+
 O projeto começa independente, somente com documentação. Nenhum código, contrato público, identidade visual, pacote ou estratégia de publicação do Harpia DS foi definido.
 
 ## Decisões da fase 0 — 04/11/2026
