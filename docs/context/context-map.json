@@ -31,15 +31,17 @@
     { "id": "phase0-inventory", "path": "docs/context/phase0-inventory.md" },
     { "id": "phase0-public-api", "path": "docs/context/phase0-public-api.csv" },
     { "id": "name-collision-check", "path": "docs/context/name-collision-check.md" },
-    { "id": "phase1-architecture", "path": "docs/context/phase1-architecture.md" }
+    { "id": "phase1-architecture", "path": "docs/context/phase1-architecture.md" },
+    { "id": "phase2-tokens", "path": "docs/context/phase2-tokens.md" }
   ],
   "relatedRepositories": [
     { "id": "Aurum-UI", "relation": "existing-design-system", "status": "verified", "evidence": "../Aurum-UI/aurum-workspace/angular.json" },
     { "id": "Aurum-Smart", "relation": "aurum-ui-showcase", "status": "verified", "evidence": "../Aurum-Smart/README.md" }
   ],
   "implementation": [],
-  "plannedCapabilities": ["simple-adoption", "component-variants", "grid", "rows", "simple-groups", "form-groups"],
+  "plannedCapabilities": ["simple-adoption", "component-variants", "grid", "rows", "simple-groups", "form-groups", "flutter-support"],
+  "platformRequirements": ["angular-21-or-newer", "flutter"],
   "designReferences": ["Bootstrap", "Tailwind CSS"],
   "markupPrinciple": "native-html-first; attribute-or-directive-when-needed; custom-element-when-justified",
-  "openDecisions": ["architecture", "specific-reuse-scope", "package-identity", "consumer-inventory", "brand-availability", "component-consolidation", "layout-contracts", "group-contracts"]
+  "openDecisions": ["flutter-architecture", "flutter-distribution", "cross-platform-token-source", "visual-identity", "specific-reuse-scope", "package-identity", "consumer-inventory", "brand-availability", "component-consolidation", "layout-contracts", "group-contracts"]
 }

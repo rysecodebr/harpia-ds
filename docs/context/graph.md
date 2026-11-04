@@ -26,6 +26,9 @@ As arestas abaixo representam requisitos informados pelo solicitante. Nenhum nó
 ```mermaid
 flowchart LR
     Harpia["Harpia DS"]
+    Angular["Biblioteca Angular: direção aprovada"]
+    Flutter["Suporte Flutter: requisito aprovado; contrato pendente"]
+    Tokens["Tokens e linguagem visual: contrato entre plataformas pendente"]
     Simplicidade["Simplicidade de implementação"]
     Composicao["Composição e utilitários: estudar Bootstrap e Tailwind CSS"]
     Componentes["Componentes e variantes"]
@@ -41,6 +44,11 @@ flowchart LR
     Plano["Plano de implementação e adoção"]
 
     Harpia --> Simplicidade
+    Harpia --> Angular
+    Harpia --> Flutter
+    Harpia --> Tokens
+    Tokens -.-> Angular
+    Tokens -.-> Flutter
     Harpia --> Composicao
     Harpia --> Componentes
     Harpia --> Layout

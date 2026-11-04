@@ -43,6 +43,8 @@ Em cada etapa de componente, registre na matriz: selector atual, elemento HTML r
 
 ## Fase 2 — Fundação visual e tokens
 
+**Requisito acrescentado pelo analista:** Harpia DS deve oferecer suporte a Flutter além de Angular. A [análise da fase 2](phase2-tokens.md) registra as implicações: taxonomia visual compartilhada e formas de consumo específicas por plataforma. Nenhum pacote, widget ou ferramenta de geração Flutter foi escolhido. As propostas abaixo devem ser verificadas para as duas plataformas quando aplicáveis.
+
 **Correções:** eliminar no novo contrato referências sem definição, como o caso observado de `--aurum-shadow-xl`; mapear fallbacks locais e resolver colisões entre as duas escalas de z-index. **Simplificações:** separar paleta, tokens semânticos, tokens locais e aliases de migração, com nomenclatura única. **Melhorias:** definir motion (duração/easing/redução), foco, estados, contraste, tipografia, espaçamento, raios, elevação, camadas e dimensões de controle. Definir a fonte de verdade dos breakpoints; não usar CSS custom property como se fosse interpolável em media query.
 
 **Entrega:** catálogo de tokens com função, valor por tema, regra de customização, escopo público e exemplos; temas claro/escuro e matriz de estados.
@@ -144,4 +146,4 @@ Após **cada** passo, atualizar a matriz de equivalência e obter decisão do an
 
 ## Registro de acompanhamento
 
-Cada fase deve receber estado `pendente`, `em andamento`, `validada` ou `bloqueada`, responsável, evidências, decisões e riscos residuais. A fase 0 está **validada para planejamento**. A fase 1 está **validada para avançar à implementação**, com verificações de escopo npm, compatibilidade, caminhos e versionamento adiadas por decisão do analista para depois da implementação e dos testes locais; publicação segue bloqueada até fechá-las. As fases 2–7 continuam **pendentes**. Nenhum recurso do Harpia DS foi implementado.
+Cada fase deve receber estado `pendente`, `em andamento`, `validada` ou `bloqueada`, responsável, evidências, decisões e riscos residuais. A fase 0 está **validada para planejamento**. A fase 1 da biblioteca web está **validada para avançar à implementação**, com verificações de escopo npm, compatibilidade, caminhos e versionamento adiadas por decisão do analista para depois da implementação e dos testes locais; publicação segue bloqueada até fechá-las. A arquitetura Flutter permanece por definir. A fase 2 está **em andamento na análise**; as fases 3–7 continuam **pendentes**. Nenhum recurso do Harpia DS foi implementado.
