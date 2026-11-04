@@ -36,4 +36,4 @@ Há valores coincidentes entre grupos, como azul médio e azul 500, ou azul prof
 | Aviso: texto | `#f59e0b` | `#92400e` |
 | Perigo: texto | `#ea868f` | `#991b1b` |
 
-Esses papéis mostram que reutilizar a paleta **não implica usar a mesma cor para cada papel nos dois temas**. O arquivo de origem ainda contém superfícies adicionais, bordas, overlays, estados e aliases. Antes de implementar, completar o inventário desses papéis, aprovar a taxonomia Harpia e validar contraste e renderização nas duas plataformas. O tema padrão do Harpia não foi decidido; o padrão escuro descrito aqui pertence ao Aurum.
+Esses papéis mostram que reutilizar a paleta **não implica usar a mesma cor para cada papel nos dois temas**. O arquivo de origem ainda contém superfícies adicionais, bordas, overlays, estados e aliases. Antes de implementar, completar o inventário desses papéis, aprovar a taxonomia Harpia e validar contraste e renderização nas duas plataformas. **O Harpia começará pelo tema claro**, por decisão do analista; o padrão escuro descrito na fonte pertence ao Aurum.
