@@ -45,7 +45,10 @@
   "flutterInitialScope": ["tokens", "themes"],
   "colorSource": { "repository": "Aurum-UI", "version": "1.0.18", "status": "approved-for-reuse", "catalog": "docs/context/phase2-color-source.md" },
   "initialTheme": "light",
+  "themeSelection": "explicit-dark-option-approved; api-pending",
+  "tokenSource": "platform-neutral-catalog-approved; format-pending",
+  "lightReadableMutedText": "#4b5563",
   "designReferences": ["Bootstrap", "Tailwind CSS"],
   "markupPrinciple": "native-html-first; attribute-or-directive-when-needed; custom-element-when-justified",
-  "openDecisions": ["flutter-architecture", "flutter-distribution", "cross-platform-token-source", "harpia-token-names", "dark-theme-activation", "specific-reuse-scope", "package-identity", "consumer-inventory", "brand-availability", "component-consolidation", "layout-contracts", "group-contracts"]
+  "openDecisions": ["flutter-architecture", "flutter-distribution", "token-catalog-format", "token-generation-strategy", "harpia-token-names", "theme-selection-api", "specific-reuse-scope", "package-identity", "consumer-inventory", "brand-availability", "component-consolidation", "layout-contracts", "group-contracts"]
 }

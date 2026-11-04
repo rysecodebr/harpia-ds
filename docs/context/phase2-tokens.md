@@ -4,9 +4,11 @@ Estado: **inventário e proposta em andamento; nenhum token Harpia implementado*
 
 ## Consequência para a arquitetura
 
-O contrato de tokens deve ser descrito de forma independente da sintaxe de CSS/SCSS e Dart. A proposta é registrar nome, função semântica, valor por tema, unidades, estados e escopo em uma fonte de verdade revisável; definir depois como Angular e Flutter consomem essa definição. A forma da fonte, geração automática ou manutenção manual ainda não foi aprovada. Evitar considerar uma variável `--aurum-*` como contrato universal ou copiar valores de cor Aurum como identidade Harpia sem decisão.
+O analista aprovou **um catálogo de tokens independente de Angular e Flutter como fonte de verdade**, versionado no Harpia DS. Ele deve registrar nome, função semântica, valor por tema, unidades, estados, escopo e mapeamento das duas plataformas. O formato do arquivo e a estratégia de geração ainda não foram decididos. Evitar considerar uma variável `--aurum-*` como contrato universal.
 
-**Paleta e tema inicial aprovados:** o analista decidiu reaproveitar a paleta do Aurum UI 1.0.18 e **iniciar pelo tema claro** no Harpia, tanto em Angular quanto em Flutter. O [catálogo de origem](phase2-color-source.md) registra valores e papéis atuais. O tema escuro permanece previsto, mas sua forma de ativação ainda não foi definida. Nomes públicos Harpia e eventuais ajustes exigidos por contraste ainda serão definidos e validados nas duas plataformas.
+**Paleta e temas aprovados:** o analista decidiu reaproveitar a paleta do Aurum UI 1.0.18, **iniciar pelo tema claro** em Angular e Flutter e permitir **seleção explícita do tema escuro pela aplicação**. O [catálogo de origem](phase2-color-source.md) registra valores e papéis atuais. O mecanismo/API dessa seleção ainda será definido. Seguir automaticamente o tema do sistema operacional não foi aprovado nem descartado. Nomes públicos Harpia e outros ajustes exigidos por contraste ainda serão definidos e validados nas duas plataformas.
+
+**Correção de contraste aprovada:** para texto atenuado **legível** no tema claro, usar `#4b5563` da paleta existente, em lugar de aplicar `#94a3b8` a texto comum sobre branco. O valor deve ser igual em Angular e Flutter. O uso de `#94a3b8` em outros papéis depende do caso e dos testes. Ver [análise de contraste](phase2-color-source.md).
 
 **Integridade entre plataformas:** o analista exige que Angular e Flutter mantenham a mesma linguagem visual. Para cada token compartilhado, registrar uma chave conceitual e o mesmo significado nos dois destinos; documentar conversões de unidade, aproximações e exceções justificadas. Diferenças próprias da plataforma podem existir, mas não devem alterar silenciosamente cor semântica, hierarquia tipográfica, espaçamento ou estado. Alterações em um token compartilhado exigirão avaliação das duas saídas e atualização conjunta da documentação e dos testes.
 
@@ -40,22 +42,22 @@ Referências exatas: `Aurum-UI/aurum-workspace/projects/aurum-ui/src/lib/tokens/
 
 **Controle de mudanças proposto:** manter uma tabela de paridade versionada; nenhum token compartilhado entra como concluído se uma saída estiver ausente ou divergente sem justificativa aprovada. A estratégia técnica para gerar ou manter as saídas ainda exige decisão. Tokens exclusivos de web, como scrollbar, ficam explicitamente marcados e não são forçados no Flutter.
 
-## Contrato proposto para revisão do analista
+## Decisões aprovadas e propostas restantes
 
 | Decisão | Proposta concreta | Motivo e verificação |
 | --- | --- | --- |
-| Fonte de verdade | Um catálogo neutro à plataforma, versionado no repositório Harpia, com chaves conceituais, valores por tema e metadados de paridade. Formato do arquivo e geração automática ainda a escolher. | Evita editar CSS e Dart separadamente sem rastrear diferenças; comparar saídas com o catálogo nos testes. |
+| Fonte de verdade — **aprovada** | Um catálogo neutro à plataforma, versionado no repositório Harpia, com chaves conceituais, valores por tema e metadados de paridade. Formato do arquivo e geração automática ainda a escolher. | Evita editar CSS e Dart separadamente sem rastrear diferenças; comparar saídas com o catálogo nos testes. |
 | Taxonomia | `base` para valores da paleta; `semantic` para função no tema; `component` só quando o uso real justificar; `platform` para exceções específicas. Aliases Aurum ficam no mapa de migração, não no núcleo. | Distingue valor repetido de papel diferente e limita duplicação. |
 | Nomes | Chaves conceituais descritivas, por exemplo `color.background.page`, `color.text.primary`, `color.action.primary`. Prefixo web e nomes Dart derivados de convenção a aprovar, sem API pública criada. | O mesmo papel pode ter valores diferentes em claro/escuro e representação diferente por plataforma. |
-| Tema inicial | Claro como padrão. Escuro disponível por seleção explícita da aplicação; seguir automaticamente o sistema operacional fica como capacidade opcional a decidir. | Evita que o tema inicial mude silenciosamente entre web e Flutter. |
+| Tema inicial e alternância — **aprovados** | Claro como padrão. Escuro disponível por seleção explícita da aplicação; seguir automaticamente o sistema operacional fica como capacidade opcional a decidir. | Evita que o tema inicial mude silenciosamente entre web e Flutter. |
 | Paridade | Mesma chave e valor de cor aprovado em ambas as plataformas; diferenças de renderização e conversão documentadas. | Conferir valores gerados e amostras visuais em ambos os temas. |
 
-**Checagem de contraste inicial:** no [catálogo de origem](phase2-color-source.md), texto atenuado claro `#94a3b8` sobre branco mede cerca de 2,56:1, abaixo de 4,5:1 para texto comum pela [WCAG 2.2](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum). A decisão de reaproveitar a paleta não aprova aplicar esse par a texto comum. Verificar usos e propor correção antes de implementar esse papel.
+**Checagem de contraste inicial:** no [catálogo de origem](phase2-color-source.md), texto atenuado claro `#94a3b8` sobre branco mede cerca de 2,56:1, abaixo de 4,5:1 para texto comum pela [WCAG 2.2](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum). O analista aprovou `#4b5563` para texto atenuado legível no tema claro; a combinação renderizada ainda deve ser testada.
 
 ## Sequência para implementar após decisões
 
 1. Partir da paleta Aurum aprovada e do tema claro inicial; decidir nomes e papéis Harpia, e validar eventuais ajustes de contraste antes de implementá-los.
-2. Aprovar a taxonomia da fonte de verdade: valores base, papéis semânticos, estados, valores locais e aliases de migração.
+2. Definir o formato do catálogo aprovado e aprovar a taxonomia proposta: valores base, papéis semânticos, estados, valores locais e aliases de migração.
 3. Catalogar tokens necessários ao primeiro conjunto de temas e aos futuros componentes selecionados; para cada token compartilhado, preencher o contrato de paridade acima.
 4. Resolver a hierarquia de camadas e o caso de sombra indefinida antes de adaptar Card/Panel/overlays.
 5. Definir breakpoints e regras adaptativas com exemplos reais de web e Flutter; validar espaçamento, tipografia e controles.
@@ -63,9 +65,9 @@ Referências exatas: `Aurum-UI/aurum-workspace/projects/aurum-ui/src/lib/tokens/
 
 ## Decisões pendentes e porta de saída
 
-- A paleta Aurum e o tema claro inicial foram aprovados. Falta definir nomes e papéis semânticos Harpia, a forma de ativação do tema escuro e ajustes de valores por acessibilidade quando os testes indicarem necessidade.
+- A paleta Aurum, o tema claro inicial, a seleção explícita do escuro e a correção do texto atenuado legível estão aprovados. Faltam nomes e papéis semânticos Harpia, API de seleção de tema e eventuais outros ajustes indicados pelos testes.
 - O recorte inicial Flutter está decidido: tokens e temas. Quais cenários de prova deverão demonstrar a paridade visual antes dos componentes?
-- Qual será a fonte de verdade e como se relacionará com CSS/SCSS e Dart? Nenhuma ferramenta de geração foi escolhida.
+- O catálogo único é a fonte de verdade aprovada. Faltam formato, processo de geração/manutenção e mapeamento concreto para CSS/SCSS e Dart.
 - Quais componentes entram primeiro, para determinar tokens realmente necessários?
 
 **Porta de saída ainda aberta:** catálogo aprovado, saídas Angular e Flutter para tokens/temas, tabela de paridade preenchida e testes reais de contraste, foco, escala e movimento. Nenhum valor ou nome de token Harpia foi presumido neste inventário.
