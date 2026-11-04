@@ -1,10 +1,12 @@
 # Fase 2 — fundação visual e tokens
 
-Estado: **inventário e proposta em andamento; nenhum token Harpia implementado**. Data: 04/11/2026. Fonte local: Aurum UI 1.0.18 e sua vitrine Aurum-Smart. **Novo requisito do analista:** o Harpia Design System deve oferecer suporte a Flutter, além de Angular. Essa exigência abrange o sistema; alcance exato de componentes Flutter e forma de distribuição ainda não foram definidos.
+Estado: **inventário e proposta em andamento; nenhum token Harpia implementado**. Data: 04/11/2026. Fonte local: Aurum UI 1.0.18 e sua vitrine Aurum-Smart. **Decisão do analista:** o Harpia Design System deve oferecer suporte a Flutter, além de Angular. O primeiro recorte Flutter incluirá **tokens e temas**; componentes serão acrescentados em etapas posteriores. A forma de distribuição Flutter ainda não foi definida.
 
 ## Consequência para a arquitetura
 
 O contrato de tokens deve ser descrito de forma independente da sintaxe de CSS/SCSS e Dart. A proposta é registrar nome, função semântica, valor por tema, unidades, estados e escopo em uma fonte de verdade revisável; definir depois como Angular e Flutter consomem essa definição. A forma da fonte, geração automática ou manutenção manual ainda não foi aprovada. Evitar considerar uma variável `--aurum-*` como contrato universal ou copiar valores de cor Aurum como identidade Harpia sem decisão.
+
+**Integridade entre plataformas:** o analista exige que Angular e Flutter mantenham a mesma linguagem visual. Para cada token compartilhado, registrar uma chave conceitual e o mesmo significado nos dois destinos; documentar conversões de unidade, aproximações e exceções justificadas. Diferenças próprias da plataforma podem existir, mas não devem alterar silenciosamente cor semântica, hierarquia tipográfica, espaçamento ou estado. Alterações em um token compartilhado exigirão avaliação das duas saídas e atualização conjunta da documentação e dos testes.
 
 No Flutter, a documentação oficial descreve temas por `ThemeData`, `ColorScheme` e `TextTheme`; [`ThemeExtension`](https://api.flutter.dev/flutter/material/ThemeExtension-class.html) permite acrescentar propriedades próprias ao tema. Essas são **opções de integração a avaliar**, não implementação escolhida. Consultar [guia oficial de temas](https://docs.flutter.dev/cookbook/design/themes). O pacote npm candidato cobre a biblioteca web; nome, distribuição e versões do pacote Flutter permanecem abertos.
 
@@ -23,20 +25,33 @@ No Flutter, a documentação oficial descreve temas por `ThemeData`, `ColorSchem
 
 Referências exatas: `Aurum-UI/aurum-workspace/projects/aurum-ui/src/lib/tokens/`, `src/lib/components/card/aurum-card/aurum-card.scss`, `panel/aurum-panel/aurum-panel.scss`, `forms/rich-text-editor/aurum-rich-text-editor/aurum-rich-text-editor.scss`, `overlay/`, `popover/`, `tooltip/`, `toast/`, `Aurum-Smart/src/styles.scss`. Oito entradas de tokens são carregadas nessa vitrine. A [auditoria inicial](audit-aurum.md) e o [inventário da fase 0](phase0-inventory.md) registram outros usos e limites.
 
+## Contrato de paridade a preencher antes da implementação
+
+| Campo por token | Verificação exigida |
+| --- | --- |
+| Identificador conceitual e função | O mesmo propósito em Angular e Flutter; classificação como base, semântico, componente, local ou legado. |
+| Valor por tema e estado | Claro/escuro e estados definidos; valores aprovados pelo analista e rastreáveis à fonte de verdade. |
+| Unidade e conversão | Unidade canônica, representação CSS e Dart, regra de arredondamento quando necessária. Não presumir equivalência visual entre px CSS e unidades lógicas Flutter. |
+| Mapeamento de plataforma | Nome público web e propriedade/tema Flutter; marcar explicitamente quando só uma plataforma tem aplicação. |
+| Acessibilidade | Contraste, foco, escala de texto, alvos de interação e redução de movimento conforme o uso do token. |
+| Evidência | Componente ou cenário que usa o token, validação em tema claro/escuro nas duas plataformas e exceção aprovada, se houver. |
+
+**Controle de mudanças proposto:** manter uma tabela de paridade versionada; nenhum token compartilhado entra como concluído se uma saída estiver ausente ou divergente sem justificativa aprovada. A estratégia técnica para gerar ou manter as saídas ainda exige decisão. Tokens exclusivos de web, como scrollbar, ficam explicitamente marcados e não são forçados no Flutter.
+
 ## Sequência para implementar após decisões
 
 1. Aprovar identidade visual e temas Harpia, incluindo o que pode ou não ser reaproveitado de Aurum.
 2. Aprovar a taxonomia da fonte de verdade: valores base, papéis semânticos, estados, valores locais e aliases de migração.
-3. Catalogar somente tokens usados pelos primeiros componentes selecionados; para cada token, registrar valores claro/escuro, unidade, contraste quando aplicável e destino Angular/Flutter.
+3. Catalogar tokens necessários ao primeiro conjunto de temas e aos futuros componentes selecionados; para cada token compartilhado, preencher o contrato de paridade acima.
 4. Resolver a hierarquia de camadas e o caso de sombra indefinida antes de adaptar Card/Panel/overlays.
 5. Definir breakpoints e regras adaptativas com exemplos reais de web e Flutter; validar espaçamento, tipografia e controles.
-6. Implementar e testar as saídas de cada plataforma conforme autorização concreta; verificar paridade sem exigir semelhança técnica artificial.
+6. Implementar e testar primeiro tokens e temas em Angular e Flutter conforme autorização concreta; verificar paridade sem exigir semelhança técnica artificial. Acrescentar componentes Flutter em etapas posteriores, com planejamento específico.
 
 ## Decisões pendentes e porta de saída
 
 - Qual é a identidade visual Harpia e quais valores Aurum, se algum, devem ser reaproveitados?
-- O suporte Flutter inclui apenas tokens/tema inicialmente ou também componentes, layout e formulários desde a primeira versão? O requisito geral de suporte está aprovado; o recorte inicial não está.
+- O recorte inicial Flutter está decidido: tokens e temas. Quais cenários de prova deverão demonstrar a paridade visual antes dos componentes?
 - Qual será a fonte de verdade e como se relacionará com CSS/SCSS e Dart? Nenhuma ferramenta de geração foi escolhida.
 - Quais componentes entram primeiro, para determinar tokens realmente necessários?
 
-**Porta de saída ainda aberta:** catálogo aprovado, saídas Angular e Flutter, temas e testes reais de contraste, foco, escala e movimento. Nenhum valor ou nome de token Harpia foi presumido neste inventário.
+**Porta de saída ainda aberta:** catálogo aprovado, saídas Angular e Flutter para tokens/temas, tabela de paridade preenchida e testes reais de contraste, foco, escala e movimento. Nenhum valor ou nome de token Harpia foi presumido neste inventário.

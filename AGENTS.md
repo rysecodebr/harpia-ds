@@ -10,6 +10,7 @@ Leia [docs/context/index.md](docs/context/index.md) e siga os nós relevantes an
 - Antes de executar cada etapa do plano, confirme o escopo aprovado e reconfira as evidências, pois contratos e consumidores podem ter mudado. Não transforme exemplos conceituais, como `<table hTable>`, em seletores definitivos sem decisão registrada.
 - O Harpia DS é um projeto independente. Não altere Aurum-UI, Aurum-Smart ou consumidores por inferência de migração.
 - Antes de definir API, tokens, componentes, pacote ou integração, confirme contratos e consumidores existentes e registre compatibilidade e ordem de adoção.
+- O Harpia DS atende Angular e Flutter. O primeiro recorte Flutter compreende tokens e temas; componentes virão em etapas posteriores. Para cada token compartilhado, mantenha função semântica e valores por tema rastreáveis nas duas plataformas, documente conversões e exceções e valide ambas as saídas antes de considerar o token concluído. Não presuma equivalência entre CSS e Flutter apenas por nomes ou números iguais.
 - A fase 0 aprovou reaproveitar partes da fonte Aurum UI 1.0.18 e criar vitrine própria do Harpia DS. Antes de copiar cada parte, confirme a necessidade, o contrato, a origem e as condições da licença; registre a decisão do analista para aquela mudança concreta.
 - Atualize o grafo e o mapa de contexto quando novas áreas ou relações forem implementadas.
 - Mantenha as notas Markdown navegáveis no Obsidian conforme `docs/context/obsidian.md`, com links relativos e um índice de entrada.

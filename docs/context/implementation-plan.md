@@ -43,13 +43,13 @@ Em cada etapa de componente, registre na matriz: selector atual, elemento HTML r
 
 ## Fase 2 — Fundação visual e tokens
 
-**Requisito acrescentado pelo analista:** Harpia DS deve oferecer suporte a Flutter além de Angular. A [análise da fase 2](phase2-tokens.md) registra as implicações: taxonomia visual compartilhada e formas de consumo específicas por plataforma. Nenhum pacote, widget ou ferramenta de geração Flutter foi escolhido. As propostas abaixo devem ser verificadas para as duas plataformas quando aplicáveis.
+**Requisito acrescentado pelo analista:** Harpia DS deve oferecer suporte a Flutter além de Angular. A primeira entrega Flutter compreenderá tokens e temas; componentes serão planejados em etapas posteriores. A [análise da fase 2](phase2-tokens.md) registra o contrato de paridade: significado e valores compartilhados, conversões e exceções documentadas, validação das duas saídas. Nenhum pacote, widget ou ferramenta de geração Flutter foi escolhido. As propostas abaixo devem ser verificadas para as duas plataformas quando aplicáveis.
 
 **Correções:** eliminar no novo contrato referências sem definição, como o caso observado de `--aurum-shadow-xl`; mapear fallbacks locais e resolver colisões entre as duas escalas de z-index. **Simplificações:** separar paleta, tokens semânticos, tokens locais e aliases de migração, com nomenclatura única. **Melhorias:** definir motion (duração/easing/redução), foco, estados, contraste, tipografia, espaçamento, raios, elevação, camadas e dimensões de controle. Definir a fonte de verdade dos breakpoints; não usar CSS custom property como se fosse interpolável em media query.
 
-**Entrega:** catálogo de tokens com função, valor por tema, regra de customização, escopo público e exemplos; temas claro/escuro e matriz de estados.
+**Entrega:** catálogo de tokens com função, valor por tema, regra de customização, escopo público e exemplos; temas claro/escuro, matriz de estados e tabela de paridade Angular/Flutter.
 
-**Porta de saída:** tokens usados pelos primeiros componentes existem, resolvem em todos os temas e não exigem valores fixos em aplicações consumidoras para casos comuns. Validar também zoom, contraste, forced colors e movimento reduzido nos cenários relevantes.
+**Porta de saída:** tokens usados pelos primeiros componentes existem e resolvem em todos os temas de ambas as plataformas, sem exigir valores fixos em aplicações consumidoras para casos comuns. Divergências entre Angular e Flutter devem estar justificadas e aprovadas. Validar também escala/zoom, contraste, forced colors na web e movimento reduzido nos cenários relevantes.
 
 **Ordem de conferência:**
 

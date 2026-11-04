@@ -21,7 +21,7 @@ Essas decisões aprovam a direção do projeto. Não aprovam automaticamente a c
 ## Diretrizes de produto definidas pelo solicitante
 
 - O design system deve oferecer uma experiência simples de implementar nas aplicações consumidoras. A simplicidade de uso é critério de avaliação da API, da documentação e dos exemplos.
-- O Harpia Design System deve oferecer suporte também a **Flutter**, além de Angular. A extensão desse suporte por componentes e a distribuição do pacote Flutter ainda precisam de definição. Os tokens e a linguagem visual devem ser planejados para as duas plataformas; o pacote npm candidato corresponde à biblioteca web.
+- O Harpia Design System deve oferecer suporte também a **Flutter**, além de Angular. O primeiro recorte Flutter terá **tokens e temas**; componentes serão acrescentados em etapas posteriores. A linguagem visual e os tokens compartilhados devem manter integridade entre as plataformas. A distribuição Flutter ainda precisa de definição; o pacote npm candidato corresponde à biblioteca web.
 - Bootstrap e Tailwind CSS são referências explícitas para estudar composição, utilitários e ergonomia. Ainda não foi decidido copiar suas APIs, classes, arquitetura ou forma de distribuição.
 - Componentes com diferenças pequenas devem ser analisados como candidatos a uma base comum com atributos ou variantes. A fusão depende da comparação de semântica, comportamento, acessibilidade e compatibilidade; a semelhança visual, isoladamente, não basta.
 - O escopo deve contemplar sistemas de grid e linhas, agrupadores simples e agrupadores de formulários. Os contratos, nomes e responsabilidades exatos ainda serão definidos.
