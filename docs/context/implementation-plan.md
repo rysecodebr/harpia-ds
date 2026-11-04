@@ -19,13 +19,13 @@ Em cada etapa de componente, registre na matriz: selector atual, elemento HTML r
 
 ## Fase 0 — Fechar o inventário e os critérios
 
-**Acompanhamento em 04/11/2026:** inventário estático de Aurum UI e de sua vitrine Aurum-Smart registrado em [phase0-inventory.md](phase0-inventory.md). Escopo reduzido a esses dois projetos por decisão do solicitante. A fase 0 permanece **em andamento**: falta a decisão do analista sobre implementação nova ou reaproveitamento e sobre a relação futura entre as vitrines, além da validação dinâmica dos cenários. O `package.json` do Smart declara 1.0.18, enquanto lockfile e instalação estão em 1.0.17; resolver essa divergência antes de estabelecer baseline executável da 1.0.18. Bootstrap e Tailwind CSS são referências comparativas da auditoria, sem instalação ou importação. Outros consumidores não entram nesta execução.
+**Acompanhamento em 04/11/2026:** inventário estático de Aurum UI e de sua vitrine Aurum-Smart registrado em [phase0-inventory.md](phase0-inventory.md). O analista decidiu reaproveitar partes do Aurum UI, usar o código da biblioteca que declara 1.0.18 e criar vitrine própria para Harpia. A fase 0 está **validada** para planejamento; os resultados de testes da fonte estão registrados no inventário. O lockfile e a instalação do Aurum-Smart permanecem em 1.0.17 e não são baseline de execução da 1.0.18. Bootstrap e Tailwind CSS são referências comparativas, sem instalação ou importação. Outros consumidores não entram nesta execução.
 
 **Ações:** levantar exports, selectors, classes, tokens, dependências e padrões demonstrados no Aurum-Smart. Comparar contratos e testes dos grupos listados na auditoria e usar Bootstrap/Tailwind CSS apenas como referências de ergonomia. Definir cenários de referência: botão, tabela, formulário responsivo, agrupador simples, overlay e tema. Registrar licença/autoria de qualquer ativo candidato a reaproveitamento.
 
 **Entrega:** matriz `recurso atual → consumidor → comportamento necessário → destino proposto → risco`, com evidência por projeto; critérios de simplicidade mensuráveis (instalação, número de imports, marcação necessária, CSS gerado) e matriz de acessibilidade.
 
-**Porta de saída:** inventário de Aurum UI e de sua vitrine; decisão explícita de implementação nova ou reaproveitamento, relação com a vitrine atual e cenários a demonstrar no Harpia DS. Aplicações consumidoras de negócio ficam fora desta fase, sem promessa de compatibilidade implícita.
+**Porta de saída:** inventário de Aurum UI e de sua vitrine; decisão explícita de reaproveitamento, referência 1.0.18 e vitrine própria do Harpia DS. Os cenários de botão, tabela, formulário responsivo, agrupador, overlay e tema são referências de validação; a seleção de recursos da primeira entrega ocorre nas fases correspondentes. Aplicações consumidoras de negócio ficam fora desta fase, sem promessa de compatibilidade implícita.
 
 **Roteiro verificável:** começar por `AU/api` e `AU/lib/components`; cruzar com `Aurum-Smart/package.json`, `src/styles.scss`, templates e imports da vitrine. Para cada export, marcar `demonstrado`, `não encontrado na vitrine` ou `não auditado`. Ler os testes e exemplos específicos antes de classificar qualquer par como repetido.
 
@@ -142,4 +142,4 @@ Após **cada** passo, atualizar a matriz de equivalência e obter decisão do an
 
 ## Registro de acompanhamento
 
-Cada fase deve receber estado `pendente`, `em andamento`, `validada` ou `bloqueada`, responsável, evidências, decisões e riscos residuais. O estado atual de todas as fases é **pendente**; esta nota documenta a sequência, sem afirmar que algo foi implementado.
+Cada fase deve receber estado `pendente`, `em andamento`, `validada` ou `bloqueada`, responsável, evidências, decisões e riscos residuais. A fase 0 está **validada para planejamento**; as fases 1–7 continuam **pendentes**. Nenhum recurso do Harpia DS foi implementado.

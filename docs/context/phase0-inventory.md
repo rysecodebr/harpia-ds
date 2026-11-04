@@ -1,6 +1,6 @@
 # Fase 0 — inventário Aurum UI e Aurum-Smart
 
-Estado: **análise concluída; decisão de estratégia pendente**. Data: 04/11/2026. Escopo limitado expressamente a `Aurum-UI` e `Aurum-Smart`. O Aurum-Smart é a vitrine de apresentação do Aurum UI, conforme esclarecimento do analista, e não um piloto de migração. Nenhuma implementação ou alteração foi feita nesses dois repositórios.
+Estado: **fase 0 validada para planejamento**. Data: 04/11/2026. Escopo limitado expressamente a `Aurum-UI` e `Aurum-Smart`. O Aurum-Smart é a vitrine de apresentação do Aurum UI, conforme esclarecimento do analista, e não um piloto de migração. Nenhuma implementação ou alteração de código foi feita nesses dois repositórios.
 
 ## Evidência e método
 
@@ -14,6 +14,7 @@ Estado: **análise concluída; decisão de estratégia pendente**. Data: 04/11/2
 | Observação | Evidência | Implicação |
 | --- | --- | --- |
 | Biblioteca `aurum-ui@1.0.18` | `Aurum-UI/aurum-workspace/projects/aurum-ui/package.json` | Base do contrato local inspecionado. |
+| Baseline da fonte 1.0.18 | Commit Aurum UI `2ae142acc0d39e654b400bdd276746964fd1b570`; `npm run test:lib`: 93 arquivos e 1.664 testes aprovados; `npm run build:lib`: pacote gerado com versão 1.0.18 | Fonte local verificada para o reaproveitamento. Não foi encontrada tag exata no commit inspecionado; o manifesto e o pacote gerado confirmam a versão declarada. |
 | Aurum-Smart declara `aurum-ui@1.0.18`, mas lockfile e `node_modules` estão em `1.0.17` | `Aurum-Smart/package.json`, `package-lock.json`, `node_modules/aurum-ui/package.json`; `npm ls aurum-ui --depth=0` retornou `ELSPROBLEMS` | O workspace está inconsistente. A matriz estática lê a fonte local do Aurum UI 1.0.18 e os templates atuais, mas não comprova que o consumidor execute esse contrato. Corrigir lockfile/instalação exige etapa própria no Aurum-Smart e consentimento do analista. |
 | Oito imports SCSS de tokens | `Aurum-Smart/src/styles.scss` | Baseline de esforço de instalação: oito linhas de tokens. |
 | Feed privado configurado | `Aurum-Smart/.npmrc`; `Aurum-UI/azure-pipelines.yml` | Mudança de pacote exigirá origem, autenticação e ordem de publicação definidas; nenhum segredo foi lido ou registrado. |
@@ -55,11 +56,12 @@ Uma comparação textual das referências `var(--aurum-*)` sem fallback imediato
 
 Não há meta numérica aprovada para bytes, quantidade de imports ou redução de componentes. Essas métricas devem ser medidas e comparadas, não inventadas. A matriz de acessibilidade inclui teclado, foco, nome/descrição acessíveis, estado, erro, contraste, zoom, movimento reduzido e semântica nativa conforme o cenário.
 
-## Decisões ainda necessárias para encerrar a fase 0
+## Decisões aprovadas e encaminhamentos
 
-1. Escolher entre implementação nova e reaproveitamento autorizado de partes do Aurum UI. Definir se o Harpia DS terá uma vitrine própria e qual relação ela terá com o Aurum-Smart. **Proposta para análise:** criar uma vitrine própria do Harpia DS e manter o Aurum-Smart como apresentação do Aurum UI. Esta nota não aprova nem implementa a proposta.
-2. Definir quais cenários demonstrados no Aurum-Smart ajudam a validar a primeira versão do Harpia DS e quais capacidades avançadas da tabela realmente entram nela. A vitrine mostra possibilidades, não prioridade de produto automaticamente.
-3. Se houver reaproveitamento de código/ativos, registrar autoria e cumprimento da licença MIT localizada em `Aurum-UI/aurum-workspace/projects/aurum-ui/LICENSE` (copyright 2026 MkG); o manifesto declara autor RYSECODE. A licença permite reutilização sob suas condições, mas a estratégia concreta não foi decidida.
-4. Resolver a divergência entre manifesto 1.0.18 e lockfile/instalação 1.0.17 em escopo autorizado, antes de usar build ou testes como baseline da versão 1.0.18. Confirmar visualmente os tokens suspeitos após estabelecer esse baseline. A análise estática não substitui essa verificação.
+1. **Aprovado pelo analista:** reaproveitar partes do Aurum UI e criar vitrine própria do Harpia DS. O Aurum-Smart permanece como vitrine do Aurum UI, sem migração implícita.
+2. **Aprovado pelo analista:** usar a fonte da biblioteca Aurum UI que declara versão 1.0.18. O pacote foi compilado localmente e os testes da biblioteca passaram. O conteúdo específico a reaproveitar será decidido e autorizado por etapa, conforme as diretrizes do agente.
+3. **A decidir nas fases seguintes:** quais cenários demonstrados no Aurum-Smart entram na primeira versão do Harpia DS e quais capacidades avançadas de tabela serão necessárias. A vitrine mostra possibilidades, não prioridade de produto automaticamente.
+4. **Obrigação ao reaproveitar:** registrar origem, autoria e cumprir a licença MIT em `Aurum-UI/aurum-workspace/projects/aurum-ui/LICENSE` (copyright 2026 MkG); o manifesto declara autor RYSECODE. Nenhum arquivo foi copiado nesta fase.
+5. **Limite de validação:** a divergência entre manifesto 1.0.18 e lockfile/instalação 1.0.17 do Aurum-Smart continua aberta. Ela não altera o baseline da fonte Aurum UI, mas impede tratar a execução atual da vitrine como validação do pacote 1.0.18. Confirmar visualmente os tokens suspeitos quando houver baseline consistente da vitrine; não corrigir o Smart por inferência.
 
-**Porta de saída:** o inventário dos dois projetos e os cenários estão registrados. A fase 0 continua em andamento até decisão explícita do analista sobre estratégia e vitrine; a fase 1 ainda não começa. Bootstrap e Tailwind CSS aparecem apenas como referências comparativas na [auditoria inicial](audit-aurum.md); não foram instalados nem importados.
+**Porta de saída:** inventário, cenários, decisão de reaproveitamento, vitrine própria e fonte 1.0.18 registrados; testes e build dessa fonte aprovados. **Fase 0 concluída para planejamento.** A fase 1 continua pendente de execução. Bootstrap e Tailwind CSS aparecem apenas como referências comparativas na [auditoria inicial](audit-aurum.md); não foram instalados nem importados.

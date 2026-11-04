@@ -13,8 +13,8 @@ flowchart LR
     AurumDocs -->|imports e exemplos| AurumUI
     Smart -->|demonstra e declara dependência npm aurum-ui 1.0.18| AurumUI
     Consumers -->|consumo parcial registrado no contexto Aurum UI| AurumUI
-    Harpia -.->|estratégia de relação a decidir| AurumUI
-    Harpia -.->|referência de apresentação; relação futura a decidir| Smart
+    Harpia -.->|reaproveitamento aprovado; itens por definir| AurumUI
+    Harpia -.->|referência de apresentação; sem migração| Smart
 ```
 
 Evidências: `Aurum-UI/aurum-workspace/angular.json`, `Aurum-UI/docs/context/graph.md`, `Aurum-UI/aurum-workspace/projects/aurum-ui/package.json` e `Aurum-Smart/package.json`. Arestas futuras não autorizam mudanças nesses repositórios.

@@ -4,7 +4,15 @@
 
 O nome de trabalho do novo projeto é **Harpia DS** (Harpia Design System). A motivação informada pelo solicitante é evitar o nome Aurum para o novo design system e adotar uma identidade ligada ao Brasil. Isso não confirma disponibilidade jurídica, de domínio ou de pacote; essas verificações permanecem abertas.
 
-O projeto começa independente, somente com documentação. Nenhum código, contrato público, tecnologia, identidade visual, pacote ou estratégia de publicação foi definido.
+O projeto começa independente, somente com documentação. Nenhum código, contrato público, identidade visual, pacote ou estratégia de publicação do Harpia DS foi definido.
+
+## Decisões da fase 0 — 04/11/2026
+
+- O Harpia DS **reaproveitará partes do Aurum UI**. A fonte de referência é o código da biblioteca em `Aurum-UI/aurum-workspace/projects/aurum-ui`, cujo manifesto declara **1.0.18**. O conjunto exato de arquivos, contratos e ativos a reaproveitar será decidido por etapa, após comparação técnica e registro de licença/autoria.
+- O Harpia DS terá **vitrine própria**. O Aurum-Smart continua sendo a vitrine do Aurum UI; não há migração ou renomeação implícita desse projeto.
+- A divergência local do Aurum-Smart (`package.json` 1.0.18; lockfile e instalação 1.0.17) não muda a versão de referência escolhida para o Harpia DS. Ela permanece registrada como limite para qualquer validação executada naquela vitrine.
+
+Essas decisões aprovam a direção do projeto. Não aprovam automaticamente a cópia de um componente específico, sua API, seu seletor ou mudanças no Aurum UI e no Aurum-Smart.
 
 ## Diretrizes de produto definidas pelo solicitante
 
@@ -26,7 +34,7 @@ Essas diretrizes são requisitos para o planejamento do Harpia DS, não descriç
 
 ## Decisões pendentes antes de implementar
 
-1. Definir se Harpia DS terá implementação nova, aproveitamento autorizado de partes do Aurum UI ou migração gradual. Mapear licenças e autoria antes de reutilizar ativos.
+1. Escolher, por etapa, quais partes do Aurum UI 1.0.18 serão reaproveitadas, adaptadas ou substituídas; mapear licenças e autoria antes de reutilizar ativos.
 2. Definir público, princípios de produto, acessibilidade, internacionalização, temas e identidade visual.
 3. Definir plataforma, arquitetura, nome e escopo do pacote, API pública, política de versões e distribuição.
 4. Inventariar consumidores, contratos usados, tokens e componentes necessários; planejar compatibilidade e ordem de adoção.

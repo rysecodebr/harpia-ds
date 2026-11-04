@@ -2,6 +2,14 @@
   "schemaVersion": 1,
   "repository": "Harpia-DS",
   "status": "planning-only",
+  "phase0": {
+    "status": "validated-for-planning",
+    "sourceRepository": "Aurum-UI",
+    "sourceVersion": "1.0.18",
+    "sourceCommit": "2ae142acc0d39e654b400bdd276746964fd1b570",
+    "strategy": "reuse-selected-parts",
+    "showcase": "separate-harpia-showcase"
+  },
   "areas": [
     { "id": "foundation", "path": "docs/context/foundation.md" },
     { "id": "graph", "path": "docs/context/graph.md" },
@@ -20,5 +28,5 @@
   "plannedCapabilities": ["simple-adoption", "component-variants", "grid", "rows", "simple-groups", "form-groups"],
   "designReferences": ["Bootstrap", "Tailwind CSS"],
   "markupPrinciple": "native-html-first; attribute-or-directive-when-needed; custom-element-when-justified",
-  "openDecisions": ["architecture", "reuse-or-migration", "package-identity", "consumer-inventory", "brand-availability", "component-consolidation", "layout-contracts", "group-contracts"]
+  "openDecisions": ["architecture", "specific-reuse-scope", "package-identity", "consumer-inventory", "brand-availability", "component-consolidation", "layout-contracts", "group-contracts"]
 }
