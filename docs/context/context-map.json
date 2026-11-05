@@ -56,7 +56,8 @@
   "tokenSource": "platform-neutral-catalog-approved; format-pending",
   "lightReadableMutedText": "#4b5563",
   "darkReadableMutedText": "#8493a9",
+  "fontFamily": "Montserrat",
   "designReferences": ["Bootstrap", "Tailwind CSS"],
   "markupPrinciple": "native-html-first; attribute-or-directive-when-needed; custom-element-when-justified",
-  "openDecisions": ["flutter-runtime-validation", "flutter-distribution", "typography", "shadows", "layers", "motion", "breakpoints", "dimension-visual-parity", "package-import-review", "specific-reuse-scope", "package-identity", "consumer-inventory", "brand-availability", "component-consolidation", "layout-contracts", "group-contracts"]
+  "openDecisions": ["flutter-runtime-validation", "flutter-distribution", "typography-scale", "font-asset-version", "shadows", "layers", "motion", "breakpoints", "dimension-visual-parity", "package-import-review", "specific-reuse-scope", "package-identity", "consumer-inventory", "brand-availability", "component-consolidation", "layout-contracts", "group-contracts"]
 }
