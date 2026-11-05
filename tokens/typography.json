@@ -1,0 +1,36 @@
+{
+  "$schema": "./schema.json",
+  "kind": "typography",
+  "family": "Montserrat",
+  "source": "Aurum-UI/aurum-workspace/projects/aurum-ui/src/lib/tokens/typography.scss@1.0.18",
+  "sizeUnit": "reference-px-at-16px-root",
+  "sizes": {
+    "2xs": 10,
+    "xs": 11,
+    "sm": 12,
+    "md": 14,
+    "base": 16,
+    "lg": 18,
+    "xl": 20,
+    "2xl": 24,
+    "3xl": 30,
+    "4xl": 36,
+    "5xl": 48,
+    "6xl": 64
+  },
+  "weights": {
+    "regular": 400,
+    "medium": 500,
+    "semibold": 600,
+    "bold": 700,
+    "extrabold": 800
+  },
+  "lineHeights": {
+    "none": 1,
+    "tight": 1.15,
+    "snug": 1.3,
+    "normal": 1.5,
+    "relaxed": 1.7,
+    "loose": 1.9
+  }
+}

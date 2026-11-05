@@ -115,7 +115,60 @@ export function buildDimensions(document) {
   return { keys, css, dart };
 }
 
-export function buildOutputs(paletteDocument, lightDocument, darkDocument, dimensionsDocument) {
+function validateTypography(document) {
+  if (document.kind !== 'typography' || document.family !== 'Montserrat' ||
+      document.sizeUnit !== 'reference-px-at-16px-root' || !document.source) {
+    throw new Error('Invalid typography document');
+  }
+  const groups = [
+    ['sizes', /^(?:[2-6]?(?:xs|xl)|sm|md|base|lg)$/, (value) => value > 0],
+    ['weights', /^(?:regular|medium|semibold|bold|extrabold)$/, (value) => Number.isInteger(value) && value >= 100 && value <= 900 && value % 100 === 0],
+    ['lineHeights', /^(?:none|tight|snug|normal|relaxed|loose)$/, (value) => value > 0]
+  ];
+  for (const [group, pattern, validValue] of groups) {
+    const values = document[group];
+    if (!values || Array.isArray(values) || !Object.keys(values).length) {
+      throw new Error(`Invalid typography group: ${group}`);
+    }
+    for (const [key, value] of Object.entries(values)) {
+      if (!pattern.test(key) || typeof value !== 'number' || !Number.isFinite(value) || !validValue(value)) {
+        throw new Error(`Invalid typography token: ${group}.${key}`);
+      }
+    }
+  }
+}
+
+function upperFirst(value) {
+  return value[0].toUpperCase() + value.slice(1);
+}
+
+export function buildTypography(document) {
+  validateTypography(document);
+  const sizes = Object.keys(document.sizes).sort();
+  const weights = Object.keys(document.weights).sort();
+  const lineHeights = Object.keys(document.lineHeights).sort();
+  const css = [
+    ...sizes.map((key) => `  --harpia-font-size-${key}: ${document.sizes[key] / 16}rem;`),
+    ...weights.map((key) => `  --harpia-font-weight-${key}: ${document.weights[key]};`),
+    ...lineHeights.map((key) => `  --harpia-line-height-${key}: ${document.lineHeights[key]};`)
+  ];
+  const dart = [
+    '// Generated from tokens/typography.json. Sizes use reference pixels / Flutter logical pixels.',
+    "import 'package:flutter/material.dart';",
+    '',
+    'class HarpiaTypography {',
+    '  HarpiaTypography._();',
+    "  static const String fontFamily = 'Montserrat';",
+    ...sizes.map((key) => `  static const double fontSize${upperFirst(key)} = ${document.sizes[key].toFixed(1)};`),
+    ...weights.map((key) => `  static const FontWeight fontWeight${upperFirst(key)} = FontWeight.w${document.weights[key]};`),
+    ...lineHeights.map((key) => `  static const double lineHeight${upperFirst(key)} = ${Number.isInteger(document.lineHeights[key]) ? `${document.lineHeights[key]}.0` : document.lineHeights[key]};`),
+    '}',
+    ''
+  ].join('\n');
+  return { sizes, weights, lineHeights, css, dart };
+}
+
+export function buildOutputs(paletteDocument, lightDocument, darkDocument, dimensionsDocument, typographyDocument) {
   validateDocument(paletteDocument, 'palette');
   validateDocument(lightDocument, 'theme', 'light');
   validateDocument(darkDocument, 'theme', 'dark');
@@ -131,6 +184,7 @@ export function buildOutputs(paletteDocument, lightDocument, darkDocument, dimen
   const paletteKeys = Object.keys(palette).sort();
   const semanticKeys = lightKeys.sort();
   const dimensions = buildDimensions(dimensionsDocument);
+  const typography = buildTypography(typographyDocument);
   const baseCss = paletteKeys.map((key) => `  ${cssName(key)}: ${light[key]};`);
   const themeCss = (values) => semanticKeys.map((key) => `  ${cssName(key)}: ${values[key]};`);
   const css = [
@@ -158,6 +212,7 @@ export function buildOutputs(paletteDocument, lightDocument, darkDocument, dimen
     ...baseCss,
     ...themeCss(light),
     ...dimensions.css,
+    ...typography.css,
     '}',
     '',
     '[data-harpia-theme="dark"] {',
@@ -231,15 +286,16 @@ export function buildOutputs(paletteDocument, lightDocument, darkDocument, dimen
     '}',
     ''
   ].join('\n');
-  return { css, dart, dimensions, paletteKeys, semanticKeys, light, dark };
+  return { css, dart, dimensions, typography, paletteKeys, semanticKeys, light, dark };
 }
 
 async function main() {
-  const output = buildOutputs(await readJson('palette.json'), await readJson('light.json'), await readJson('dark.json'), await readJson('dimensions.json'));
+  const output = buildOutputs(await readJson('palette.json'), await readJson('light.json'), await readJson('dark.json'), await readJson('dimensions.json'), await readJson('typography.json'));
   const files = [
     [path.join(outputDir, 'harpia-tokens.css'), output.css],
     [path.join(outputDir, 'harpia_theme.dart'), output.dart],
-    [path.join(outputDir, 'harpia_dimensions.dart'), output.dimensions.dart]
+    [path.join(outputDir, 'harpia_dimensions.dart'), output.dimensions.dart],
+    [path.join(outputDir, 'harpia_typography.dart'), output.typography.dart]
   ];
   if (process.argv.includes('--check')) {
     for (const [file, expected] of files) {
@@ -250,7 +306,7 @@ async function main() {
     await mkdir(outputDir, { recursive: true });
     for (const [file, contents] of files) await writeFile(file, contents, 'utf8');
   }
-  process.stdout.write(`Validated ${output.paletteKeys.length} palette colors, ${output.semanticKeys.length} theme colors and ${output.dimensions.keys.length} dimensions.\n`);
+  process.stdout.write(`Validated ${output.paletteKeys.length} palette colors, ${output.semanticKeys.length} theme colors, ${output.dimensions.keys.length} dimensions and ${output.typography.sizes.length + output.typography.weights.length + output.typography.lineHeights.length} typography tokens.\n`);
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

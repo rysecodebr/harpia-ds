@@ -21,5 +21,6 @@ Este índice roteia somente o contexto necessário. O projeto tem uma primeira i
 | Próximas famílias de tokens para decisão | [Proposta de sequência](phase2-next-families.md) |
 | Espaçamento, tamanhos e raios locais | [Implementação de dimensões](phase2-dimension-implementation.md) |
 | Montserrat oficial e licença | [Implementação da fonte](phase2-font-implementation.md) |
+| Escala tipográfica Montserrat | [Implementação da tipografia](phase2-typography-implementation.md) |
 
 Fontes externas de evidência: `../../../../Aurum-UI/docs/context/index.md`, `../../../../Aurum-Smart/README.md` e `../../../../docs/context/index.md`. Consulte os respectivos `AGENTS.md` ao entrar nesses repositórios.

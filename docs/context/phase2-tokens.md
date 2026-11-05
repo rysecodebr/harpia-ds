@@ -1,6 +1,6 @@
 # Fase 2 — fundação visual e tokens
 
-Estado: **fase 2 em andamento; cores, temas e dimensões iniciais implementados localmente**. Data: 04/11/2026. Fonte local: Aurum UI 1.0.18 e sua vitrine Aurum-Smart. **Decisão do analista:** o Harpia Design System deve oferecer suporte a Flutter, além de Angular. O primeiro recorte Flutter incluirá **tokens e temas**; componentes serão acrescentados em etapas posteriores. A forma de distribuição Flutter ainda não foi definida. Ver [cores](phase2-color-implementation.md) e [dimensões](phase2-dimension-implementation.md).
+Estado: **fase 2 em andamento; cores, temas, dimensões e escala tipográfica inicial implementados localmente**. Fontes: Aurum UI 1.0.18 e sua vitrine Aurum-Smart. **Decisão do analista:** o Harpia Design System deve oferecer suporte a Flutter, além de Angular. O primeiro recorte Flutter incluirá **tokens e temas**; componentes serão acrescentados em etapas posteriores. A forma de distribuição Flutter ainda não foi definida. Ver [cores](phase2-color-implementation.md), [dimensões](phase2-dimension-implementation.md) e [tipografia](phase2-typography-implementation.md).
 
 ## Consequência para a arquitetura
 
@@ -12,7 +12,7 @@ O analista aprovou **um catálogo de tokens independente de Angular e Flutter co
 
 **Correção do tema escuro aprovada:** `#8493a9`, valor derivado da paleta, distingue texto atenuado do secundário e passou nos pares opacos testados. Ver [registro da implementação](phase2-color-implementation.md). As [próximas famílias](phase2-next-families.md) ainda dependem de decisão própria.
 
-**Fonte aprovada e obtida:** Montserrat oficial, com arquivos e licença fixados por revisão; ver [registro tipográfico](phase2-font-implementation.md). A escala de texto ainda não foi aprovada nem implementada.
+**Fonte e escala inicial aprovadas:** Montserrat oficial, com arquivos e licença fixados por revisão; tamanhos, pesos e alturas de linha da fonte Aurum usados como ponto inicial. Ver [fonte](phase2-font-implementation.md) e [escala](phase2-typography-implementation.md). Tracking e papéis de texto ainda dependem de decisão.
 
 **Integridade entre plataformas:** o analista exige que Angular e Flutter mantenham a mesma linguagem visual. Para cada token compartilhado, registrar uma chave conceitual e o mesmo significado nos dois destinos; documentar conversões de unidade, aproximações e exceções justificadas. Diferenças próprias da plataforma podem existir, mas não devem alterar silenciosamente cor semântica, hierarquia tipográfica, espaçamento ou estado. Alterações em um token compartilhado exigirão avaliação das duas saídas e atualização conjunta da documentação e dos testes.
 
@@ -74,4 +74,4 @@ Referências exatas: `Aurum-UI/aurum-workspace/projects/aurum-ui/src/lib/tokens/
 - O catálogo JSON e a geração CSS/Dart já existem para cores. Faltam integração executável Flutter/Angular e extensão para as demais famílias de tokens.
 - Quais componentes entram primeiro, para determinar tokens realmente necessários?
 
-**Porta de saída ainda aberta:** ampliar catálogo para tipografia, sombras, camadas, movimento e demais fundamentos aprovados; compilar e testar temas/dimensões em Angular e Flutter; preencher a tabela de paridade completa e executar testes reais de contraste, foco, escala e movimento. Os valores já implementados estão em `tokens/`; veja [cores](phase2-color-implementation.md) e [dimensões](phase2-dimension-implementation.md).
+**Porta de saída ainda aberta:** completar papéis tipográficos, sombras, camadas, movimento e demais fundamentos aprovados; compilar e testar temas/dimensões/tipografia em Angular e Flutter; preencher a tabela de paridade completa e executar testes reais de contraste, foco, escala e movimento. Os valores já implementados estão em `tokens/`; veja [cores](phase2-color-implementation.md), [dimensões](phase2-dimension-implementation.md) e [tipografia](phase2-typography-implementation.md).

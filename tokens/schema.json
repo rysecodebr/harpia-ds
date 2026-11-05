@@ -1,10 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Harpia color token catalog",
+  "title": "Harpia token catalog",
   "oneOf": [
     { "$ref": "#/$defs/palette" },
     { "$ref": "#/$defs/theme" },
-    { "$ref": "#/$defs/dimensions" }
+    { "$ref": "#/$defs/dimensions" },
+    { "$ref": "#/$defs/typography" }
   ],
   "$defs": {
     "colorValue": {
@@ -59,6 +60,39 @@
           "additionalProperties": false
         }
       },
+      "additionalProperties": false
+    },
+    "typography": {
+      "type": "object",
+      "required": ["kind", "family", "source", "sizeUnit", "sizes", "weights", "lineHeights"],
+      "properties": {
+        "$schema": { "type": "string" },
+        "kind": { "const": "typography" },
+        "family": { "const": "Montserrat" },
+        "source": { "type": "string" },
+        "sizeUnit": { "const": "reference-px-at-16px-root" },
+        "sizes": { "$ref": "#/$defs/typographySizes" },
+        "weights": { "$ref": "#/$defs/typographyWeights" },
+        "lineHeights": { "$ref": "#/$defs/typographyLineHeights" }
+      },
+      "additionalProperties": false
+    },
+    "typographySizes": {
+      "type": "object",
+      "minProperties": 1,
+      "patternProperties": { "^[2-6]?(xs|xl)$|^(sm|md|base|lg)$": { "type": "number", "exclusiveMinimum": 0 } },
+      "additionalProperties": false
+    },
+    "typographyWeights": {
+      "type": "object",
+      "minProperties": 1,
+      "patternProperties": { "^(regular|medium|semibold|bold|extrabold)$": { "type": "integer", "minimum": 100, "maximum": 900, "multipleOf": 100 } },
+      "additionalProperties": false
+    },
+    "typographyLineHeights": {
+      "type": "object",
+      "minProperties": 1,
+      "patternProperties": { "^(none|tight|snug|normal|relaxed|loose)$": { "type": "number", "exclusiveMinimum": 0 } },
       "additionalProperties": false
     }
   }

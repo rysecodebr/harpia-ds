@@ -5,9 +5,9 @@ import { createHash } from 'node:crypto';
 import { buildOutputs, parseColor } from '../tools/build-tokens.mjs';
 
 const read = async (name) => JSON.parse(await readFile(new URL(`../tokens/${name}.json`, import.meta.url), 'utf8'));
-const [palette, light, dark, dimensions] = await Promise.all(['palette', 'light', 'dark', 'dimensions'].map(read));
-const build = (paletteValue = palette, lightValue = light, darkValue = dark, dimensionsValue = dimensions) =>
-  buildOutputs(paletteValue, lightValue, darkValue, dimensionsValue);
+const [palette, light, dark, dimensions, typography] = await Promise.all(['palette', 'light', 'dark', 'dimensions', 'typography'].map(read));
+const build = (paletteValue = palette, lightValue = light, darkValue = dark, dimensionsValue = dimensions, typographyValue = typography) =>
+  buildOutputs(paletteValue, lightValue, darkValue, dimensionsValue, typographyValue);
 
 test('shared keys resolve to identical CSS and Dart colors', async () => {
   const output = build();
@@ -110,4 +110,33 @@ test('invalid dimensions fail before generation', () => {
   const invalid = structuredClone(dimensions);
   invalid.values['spacing.2'] = -8;
   assert.throws(() => build(palette, light, dark, invalid), /Invalid dimension/);
+});
+
+test('Montserrat typography values agree in CSS and Dart', async () => {
+  const output = build();
+  const dart = await readFile(new URL('../generated/harpia_typography.dart', import.meta.url), 'utf8');
+  assert.equal(dart, output.typography.dart);
+  assert.equal(output.typography.sizes.length, 12);
+  assert.equal(output.typography.weights.length, 5);
+  assert.equal(output.typography.lineHeights.length, 6);
+  for (const [key, value] of Object.entries(typography.sizes)) {
+    assert.ok(output.css.includes(`--harpia-font-size-${key}: ${value / 16}rem;`));
+    assert.ok(dart.includes(`fontSize${key[0].toUpperCase() + key.slice(1)} = ${value.toFixed(1)};`));
+  }
+  for (const [key, value] of Object.entries(typography.weights)) {
+    assert.ok(output.css.includes(`--harpia-font-weight-${key}: ${value};`));
+    assert.ok(dart.includes(`fontWeight${key[0].toUpperCase() + key.slice(1)} = FontWeight.w${value};`));
+  }
+  for (const [key, value] of Object.entries(typography.lineHeights)) {
+    assert.ok(output.css.includes(`--harpia-line-height-${key}: ${value};`));
+    assert.ok(dart.includes(`lineHeight${key[0].toUpperCase() + key.slice(1)} = ${Number.isInteger(value) ? `${value}.0` : value};`));
+  }
+  assert.equal(typography.family, 'Montserrat');
+  assert.ok(!('sm' in typography.lineHeights));
+});
+
+test('invalid typography scale fails generation', () => {
+  const invalid = structuredClone(typography);
+  invalid.weights.bold = 725;
+  assert.throws(() => build(palette, light, dark, dimensions, invalid), /Invalid typography token/);
 });
