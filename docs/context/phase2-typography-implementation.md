@@ -9,6 +9,36 @@ Estado: **implementação local inicial**, autorizada pelo analista como reaprov
 - `generated/harpia_typography.dart` expõe constantes `HarpiaTypography` de tamanho lógico, `FontWeight` e multiplicador de altura de linha. `generated/harpia_theme.dart` já informa a família Montserrat; não há `TextTheme` de papéis aprovado ainda.
 - Os aliases `line-height-sm` e `line-height-md` da fonte Aurum repetiam `tight` e `snug`. Não foram reproduzidos como tokens públicos Harpia. Tracking/letter spacing, escala de acessibilidade e papéis semânticos de texto não entraram neste lote.
 
+## Tabela de definições
+
+Os tamanhos abaixo são pixels de referência no catálogo. O CSS usa `rem` com base de 16 CSS px; Dart usa o mesmo número em unidades lógicas Flutter. Pesos e multiplicadores de altura de linha são adimensionais. Esta tabela descreve **valores isolados**, não combinações já aprovadas para títulos, corpo ou legendas.
+
+| Categoria | Token | Valor no catálogo | Saída CSS |
+| --- | --- | ---: | ---: |
+| Tamanho | `2xs` | 10 | `0.625rem` |
+| Tamanho | `xs` | 11 | `0.6875rem` |
+| Tamanho | `sm` | 12 | `0.75rem` |
+| Tamanho | `md` | 14 | `0.875rem` |
+| Tamanho | `base` | 16 | `1rem` |
+| Tamanho | `lg` | 18 | `1.125rem` |
+| Tamanho | `xl` | 20 | `1.25rem` |
+| Tamanho | `2xl` | 24 | `1.5rem` |
+| Tamanho | `3xl` | 30 | `1.875rem` |
+| Tamanho | `4xl` | 36 | `2.25rem` |
+| Tamanho | `5xl` | 48 | `3rem` |
+| Tamanho | `6xl` | 64 | `4rem` |
+| Peso | `regular` | 400 | `400` |
+| Peso | `medium` | 500 | `500` |
+| Peso | `semibold` | 600 | `600` |
+| Peso | `bold` | 700 | `700` |
+| Peso | `extrabold` | 800 | `800` |
+| Altura de linha | `none` | 1 | `1` |
+| Altura de linha | `tight` | 1,15 | `1.15` |
+| Altura de linha | `snug` | 1,3 | `1.3` |
+| Altura de linha | `normal` | 1,5 | `1.5` |
+| Altura de linha | `relaxed` | 1,7 | `1.7` |
+| Altura de linha | `loose` | 1,9 | `1.9` |
+
 ## Paridade e limites
 
 O valor CSS de `1rem` equivale a 16 CSS px apenas na raiz de referência; o número correspondente em Dart é uma unidade lógica Flutter. A igualdade numérica é verificada, mas não estabelece a mesma renderização. Montserrat pode produzir quebras de linha diferentes de Exo 2; os tamanhos **10, 11 e 12** são especialmente sensíveis à legibilidade. Nenhum tamanho foi declarado adequado para texto comum sem teste contextual.
