@@ -64,7 +64,7 @@
     },
     "typography": {
       "type": "object",
-      "required": ["kind", "family", "source", "sizeUnit", "sizes", "weights", "lineHeights"],
+      "required": ["kind", "family", "source", "sizeUnit", "sizes", "weights", "lineHeights", "roles"],
       "properties": {
         "$schema": { "type": "string" },
         "kind": { "const": "typography" },
@@ -73,7 +73,8 @@
         "sizeUnit": { "const": "reference-px-at-16px-root" },
         "sizes": { "$ref": "#/$defs/typographySizes" },
         "weights": { "$ref": "#/$defs/typographyWeights" },
-        "lineHeights": { "$ref": "#/$defs/typographyLineHeights" }
+        "lineHeights": { "$ref": "#/$defs/typographyLineHeights" },
+        "roles": { "$ref": "#/$defs/typographyRoles" }
       },
       "additionalProperties": false
     },
@@ -93,6 +94,30 @@
       "type": "object",
       "minProperties": 1,
       "patternProperties": { "^(none|tight|snug|normal|relaxed|loose)$": { "type": "number", "exclusiveMinimum": 0 } },
+      "additionalProperties": false
+    },
+    "typographyRoles": {
+      "type": "object",
+      "required": ["pageTitle", "sectionTitle", "componentTitle", "body", "supporting", "controlLabel"],
+      "properties": {
+        "pageTitle": { "$ref": "#/$defs/typographyRole" },
+        "sectionTitle": { "$ref": "#/$defs/typographyRole" },
+        "componentTitle": { "$ref": "#/$defs/typographyRole" },
+        "body": { "$ref": "#/$defs/typographyRole" },
+        "supporting": { "$ref": "#/$defs/typographyRole" },
+        "controlLabel": { "$ref": "#/$defs/typographyRole" }
+      },
+      "additionalProperties": false
+    },
+    "typographyRole": {
+      "type": "object",
+      "required": ["size", "weight", "lineHeight", "letterSpacing"],
+      "properties": {
+        "size": { "type": "string" },
+        "weight": { "type": "string" },
+        "lineHeight": { "type": "string" },
+        "letterSpacing": { "const": 0 }
+      },
       "additionalProperties": false
     }
   }

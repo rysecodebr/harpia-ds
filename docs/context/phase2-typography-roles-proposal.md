@@ -1,6 +1,6 @@
 # Fase 2 — proposta de papéis tipográficos
 
-Estado: **proposta para decisão do analista; nenhum papel foi implementado**. Consulte a [escala já implementada](phase2-typography-implementation.md) e o [inventário da fase 2](phase2-tokens.md).
+Estado: **seis combinações aprovadas e implementadas localmente**; validação visual pendente. Consulte a [escala já implementada](phase2-typography-implementation.md) e o [inventário da fase 2](phase2-tokens.md).
 
 ## Evidência conferida
 
@@ -14,7 +14,7 @@ Esses usos demonstram combinações **por componente**, mas não estabelecem uma
 
 ## Combinações candidatas para Harpia
 
-**Estado: proposta visual, não aprovada nem gerada.** Cada valor abaixo já existe em `tokens/typography.json`. O valor em pixels é somente a referência da escala; a saída CSS usa `rem` e a saída Flutter usa unidades lógicas. A altura de linha é um multiplicador, não pixels.
+**Estado: base inicial aprovada pelo analista e gerada.** Cada valor abaixo existe em `tokens/typography.json`. O valor em pixels é somente a referência da escala; a saída CSS usa `rem` e a saída Flutter usa unidades lógicas. A altura de linha é um multiplicador, não pixels.
 
 | Papel proposto | Uso de referência | Tamanho | Peso | Altura de linha | Tracking proposto |
 | --- | --- | ---: | ---: | ---: | ---: |
@@ -29,7 +29,11 @@ Esses usos demonstram combinações **por componente**, mas não estabelecem uma
 
 **Alternativas para decisão:** usar `lg` (18) no título de componente se `xl` ocupar espaço excessivo; usar `semibold` no rótulo se `medium` perder legibilidade; reservar `sm` (12) para metadados densos apenas após testar escala e leitura. Nenhuma alternativa foi escolhida.
 
-**Tracking:** propor `0` nos seis papéis iniciais. Não importar os valores negativos ou positivos do Aurum antes de testar Montserrat em títulos, caixa alta e textos longos. Um eventual rótulo superior em caixa alta deve ser uma decisão específica, não uma regra global.
+**Tracking:** `0` nos seis papéis iniciais. Os valores negativos ou positivos do Aurum não foram importados. Um eventual rótulo superior em caixa alta deve ser uma decisão específica, não uma regra global.
+
+## Implementação local e limites
+
+O catálogo `tokens/typography.json` associa cada papel a um tamanho, peso, altura de linha e tracking `0`. `generated/harpia-tokens.css` expõe quatro propriedades `--harpia-text-<papel>-*` por papel; `generated/harpia_typography.dart` expõe seis `TextStyle` constantes em `HarpiaTypography`. Nenhum estilo é imposto globalmente a elementos HTML e não foi definido mapeamento automático para `TextTheme` do Material. A escolha de semântica HTML permanece com a aplicação. A geração e os testes verificam as duas saídas; a aparência real ainda depende de prova em Angular e Flutter.
 
 ## Sequência proposta
 
@@ -41,4 +45,4 @@ Esses usos demonstram combinações **por componente**, mas não estabelecem uma
 
 ## Decisão necessária
 
-O analista precisa aprovar **as combinações concretas por papel**, o tratamento do tracking e os cenários de prova antes da implementação. Até lá, permanecem públicas apenas as escalas isoladas de tamanho, peso e altura de linha descritas na [implementação atual](phase2-typography-implementation.md).
+As seis combinações e o tracking `0` foram aprovados como base inicial. Continuam pendentes: cenários de prova visual em Angular e Flutter, variantes de controles e eventual tracking diferente para usos específicos.

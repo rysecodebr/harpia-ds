@@ -140,3 +140,20 @@ test('invalid typography scale fails generation', () => {
   invalid.weights.bold = 725;
   assert.throws(() => build(palette, light, dark, dimensions, invalid), /Invalid typography token/);
 });
+
+test('approved typography roles resolve through the same scale on CSS and Flutter', async () => {
+  const output = build();
+  const dart = await readFile(new URL('../generated/harpia_typography.dart', import.meta.url), 'utf8');
+  assert.equal(output.typography.roles.length, 6);
+  for (const [key, role] of Object.entries(typography.roles)) {
+    const cssKey = key.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+    assert.ok(output.css.includes(`--harpia-text-${cssKey}-size: var(--harpia-font-size-${role.size});`));
+    assert.ok(output.css.includes(`--harpia-text-${cssKey}-weight: var(--harpia-font-weight-${role.weight});`));
+    assert.ok(output.css.includes(`--harpia-text-${cssKey}-line-height: var(--harpia-line-height-${role.lineHeight});`));
+    assert.ok(dart.includes(`static const TextStyle ${key} = TextStyle(`));
+    assert.ok(dart.includes(`fontSize: fontSize${role.size[0].toUpperCase() + role.size.slice(1)}, fontWeight: fontWeight${role.weight[0].toUpperCase() + role.weight.slice(1)}, height: lineHeight${role.lineHeight[0].toUpperCase() + role.lineHeight.slice(1)}, letterSpacing: 0.0`));
+  }
+  const invalid = structuredClone(typography);
+  invalid.roles.body.size = 'missing';
+  assert.throws(() => build(palette, light, dark, dimensions, invalid), /Invalid typography role/);
+});

@@ -7,7 +7,7 @@ Estado: **implementação local inicial**, autorizada pelo analista como reaprov
 - `tokens/typography.json` é a fonte de verdade da escala: **12 tamanhos** de 10 a 64 pixels de referência, **5 pesos** de 400 a 800 e **6 alturas de linha** de 1 a 1,9. Os valores vêm de `Aurum-UI/aurum-workspace/projects/aurum-ui/src/lib/tokens/typography.scss`; a família foi substituída por Montserrat conforme decisão do analista.
 - `generated/harpia-tokens.css` expõe `--harpia-font-size-*` em `rem`, `--harpia-font-weight-*` e `--harpia-line-height-*`. Não impõe tamanho ou estilo global de texto; a aplicação e os futuros componentes escolhem os papéis.
 - `generated/harpia_typography.dart` expõe constantes `HarpiaTypography` de tamanho lógico, `FontWeight` e multiplicador de altura de linha. `generated/harpia_theme.dart` já informa a família Montserrat; não há `TextTheme` de papéis aprovado ainda.
-- Os aliases `line-height-sm` e `line-height-md` da fonte Aurum repetiam `tight` e `snug`. Não foram reproduzidos como tokens públicos Harpia. Tracking/letter spacing, escala de acessibilidade e papéis semânticos de texto não entraram neste lote.
+- Os aliases `line-height-sm` e `line-height-md` da fonte Aurum repetiam `tight` e `snug`. Não foram reproduzidos como tokens públicos Harpia. Os [seis papéis semânticos](phase2-typography-roles-proposal.md) foram aprovados em lote posterior, com tracking `0`; outros valores de tracking e a escala de acessibilidade permanecem pendentes.
 
 ## Tabela de definições
 
@@ -43,7 +43,7 @@ Os tamanhos abaixo são pixels de referência no catálogo. O CSS usa `rem` com 
 
 O valor CSS de `1rem` equivale a 16 CSS px apenas na raiz de referência; o número correspondente em Dart é uma unidade lógica Flutter. A igualdade numérica é verificada, mas não estabelece a mesma renderização. Montserrat pode produzir quebras de linha diferentes de Exo 2; os tamanhos **10, 11 e 12** são especialmente sensíveis à legibilidade. Nenhum tamanho foi declarado adequado para texto comum sem teste contextual.
 
-Faltam: mapear corpo, títulos, legendas e controles para a escala; decidir tracking; validar zoom, escala de texto, comprimento de linha, contraste e renderização real em web/Flutter; declarar os assets de fonte em `pubspec.yaml` quando o pacote Flutter for estruturado. Não existe SDK Flutter/Dart no PATH desta sessão.
+Faltam: validar visualmente os papéis aprovados, zoom, escala de texto, comprimento de linha, contraste e renderização real em web/Flutter; decidir variantes de controle e tracking adicional; declarar os assets de fonte em `pubspec.yaml` quando o pacote Flutter for estruturado. Não existe SDK Flutter/Dart no PATH desta sessão.
 
 ## Verificação local
 

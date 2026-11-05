@@ -32,5 +32,13 @@
     "normal": 1.5,
     "relaxed": 1.7,
     "loose": 1.9
+  },
+  "roles": {
+    "pageTitle": { "size": "3xl", "weight": "semibold", "lineHeight": "tight", "letterSpacing": 0 },
+    "sectionTitle": { "size": "2xl", "weight": "semibold", "lineHeight": "snug", "letterSpacing": 0 },
+    "componentTitle": { "size": "xl", "weight": "semibold", "lineHeight": "snug", "letterSpacing": 0 },
+    "body": { "size": "base", "weight": "regular", "lineHeight": "normal", "letterSpacing": 0 },
+    "supporting": { "size": "md", "weight": "regular", "lineHeight": "normal", "letterSpacing": 0 },
+    "controlLabel": { "size": "md", "weight": "medium", "lineHeight": "snug", "letterSpacing": 0 }
   }
 }

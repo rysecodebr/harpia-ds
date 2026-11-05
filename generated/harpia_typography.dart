@@ -27,4 +27,10 @@ class HarpiaTypography {
   static const double lineHeightRelaxed = 1.7;
   static const double lineHeightSnug = 1.3;
   static const double lineHeightTight = 1.15;
+  static const TextStyle body = TextStyle(fontFamily: fontFamily, fontSize: fontSizeBase, fontWeight: fontWeightRegular, height: lineHeightNormal, letterSpacing: 0.0);
+  static const TextStyle componentTitle = TextStyle(fontFamily: fontFamily, fontSize: fontSizeXl, fontWeight: fontWeightSemibold, height: lineHeightSnug, letterSpacing: 0.0);
+  static const TextStyle controlLabel = TextStyle(fontFamily: fontFamily, fontSize: fontSizeMd, fontWeight: fontWeightMedium, height: lineHeightSnug, letterSpacing: 0.0);
+  static const TextStyle pageTitle = TextStyle(fontFamily: fontFamily, fontSize: fontSize3xl, fontWeight: fontWeightSemibold, height: lineHeightTight, letterSpacing: 0.0);
+  static const TextStyle sectionTitle = TextStyle(fontFamily: fontFamily, fontSize: fontSize2xl, fontWeight: fontWeightSemibold, height: lineHeightSnug, letterSpacing: 0.0);
+  static const TextStyle supporting = TextStyle(fontFamily: fontFamily, fontSize: fontSizeMd, fontWeight: fontWeightRegular, height: lineHeightNormal, letterSpacing: 0.0);
 }

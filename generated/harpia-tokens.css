@@ -148,6 +148,30 @@
   --harpia-line-height-relaxed: 1.7;
   --harpia-line-height-snug: 1.3;
   --harpia-line-height-tight: 1.15;
+  --harpia-text-body-size: var(--harpia-font-size-base);
+  --harpia-text-body-weight: var(--harpia-font-weight-regular);
+  --harpia-text-body-line-height: var(--harpia-line-height-normal);
+  --harpia-text-body-letter-spacing: 0;
+  --harpia-text-component-title-size: var(--harpia-font-size-xl);
+  --harpia-text-component-title-weight: var(--harpia-font-weight-semibold);
+  --harpia-text-component-title-line-height: var(--harpia-line-height-snug);
+  --harpia-text-component-title-letter-spacing: 0;
+  --harpia-text-control-label-size: var(--harpia-font-size-md);
+  --harpia-text-control-label-weight: var(--harpia-font-weight-medium);
+  --harpia-text-control-label-line-height: var(--harpia-line-height-snug);
+  --harpia-text-control-label-letter-spacing: 0;
+  --harpia-text-page-title-size: var(--harpia-font-size-3xl);
+  --harpia-text-page-title-weight: var(--harpia-font-weight-semibold);
+  --harpia-text-page-title-line-height: var(--harpia-line-height-tight);
+  --harpia-text-page-title-letter-spacing: 0;
+  --harpia-text-section-title-size: var(--harpia-font-size-2xl);
+  --harpia-text-section-title-weight: var(--harpia-font-weight-semibold);
+  --harpia-text-section-title-line-height: var(--harpia-line-height-snug);
+  --harpia-text-section-title-letter-spacing: 0;
+  --harpia-text-supporting-size: var(--harpia-font-size-md);
+  --harpia-text-supporting-weight: var(--harpia-font-weight-regular);
+  --harpia-text-supporting-line-height: var(--harpia-line-height-normal);
+  --harpia-text-supporting-letter-spacing: 0;
 }
 
 [data-harpia-theme="dark"] {

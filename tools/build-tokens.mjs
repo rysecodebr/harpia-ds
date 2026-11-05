@@ -136,6 +136,18 @@ function validateTypography(document) {
       }
     }
   }
+  const roles = ['pageTitle', 'sectionTitle', 'componentTitle', 'body', 'supporting', 'controlLabel'];
+  if (!document.roles || Array.isArray(document.roles) ||
+      Object.keys(document.roles).length !== roles.length || roles.some((key) => !(key in document.roles))) {
+    throw new Error('Invalid typography roles');
+  }
+  for (const [key, role] of Object.entries(document.roles)) {
+    if (!role || Array.isArray(role) || Object.keys(role).length !== 4 ||
+        !(role.size in document.sizes) || !(role.weight in document.weights) ||
+        !(role.lineHeight in document.lineHeights) || role.letterSpacing !== 0) {
+      throw new Error(`Invalid typography role: ${key}`);
+    }
+  }
 }
 
 function upperFirst(value) {
@@ -147,10 +159,21 @@ export function buildTypography(document) {
   const sizes = Object.keys(document.sizes).sort();
   const weights = Object.keys(document.weights).sort();
   const lineHeights = Object.keys(document.lineHeights).sort();
+  const roles = Object.keys(document.roles).sort();
   const css = [
     ...sizes.map((key) => `  --harpia-font-size-${key}: ${document.sizes[key] / 16}rem;`),
     ...weights.map((key) => `  --harpia-font-weight-${key}: ${document.weights[key]};`),
-    ...lineHeights.map((key) => `  --harpia-line-height-${key}: ${document.lineHeights[key]};`)
+    ...lineHeights.map((key) => `  --harpia-line-height-${key}: ${document.lineHeights[key]};`),
+    ...roles.flatMap((key) => {
+      const role = document.roles[key];
+      const name = key.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+      return [
+        `  --harpia-text-${name}-size: var(--harpia-font-size-${role.size});`,
+        `  --harpia-text-${name}-weight: var(--harpia-font-weight-${role.weight});`,
+        `  --harpia-text-${name}-line-height: var(--harpia-line-height-${role.lineHeight});`,
+        `  --harpia-text-${name}-letter-spacing: 0;`
+      ];
+    })
   ];
   const dart = [
     '// Generated from tokens/typography.json. Sizes use reference pixels / Flutter logical pixels.',
@@ -162,10 +185,14 @@ export function buildTypography(document) {
     ...sizes.map((key) => `  static const double fontSize${upperFirst(key)} = ${document.sizes[key].toFixed(1)};`),
     ...weights.map((key) => `  static const FontWeight fontWeight${upperFirst(key)} = FontWeight.w${document.weights[key]};`),
     ...lineHeights.map((key) => `  static const double lineHeight${upperFirst(key)} = ${Number.isInteger(document.lineHeights[key]) ? `${document.lineHeights[key]}.0` : document.lineHeights[key]};`),
+    ...roles.map((key) => {
+      const role = document.roles[key];
+      return `  static const TextStyle ${key} = TextStyle(fontFamily: fontFamily, fontSize: fontSize${upperFirst(role.size)}, fontWeight: fontWeight${upperFirst(role.weight)}, height: lineHeight${upperFirst(role.lineHeight)}, letterSpacing: 0.0);`;
+    }),
     '}',
     ''
   ].join('\n');
-  return { sizes, weights, lineHeights, css, dart };
+  return { sizes, weights, lineHeights, roles, css, dart };
 }
 
 export function buildOutputs(paletteDocument, lightDocument, darkDocument, dimensionsDocument, typographyDocument) {
