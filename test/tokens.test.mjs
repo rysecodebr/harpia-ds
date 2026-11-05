@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import { buildOutputs, parseColor } from '../tools/build-tokens.mjs';
 
 const read = async (name) => JSON.parse(await readFile(new URL(`../tokens/${name}.json`, import.meta.url), 'utf8'));
@@ -32,9 +33,27 @@ test('shared keys resolve to identical CSS and Dart colors', async () => {
 test('approved light muted text and light default are preserved', () => {
   const output = build();
   assert.equal(output.light['color.text.muted'], '#4b5563');
-  assert.match(output.css, /^\/\*.*\*\/\n:root,\n\[data-harpia-theme="light"\]/);
+  assert.match(output.css, /:root,\n\[data-harpia-theme="light"\]/);
   assert.match(output.dart, /static ThemeData get light/);
   assert.match(output.dart, /static ThemeData get dark/);
+});
+
+test('official Montserrat assets and both platform declarations are pinned', async () => {
+  const output = build();
+  assert.match(output.css, /font-family: "Montserrat"/);
+  assert.match(output.css, /Montserrat\[wght\]\.ttf/);
+  assert.match(output.css, /Montserrat-Italic\[wght\]\.ttf/);
+  assert.match(output.dart, /fontFamily: 'Montserrat'/);
+  const expectedBlobs = new Map([
+    ['Montserrat[wght].ttf', 'c97aca18592834d8706549c279cb8d5ac5d85f69'],
+    ['Montserrat-Italic[wght].ttf', 'c8b8441744f2092ea8cbeb7b6f881e53bfe9c623'],
+    ['OFL.txt', 'fe576a2ee1f96353b05d030c0b7620d525cc53a8']
+  ]);
+  for (const [name, expected] of expectedBlobs) {
+    const bytes = await readFile(new URL(`../assets/fonts/montserrat/${name}`, import.meta.url));
+    const blob = createHash('sha1').update(`blob ${bytes.length}\0`).update(bytes).digest('hex');
+    assert.equal(blob, expected, `${name} differs from pinned official source`);
+  }
 });
 
 test('dark muted text remains readable and distinct from secondary text', () => {

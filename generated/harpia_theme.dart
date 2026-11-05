@@ -156,6 +156,7 @@ class HarpiaTheme {
             onError: tokens.textInverted,
           );
     return ThemeData(
+      fontFamily: 'Montserrat',
       colorScheme: scheme,
       scaffoldBackgroundColor: tokens.backgroundPage,
       extensions: [tokens],

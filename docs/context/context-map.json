@@ -37,7 +37,8 @@
     { "id": "phase2-contract-proposal", "path": "docs/context/phase2-contract-proposal.md" },
     { "id": "phase2-color-implementation", "path": "docs/context/phase2-color-implementation.md" },
     { "id": "phase2-next-families", "path": "docs/context/phase2-next-families.md" },
-    { "id": "phase2-dimension-implementation", "path": "docs/context/phase2-dimension-implementation.md" }
+    { "id": "phase2-dimension-implementation", "path": "docs/context/phase2-dimension-implementation.md" },
+    { "id": "phase2-font-implementation", "path": "docs/context/phase2-font-implementation.md" }
   ],
   "relatedRepositories": [
     { "id": "Aurum-UI", "relation": "existing-design-system", "status": "verified", "evidence": "../Aurum-UI/aurum-workspace/angular.json" },
@@ -45,7 +46,8 @@
   ],
   "implementation": [
     { "id": "color-tokens-and-themes", "status": "local-partial", "evidence": "docs/context/phase2-color-implementation.md" },
-    { "id": "spacing-control-sizes-radii", "status": "local-partial", "evidence": "docs/context/phase2-dimension-implementation.md" }
+    { "id": "spacing-control-sizes-radii", "status": "local-partial", "evidence": "docs/context/phase2-dimension-implementation.md" },
+    { "id": "montserrat-font", "status": "local-partial", "evidence": "docs/context/phase2-font-implementation.md" }
   ],
   "plannedCapabilities": ["simple-adoption", "component-variants", "grid", "rows", "simple-groups", "form-groups", "flutter-support"],
   "platformRequirements": ["angular-21-or-newer", "flutter"],
@@ -59,5 +61,5 @@
   "fontFamily": "Montserrat",
   "designReferences": ["Bootstrap", "Tailwind CSS"],
   "markupPrinciple": "native-html-first; attribute-or-directive-when-needed; custom-element-when-justified",
-  "openDecisions": ["flutter-runtime-validation", "flutter-distribution", "typography-scale", "font-asset-version", "shadows", "layers", "motion", "breakpoints", "dimension-visual-parity", "package-import-review", "specific-reuse-scope", "package-identity", "consumer-inventory", "brand-availability", "component-consolidation", "layout-contracts", "group-contracts"]
+  "openDecisions": ["flutter-runtime-validation", "flutter-distribution", "typography-scale", "shadows", "layers", "motion", "breakpoints", "dimension-visual-parity", "font-visual-parity", "package-import-review", "specific-reuse-scope", "package-identity", "consumer-inventory", "brand-availability", "component-consolidation", "layout-contracts", "group-contracts"]
 }

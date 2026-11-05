@@ -1,7 +1,24 @@
 /* Generated from tokens/*.json. Edit the catalog, then run npm run tokens:build. */
+@font-face {
+  font-family: "Montserrat";
+  src: url("../assets/fonts/montserrat/Montserrat[wght].ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../assets/fonts/montserrat/Montserrat-Italic[wght].ttf") format("truetype");
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
 :root,
 [data-harpia-theme="light"] {
   color-scheme: light;
+  --harpia-font-family-sans: "Montserrat", sans-serif;
   --harpia-color-black: #0f0f0f;
   --harpia-color-blue-100: #dbeafe;
   --harpia-color-blue-400: #60a5fa;

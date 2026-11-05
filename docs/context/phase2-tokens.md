@@ -12,6 +12,8 @@ O analista aprovou **um catálogo de tokens independente de Angular e Flutter co
 
 **Correção do tema escuro aprovada:** `#8493a9`, valor derivado da paleta, distingue texto atenuado do secundário e passou nos pares opacos testados. Ver [registro da implementação](phase2-color-implementation.md). As [próximas famílias](phase2-next-families.md) ainda dependem de decisão própria.
 
+**Fonte aprovada e obtida:** Montserrat oficial, com arquivos e licença fixados por revisão; ver [registro tipográfico](phase2-font-implementation.md). A escala de texto ainda não foi aprovada nem implementada.
+
 **Integridade entre plataformas:** o analista exige que Angular e Flutter mantenham a mesma linguagem visual. Para cada token compartilhado, registrar uma chave conceitual e o mesmo significado nos dois destinos; documentar conversões de unidade, aproximações e exceções justificadas. Diferenças próprias da plataforma podem existir, mas não devem alterar silenciosamente cor semântica, hierarquia tipográfica, espaçamento ou estado. Alterações em um token compartilhado exigirão avaliação das duas saídas e atualização conjunta da documentação e dos testes.
 
 No Flutter, a documentação oficial descreve temas por `ThemeData`, `ColorScheme` e `TextTheme`; [`ThemeExtension`](https://api.flutter.dev/flutter/material/ThemeExtension-class.html) permite acrescentar propriedades próprias ao tema. Essas são **opções de integração a avaliar**, não implementação escolhida. Consultar [guia oficial de temas](https://docs.flutter.dev/cookbook/design/themes). O pacote npm candidato cobre a biblioteca web; nome, distribuição e versões do pacote Flutter permanecem abertos.
