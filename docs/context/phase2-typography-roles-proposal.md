@@ -12,6 +12,25 @@ Estado: **proposta para decisão do analista; nenhum papel foi implementado**. C
 
 Esses usos demonstram combinações **por componente**, mas não estabelecem uma hierarquia global de títulos, parágrafos e legendas para Harpia. Copiá-los como papéis universais seria uma nova decisão visual.
 
+## Combinações candidatas para Harpia
+
+**Estado: proposta visual, não aprovada nem gerada.** Cada valor abaixo já existe em `tokens/typography.json`. O valor em pixels é somente a referência da escala; a saída CSS usa `rem` e a saída Flutter usa unidades lógicas. A altura de linha é um multiplicador, não pixels.
+
+| Papel proposto | Uso de referência | Tamanho | Peso | Altura de linha | Tracking proposto |
+| --- | --- | ---: | ---: | ---: | ---: |
+| Título de página | Título principal da tela | `3xl` · 30 | `semibold` · 600 | `tight` · 1,15 | 0 |
+| Título de seção | Divisão principal do conteúdo | `2xl` · 24 | `semibold` · 600 | `snug` · 1,3 | 0 |
+| Título de componente | Cabeçalho de painel, card ou agrupador | `xl` · 20 | `semibold` · 600 | `snug` · 1,3 | 0 |
+| Corpo | Parágrafo e conteúdo de leitura | `base` · 16 | `regular` · 400 | `normal` · 1,5 | 0 |
+| Texto auxiliar | Ajuda, descrição curta e metadados | `md` · 14 | `regular` · 400 | `normal` · 1,5 | 0 |
+| Rótulo de controle | Label de campo e ação | `md` · 14 | `medium` · 500 | `snug` · 1,3 | 0 |
+
+**Motivação:** formar uma hierarquia inicial com seis combinações, sem criar novos tamanhos e sem impor tamanho visual a `h1`–`h6`. A aplicação poderá escolher o nível HTML correto para a estrutura do documento. O título de componente usa tamanho maior que o painel Aurum observado; isso é proposta Harpia, sujeita a prova visual com Montserrat. O botão Aurum usa `semibold` e tamanhos por variante; a proposta de rótulo acima **não fixa** ainda os tamanhos de botão ou de outros controles.
+
+**Alternativas para decisão:** usar `lg` (18) no título de componente se `xl` ocupar espaço excessivo; usar `semibold` no rótulo se `medium` perder legibilidade; reservar `sm` (12) para metadados densos apenas após testar escala e leitura. Nenhuma alternativa foi escolhida.
+
+**Tracking:** propor `0` nos seis papéis iniciais. Não importar os valores negativos ou positivos do Aurum antes de testar Montserrat em títulos, caixa alta e textos longos. Um eventual rótulo superior em caixa alta deve ser uma decisão específica, não uma regra global.
+
 ## Sequência proposta
 
 1. Definir cenários de texto: título de página, título de seção, título de componente, corpo, texto auxiliar e rótulo de controle. Preservar o nível HTML de `h1`–`h6` independentemente da aparência.
