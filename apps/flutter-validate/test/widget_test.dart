@@ -61,11 +61,14 @@ void main() {
     expect(find.text('Diálogo · elevação alta'), findsOneWidget);
     expect(find.text('Tooltip'), findsOneWidget);
     expect(find.text('Toast'), findsOneWidget);
+    final backdrop = find.byKey(const ValueKey('diagnostic-backdrop'));
+    expect(tester.widget<ColoredBox>(backdrop).color.a, closeTo(0.4, 0.01));
     expect(tester.takeException(), isNull);
     await tester.scrollUntilVisible(find.text('Tema escuro'), -300, scrollable: find.byType(Scrollable).first);
     await tester.tap(find.text('Tema escuro'));
     await tester.pumpAndSettle();
     await tester.scrollUntilVisible(find.text('Card · superfície'), 300, scrollable: find.byType(Scrollable).first);
+    expect(tester.widget<ColoredBox>(backdrop).color.a, closeTo(0.4, 0.01));
     expect(tester.takeException(), isNull);
   });
 }

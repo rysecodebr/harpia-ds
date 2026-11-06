@@ -3,6 +3,7 @@
 .layer-card { z-index: 1; top: 1rem; left: 1rem; width: 65%; height: 9rem; box-shadow: none; }
 .layer-popover { z-index: 2; top: 4rem; left: 15%; box-shadow: 0 8px 24px rgb(0 0 0 / 0.12); }
 .layer-backdrop { position: absolute; z-index: 3; inset: 0; background: var(--harpia-color-background-overlay); }
+[data-harpia-theme='dark'] .layer-backdrop { background: rgb(5 6 8 / 0.4); }
 .layer-dialog { z-index: 4; top: 8rem; left: 10%; width: 80%; min-height: 7rem; box-shadow: 0 18px 48px rgb(0 0 0 / 0.16); }
 .layer-tooltip { z-index: 5; top: 13rem; right: 1rem; box-shadow: 0 1px 2px rgb(0 0 0 / 0.08); }
 .layer-toast { z-index: 6; right: 1rem; bottom: 1rem; box-shadow: 0 8px 24px rgb(0 0 0 / 0.12); }

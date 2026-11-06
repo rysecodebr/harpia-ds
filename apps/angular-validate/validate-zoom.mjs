@@ -49,7 +49,11 @@ async function checkZoom(factor) {
     assert.equal(metrics.fontLoaded, true, 'Montserrat did not load');
     assert.deepEqual(errors, []);
     for (const theme of ['light', 'dark']) {
-      if (theme === 'dark') await page.locator('.theme-button').click();
+      if (theme === 'dark') {
+        await page.locator('.theme-button').click();
+        await page.waitForFunction(() => document.querySelector('main')?.getAttribute('data-harpia-theme') === 'dark');
+      }
+      assert.equal(await page.locator('main').getAttribute('data-harpia-theme'), theme);
       const layers = await page.evaluate(() => {
         const nodes = [...document.querySelectorAll('[data-layer]')];
         return nodes.map((node) => ({
@@ -60,6 +64,8 @@ async function checkZoom(factor) {
       });
       assert.deepEqual(layers.map((layer) => layer.name), ['card', 'popover', 'backdrop', 'dialog', 'tooltip', 'toast']);
       assert.deepEqual(layers.map((layer) => layer.z), [1, 2, 3, 4, 5, 6]);
+      const backdrop = await page.locator('[data-layer="backdrop"]').evaluate((node) => getComputedStyle(node).backgroundColor);
+      assert.equal(backdrop, theme === 'dark' ? 'rgba(5, 6, 8, 0.4)' : 'rgba(15, 23, 42, 0.4)');
       assert.equal(layers[0].shadow, 'none');
       for (const layer of [layers[1], layers[3], layers[4], layers[5]]) assert.notEqual(layer.shadow, 'none');
       await page.locator('.layer-scene').screenshot({ path: path.join(screenshots, `layers-${theme}-${factor * 100}.png`) });
