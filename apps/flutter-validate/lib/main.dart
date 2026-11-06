@@ -15,6 +15,7 @@ class TypographyValidationApp extends StatefulWidget {
 
 class _TypographyValidationAppState extends State<TypographyValidationApp> {
   bool dark = false;
+  double textScale = 1.0;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +24,10 @@ class _TypographyValidationAppState extends State<TypographyValidationApp> {
       theme: HarpiaTheme.light,
       darkTheme: HarpiaTheme.dark,
       themeMode: dark ? ThemeMode.dark : ThemeMode.light,
+      builder: (context, child) => MediaQuery(
+        data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(textScale)),
+        child: child!,
+      ),
       home: Scaffold(
         body: SafeArea(
           child: LayoutBuilder(builder: (context, constraints) {
@@ -42,6 +47,21 @@ class _TypographyValidationAppState extends State<TypographyValidationApp> {
                   title: Text('Tema escuro', style: HarpiaTypography.controlLabel),
                   value: dark,
                   onChanged: (value) => setState(() => dark = value),
+                ),
+                const SizedBox(height: 12),
+                Text('Escala de texto', style: HarpiaTypography.controlLabel.copyWith(color: colors.textPrimary)),
+                const SizedBox(height: 8),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    for (final scale in [1.0, 1.5, 2.0])
+                      ChoiceChip(
+                        label: Text(scale == 1.0 ? '1×' : scale == 1.5 ? '1,5×' : '2×'),
+                        selected: textScale == scale,
+                        onSelected: (_) => setState(() => textScale = scale),
+                      ),
+                  ],
                 ),
                 const SizedBox(height: 24),
                 Text('Seção com texto em português', style: HarpiaTypography.sectionTitle.copyWith(color: colors.textPrimary)),

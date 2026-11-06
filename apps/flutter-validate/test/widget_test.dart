@@ -25,4 +25,20 @@ void main() {
     expect(sizeSamples.first.key, '2xs');
     expect(sizeSamples.last.key, '6xl');
   });
+
+  testWidgets('aplica escalas de texto de 1,5 e 2 vezes à tela inteira', (tester) async {
+    await tester.pumpWidget(const TypographyValidationApp());
+    final title = find.text('Tipografia em contexto');
+    expect(MediaQuery.textScalerOf(tester.element(title)).scale(16), 16);
+
+    await tester.tap(find.text('1,5×'));
+    await tester.pumpAndSettle();
+    expect(MediaQuery.textScalerOf(tester.element(title)).scale(16), 24);
+
+    await tester.ensureVisible(find.text('2×'));
+    await tester.tap(find.text('2×'));
+    await tester.pumpAndSettle();
+    expect(MediaQuery.textScalerOf(tester.element(find.text('2×'))).scale(16), 32);
+    expect(tester.takeException(), isNull);
+  });
 }
