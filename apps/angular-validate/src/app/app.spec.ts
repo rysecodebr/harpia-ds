@@ -36,4 +36,12 @@ describe('App', () => {
     expect(compiled.querySelectorAll('[data-token^="line-height."]')).toHaveLength(6);
     expect(compiled.querySelectorAll('[data-token^="role."]')).toHaveLength(6);
   });
+
+  it('should render the six diagnostic layers', async () => {
+    const fixture = TestBed.createComponent(App);
+    await fixture.whenStable();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect([...compiled.querySelectorAll('[data-layer]')].map((item) => item.getAttribute('data-layer')))
+      .toEqual(['card', 'popover', 'backdrop', 'dialog', 'tooltip', 'toast']);
+  });
 });

@@ -1,6 +1,6 @@
 # Flutter Validate
 
-Aplicação local exclusiva de validação visual da tipografia do Harpia DS. Não é a vitrine do produto nem um pacote publicável. O nome de pasta usa `flutter-validate`; o nome Dart obrigatório no `pubspec.yaml` usa `flutter_validate`. Exibe seis papéis em contexto e tabelas com 12 tamanhos, 5 pesos, 6 alturas de linha e 6 papéis aprovados.
+Aplicação local exclusiva de validação visual da tipografia do Harpia DS. Não é a vitrine do produto nem um pacote publicável. O nome de pasta usa `flutter-validate`; o nome Dart obrigatório no `pubspec.yaml` usa `flutter_validate`. Exibe seis papéis em contexto e tabelas com 12 tamanhos, 5 pesos, 6 alturas de linha e 6 papéis aprovados. Uma cena local compara sombras e camadas nos dois temas; seus valores não são tokens aprovados.
 
 O SDK Flutter foi localizado em `L:\Android\Flutter` nesta máquina. Se ele não estiver no PATH, use `L:\Android\Flutter\bin\flutter.bat` nos comandos abaixo. Na raiz do Harpia DS:
 

@@ -1,4 +1,5 @@
 @import '../../../generated/harpia-tokens.css';
+@import './layer-scene.css';
 * { box-sizing: border-box; }
 html { font-family: var(--harpia-font-family-sans); }
 body { margin: 0; }

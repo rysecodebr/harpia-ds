@@ -50,4 +50,22 @@ void main() {
     await tester.pumpAndSettle();
     expect(MediaQuery.textScalerOf(tester.element(find.byType(Scaffold))).scale(16), 16);
   });
+
+  testWidgets('mostra a cena de camadas nos dois temas em escala ampliada', (tester) async {
+    await tester.pumpWidget(const TypographyValidationApp());
+    await tester.tap(find.text('2×'));
+    await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(find.text('Card · superfície'), 300, scrollable: find.byType(Scrollable).first);
+    expect(find.text('Card · superfície'), findsOneWidget);
+    expect(find.text('Popover · elevação média'), findsOneWidget);
+    expect(find.text('Diálogo · elevação alta'), findsOneWidget);
+    expect(find.text('Tooltip'), findsOneWidget);
+    expect(find.text('Toast'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+    await tester.scrollUntilVisible(find.text('Tema escuro'), -300, scrollable: find.byType(Scrollable).first);
+    await tester.tap(find.text('Tema escuro'));
+    await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(find.text('Card · superfície'), 300, scrollable: find.byType(Scrollable).first);
+    expect(tester.takeException(), isNull);
+  });
 }

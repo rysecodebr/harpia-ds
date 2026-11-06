@@ -48,6 +48,22 @@ async function checkZoom(factor) {
     assert.equal(metrics.samples, 29, 'Typography sample count');
     assert.equal(metrics.fontLoaded, true, 'Montserrat did not load');
     assert.deepEqual(errors, []);
+    for (const theme of ['light', 'dark']) {
+      if (theme === 'dark') await page.locator('.theme-button').click();
+      const layers = await page.evaluate(() => {
+        const nodes = [...document.querySelectorAll('[data-layer]')];
+        return nodes.map((node) => ({
+          name: node.getAttribute('data-layer'),
+          z: Number(getComputedStyle(node).zIndex),
+          shadow: getComputedStyle(node).boxShadow
+        }));
+      });
+      assert.deepEqual(layers.map((layer) => layer.name), ['card', 'popover', 'backdrop', 'dialog', 'tooltip', 'toast']);
+      assert.deepEqual(layers.map((layer) => layer.z), [1, 2, 3, 4, 5, 6]);
+      assert.equal(layers[0].shadow, 'none');
+      for (const layer of [layers[1], layers[3], layers[4], layers[5]]) assert.notEqual(layer.shadow, 'none');
+      await page.locator('.layer-scene').screenshot({ path: path.join(screenshots, `layers-${theme}-${factor * 100}.png`) });
+    }
     await page.screenshot({ path: path.join(screenshots, `angular-${factor * 100}.png`), fullPage: true });
     process.stdout.write(`${factor * 100}%: ${JSON.stringify(metrics)}\n`);
   } finally {

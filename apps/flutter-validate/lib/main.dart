@@ -94,6 +94,11 @@ class _TypographyValidationAppState extends State<TypographyValidationApp> {
                   ),
                 ),
                 const SizedBox(height: 32),
+                Text('Cena de camadas e sombras', style: HarpiaTypography.sectionTitle.copyWith(color: colors.textPrimary)),
+                Text('Amostra de diagnóstico nos dois temas; ainda não são tokens ou componentes públicos.', style: HarpiaTypography.body.copyWith(color: colors.textPrimary)),
+                const SizedBox(height: 12),
+                _layerScene(colors, dark),
+                const SizedBox(height: 32),
                 Text('Tamanhos · 12 tokens', style: HarpiaTypography.sectionTitle.copyWith(color: colors.textPrimary)),
                 Text('Pixels de referência; no Flutter a saída usa unidades lógicas.', style: HarpiaTypography.body.copyWith(color: colors.textPrimary)),
                 const SizedBox(height: 12),
@@ -131,6 +136,40 @@ class _TypographyValidationAppState extends State<TypographyValidationApp> {
       ),
     );
   }
+}
+
+Widget _layerScene(HarpiaColorTokens colors, bool dark) {
+  Widget box(String label, {double? width, double? height, double blur = 0, double dy = 0, double alpha = 0}) => Container(
+    width: width,
+    height: height,
+    padding: const EdgeInsets.all(12),
+    decoration: BoxDecoration(
+      color: colors.backgroundElevated,
+      border: Border.all(color: colors.borderDefault),
+      borderRadius: BorderRadius.circular(8),
+      boxShadow: blur == 0 ? const [] : [BoxShadow(color: Colors.black.withValues(alpha: alpha), offset: Offset(0, dy), blurRadius: blur)],
+    ),
+    child: Text(label, style: HarpiaTypography.supporting.copyWith(color: colors.textPrimary)),
+  );
+
+  return LayoutBuilder(builder: (context, constraints) {
+    final width = constraints.maxWidth;
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(12),
+      child: SizedBox(
+        height: 368,
+        child: Stack(children: [
+          Container(color: colors.backgroundMuted),
+          Positioned(top: 16, left: 16, child: box('Card · superfície', width: width * 0.65, height: 144)),
+          Positioned(top: 64, left: width * 0.15, child: box('Popover · elevação média', width: width * 0.7, blur: dark ? 32 : 24, dy: dark ? 12 : 8, alpha: dark ? 0.34 : 0.12)),
+          Positioned.fill(child: ColoredBox(color: colors.backgroundOverlay)),
+          Positioned(top: 128, left: width * 0.1, child: box('Diálogo · elevação alta', width: width * 0.8, height: 112, blur: dark ? 64 : 48, dy: dark ? 24 : 18, alpha: dark ? 0.42 : 0.16)),
+          Positioned(top: 208, right: 16, child: box('Tooltip', width: width * 0.35, blur: 2, dy: 1, alpha: dark ? 0.24 : 0.08)),
+          Positioned(bottom: 16, right: 16, child: box('Toast', width: width * 0.5, blur: dark ? 32 : 24, dy: dark ? 12 : 8, alpha: dark ? 0.34 : 0.12)),
+        ]),
+      ),
+    );
+  });
 }
 
 Widget _sampleCard(HarpiaColorTokens colors, bool compact, String key, String value, TextStyle style, String sample) {
