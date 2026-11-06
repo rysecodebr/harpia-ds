@@ -1,6 +1,6 @@
 # Fase 1 — arquitetura e contrato de importação
 
-Estado: **direção arquitetural aprovada para avançar à implementação; validações locais e publicação pendentes**. Data: 04/11/2026. Escopo de evidência local: Aurum UI 1.0.18 e Aurum-Smart. Nenhum pacote ou código Harpia foi criado.
+Estado: **direção arquitetural aprovada para avançar à implementação; validações locais e publicação pendentes**. Data da decisão: 04/11/2026. Escopo de evidência local: Aurum UI 1.0.18 e Aurum-Smart. Desde então foram criados tokens e [aplicações de validação](phase2-validation-apps.md); ainda não há biblioteca ou pacote Harpia publicado.
 
 ## Decisões do analista
 

@@ -16,4 +16,5 @@ Leia [docs/context/index.md](docs/context/index.md) e siga os nós relevantes an
 - A fase 0 aprovou reaproveitar partes da fonte Aurum UI 1.0.18 e criar vitrine própria do Harpia DS. Antes de copiar cada parte, confirme a necessidade, o contrato, a origem e as condições da licença; registre a decisão do analista para aquela mudança concreta.
 - Atualize o grafo e o mapa de contexto quando novas áreas ou relações forem implementadas.
 - Mantenha as notas Markdown navegáveis no Obsidian conforme `docs/context/obsidian.md`, com links relativos e um índice de entrada.
+- `apps/angular-validate` e `apps/flutter-validate` são aplicações exclusivas de validação da fase 2, conforme [registro](docs/context/phase2-validation-apps.md). Não as trate como a vitrine própria planejada para a fase 7 nem como pacotes públicos.
 - Siga também o `AGENTS.md` do workspace e use commits semânticos em português do Brasil.

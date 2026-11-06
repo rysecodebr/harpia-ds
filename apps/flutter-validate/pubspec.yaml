@@ -1,0 +1,24 @@
+name: flutter_validate
+description: Aplicação exclusiva de validação dos tokens e temas do Harpia DS.
+publish_to: none
+version: 0.0.1+1
+
+environment:
+  sdk: '>=3.6.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  fonts:
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat[wght].ttf
+        - asset: assets/fonts/Montserrat-Italic[wght].ttf
+          style: italic

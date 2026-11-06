@@ -8,6 +8,8 @@ flowchart LR
     AurumDocs["Aurum-UI: aurum-docs"]
     Smart["Aurum-Smart: apresentação do Aurum UI"]
     Harpia["Harpia DS: contexto e tokens visuais locais"]
+    AngularValidate["angular-validate: prova de tipografia"]
+    FlutterValidate["flutter-validate: prova de tipografia"]
     Consumers["Outros consumidores: inventário pendente"]
 
     AurumDocs -->|imports e exemplos| AurumUI
@@ -15,6 +17,8 @@ flowchart LR
     Consumers -->|consumo parcial registrado no contexto Aurum UI| AurumUI
     Harpia -.->|reaproveitamento aprovado; itens por definir| AurumUI
     Harpia -.->|referência de apresentação; sem migração| Smart
+    Harpia -->|CSS gerado e Montserrat| AngularValidate
+    Harpia -->|Dart e Montserrat sincronizados| FlutterValidate
 ```
 
 Evidências: `Aurum-UI/aurum-workspace/angular.json`, `Aurum-UI/docs/context/graph.md`, `Aurum-UI/aurum-workspace/projects/aurum-ui/package.json` e `Aurum-Smart/package.json`. Arestas futuras não autorizam mudanças nesses repositórios.

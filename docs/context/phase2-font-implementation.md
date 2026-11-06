@@ -1,6 +1,6 @@
 # Fase 2 — Montserrat oficial
 
-Estado: **família e arquivos locais integrados; escala tipográfica e prova Flutter pendentes**. Decisão do analista: usar a Montserrat oficial no Harpia DS em Angular e Flutter. Não foi fornecido pacote personalizado.
+Estado: **família, arquivos e escala tipográfica locais integrados; prova visual Flutter pendente**. Decisão do analista: usar a Montserrat oficial no Harpia DS em Angular e Flutter. Não foi fornecido pacote personalizado.
 
 ## Origem e integridade
 
@@ -18,8 +18,8 @@ Os três hashes foram conferidos localmente e passaram em `npm test`. O aviso e 
 
 - A saída `generated/harpia-tokens.css` declara `@font-face` normal e itálico, peso variável 100–900, referenciando os arquivos locais; expõe `--harpia-font-family-sans`. O CSS não impõe automaticamente Montserrat a toda a aplicação. Caminhos de assets e custo do TTF serão revistos antes de empacotar/publicar.
 - A saída `generated/harpia_theme.dart` informa `fontFamily: 'Montserrat'` no `ThemeData`. **A aplicação Flutter ainda precisa declarar os arquivos de fonte no `pubspec.yaml`** ou consumi-los de um futuro pacote Flutter, conforme o [guia oficial](https://docs.flutter.dev/cookbook/design/fonts). Sem essa declaração, o nome no tema não garante que a fonte seja renderizada.
-- Tamanhos, pesos e alturas de linha foram incorporados posteriormente como **escala inicial**, conforme [registro tipográfico](phase2-typography-implementation.md). Tracking e papéis semânticos permanecem pendentes; a escala precisa de teste de legibilidade em ambas as plataformas.
+- Tamanhos, pesos e alturas de linha foram incorporados posteriormente como **escala inicial**, conforme [registro tipográfico](phase2-typography-implementation.md). Seis papéis semânticos com tracking `0` também foram gerados. A escala precisa de teste de legibilidade em ambas as plataformas.
 
 ## Validação e limites
 
-`npm run tokens:build`, `npm run tokens:check` e `npm test` passaram; o registro tipográfico contém a contagem atual de testes. Não há compilação Dart ou prova visual Flutter: o SDK não apareceu no PATH desta sessão. Ainda faltam medir tamanho dos assets, verificar carregamento real no browser e comparar fontes, pesos, quebras de linha e escala de texto nas duas plataformas.
+`npm run tokens:build`, `npm run tokens:check` e `npm test` passaram; o registro tipográfico contém a contagem atual de testes. A [aplicação Angular de validação](phase2-validation-apps.md) compilou com os arquivos TTF no bundle; o carregamento visual real no navegador ainda não foi confirmado. Não há compilação Dart ou prova visual Flutter: o SDK não apareceu no PATH desta sessão. Ainda faltam comparar fontes, pesos, quebras de linha e escala de texto nas duas plataformas.

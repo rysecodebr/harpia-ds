@@ -1,0 +1,5 @@
+@import '../../../generated/harpia-tokens.css';
+* { box-sizing: border-box; }
+html { font-family: var(--harpia-font-family-sans); }
+body { margin: 0; }
+button, input { font: inherit; }

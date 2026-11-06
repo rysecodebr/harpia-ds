@@ -23,5 +23,6 @@ Este índice roteia somente o contexto necessário. O projeto tem uma primeira i
 | Montserrat oficial e licença | [Implementação da fonte](phase2-font-implementation.md) |
 | Escala tipográfica Montserrat | [Implementação da tipografia](phase2-typography-implementation.md) |
 | Próxima decisão de tipografia | [Proposta de papéis tipográficos](phase2-typography-roles-proposal.md) |
+| Aplicações de prova Angular e Flutter | [Validação da fase 2](phase2-validation-apps.md) |
 
 Fontes externas de evidência: `../../../../Aurum-UI/docs/context/index.md`, `../../../../Aurum-Smart/README.md` e `../../../../docs/context/index.md`. Consulte os respectivos `AGENTS.md` ao entrar nesses repositórios.

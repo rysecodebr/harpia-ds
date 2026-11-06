@@ -1,0 +1,15 @@
+.validation-page { min-height: 100vh; padding: clamp(1rem, 4vw, 3rem); color: var(--harpia-color-text-primary); background: var(--harpia-color-background-page); }
+.validation-header { display: flex; flex-wrap: wrap; align-items: start; justify-content: space-between; gap: 1.5rem; }
+.validation-section { max-width: 48rem; margin-top: 3rem; }
+.eyebrow { margin: 0 0 0.75rem; color: var(--harpia-color-text-muted); }
+.sample-card { margin-top: 1.5rem; padding: 1.5rem; background: var(--harpia-color-background-surface); border: 1px solid var(--harpia-color-border-default); border-radius: 0.75rem; }
+.theme-button, input { padding: 0.75rem 1rem; color: var(--harpia-color-text-primary); background: var(--harpia-color-background-surface); border: 1px solid var(--harpia-color-border-default); border-radius: 0.5rem; }
+.theme-button { cursor: pointer; }
+.theme-button:focus-visible, input:focus-visible { outline: 3px solid var(--harpia-color-focus-ring); outline-offset: 2px; }
+input { display: block; width: min(100%, 25rem); margin-top: 0.5rem; }
+.role-page-title { font-size: var(--harpia-text-page-title-size); font-weight: var(--harpia-text-page-title-weight); line-height: var(--harpia-text-page-title-line-height); letter-spacing: var(--harpia-text-page-title-letter-spacing); }
+.role-section-title { font-size: var(--harpia-text-section-title-size); font-weight: var(--harpia-text-section-title-weight); line-height: var(--harpia-text-section-title-line-height); letter-spacing: var(--harpia-text-section-title-letter-spacing); }
+.role-component-title { font-size: var(--harpia-text-component-title-size); font-weight: var(--harpia-text-component-title-weight); line-height: var(--harpia-text-component-title-line-height); letter-spacing: var(--harpia-text-component-title-letter-spacing); }
+.role-body { font-size: var(--harpia-text-body-size); font-weight: var(--harpia-text-body-weight); line-height: var(--harpia-text-body-line-height); letter-spacing: var(--harpia-text-body-letter-spacing); }
+.role-supporting { font-size: var(--harpia-text-supporting-size); font-weight: var(--harpia-text-supporting-weight); line-height: var(--harpia-text-supporting-line-height); letter-spacing: var(--harpia-text-supporting-letter-spacing); color: var(--harpia-color-text-muted); }
+.role-control-label { display: block; font-size: var(--harpia-text-control-label-size); font-weight: var(--harpia-text-control-label-weight); line-height: var(--harpia-text-control-label-line-height); letter-spacing: var(--harpia-text-control-label-letter-spacing); }

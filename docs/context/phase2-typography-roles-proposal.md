@@ -35,6 +35,8 @@ Esses usos demonstram combinações **por componente**, mas não estabelecem uma
 
 O catálogo `tokens/typography.json` associa cada papel a um tamanho, peso, altura de linha e tracking `0`. `generated/harpia-tokens.css` expõe quatro propriedades `--harpia-text-<papel>-*` por papel; `generated/harpia_typography.dart` expõe seis `TextStyle` constantes em `HarpiaTypography`. Nenhum estilo é imposto globalmente a elementos HTML e não foi definido mapeamento automático para `TextTheme` do Material. A escolha de semântica HTML permanece com a aplicação. A geração e os testes verificam as duas saídas; a aparência real ainda depende de prova em Angular e Flutter.
 
+As [aplicações `validate`](phase2-validation-apps.md) foram criadas para essa prova. O Angular compilou e passou em testes; a inspeção visual comparativa e a execução Flutter permanecem pendentes.
+
 ## Sequência proposta
 
 1. Definir cenários de texto: título de página, título de seção, título de componente, corpo, texto auxiliar e rótulo de controle. Preservar o nível HTML de `h1`–`h6` independentemente da aparência.

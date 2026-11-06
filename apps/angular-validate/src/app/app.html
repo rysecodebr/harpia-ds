@@ -1,0 +1,21 @@
+<main class="validation-page" [attr.data-harpia-theme]="theme()">
+  <header class="validation-header">
+    <div>
+      <p class="eyebrow">Harpia DS · Angular Validate</p>
+      <h1 class="role-page-title">Tipografia em contexto</h1>
+      <p class="role-body">Compare Montserrat, quebras de linha e legibilidade. Use o zoom do navegador e redimensione a janela.</p>
+    </div>
+    <button type="button" class="theme-button" (click)="toggleTheme()">Ativar tema {{ theme() === 'light' ? 'escuro' : 'claro' }}</button>
+  </header>
+  <section class="validation-section" aria-labelledby="section-heading">
+    <h2 id="section-heading" class="role-section-title">Seção com texto em português</h2>
+    <p class="role-body">A harpia habita florestas brasileiras. Esta frase longa verifica o espaço entre letras, a altura das linhas e a quebra em diferentes larguras de tela, inclusive quando o texto é ampliado.</p>
+    <article class="sample-card" aria-labelledby="component-heading">
+      <h3 id="component-heading" class="role-component-title">Título de componente</h3>
+      <p class="role-body">Texto de corpo com acentos: aplicação, solução, órgão, público e eficiência.</p>
+      <p class="role-supporting">Texto auxiliar: detalhes de apoio devem continuar fáceis de ler.</p>
+      <label class="role-control-label" for="sample-field">Rótulo de controle</label>
+      <input id="sample-field" type="text" placeholder="Digite uma palavra com acento" />
+    </article>
+  </section>
+</main>

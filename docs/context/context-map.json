@@ -40,7 +40,8 @@
     { "id": "phase2-dimension-implementation", "path": "docs/context/phase2-dimension-implementation.md" },
     { "id": "phase2-font-implementation", "path": "docs/context/phase2-font-implementation.md" },
     { "id": "phase2-typography-implementation", "path": "docs/context/phase2-typography-implementation.md" },
-    { "id": "phase2-typography-roles", "path": "docs/context/phase2-typography-roles-proposal.md" }
+    { "id": "phase2-typography-roles", "path": "docs/context/phase2-typography-roles-proposal.md" },
+    { "id": "phase2-validation-apps", "path": "docs/context/phase2-validation-apps.md" }
   ],
   "relatedRepositories": [
     { "id": "Aurum-UI", "relation": "existing-design-system", "status": "verified", "evidence": "../Aurum-UI/aurum-workspace/angular.json" },
@@ -51,7 +52,8 @@
     { "id": "spacing-control-sizes-radii", "status": "local-partial", "evidence": "docs/context/phase2-dimension-implementation.md" },
     { "id": "montserrat-font", "status": "local-partial", "evidence": "docs/context/phase2-font-implementation.md" },
     { "id": "montserrat-typography-scale", "status": "local-partial", "evidence": "docs/context/phase2-typography-implementation.md" },
-    { "id": "montserrat-typography-roles", "status": "local-partial", "evidence": "docs/context/phase2-typography-roles-proposal.md" }
+    { "id": "montserrat-typography-roles", "status": "local-partial", "evidence": "docs/context/phase2-typography-roles-proposal.md" },
+    { "id": "typography-validation-apps", "status": "angular-tested-flutter-pending", "evidence": "docs/context/phase2-validation-apps.md" }
   ],
   "plannedCapabilities": ["simple-adoption", "component-variants", "grid", "rows", "simple-groups", "form-groups", "flutter-support"],
   "platformRequirements": ["angular-21-or-newer", "flutter"],
