@@ -2,3 +2,5 @@
 .flutter-plugins*
 .packages
 build/
+.idea/
+*.iml

@@ -31,6 +31,10 @@ void main() {
     final title = find.text('Tipografia em contexto');
     expect(MediaQuery.textScalerOf(tester.element(title)).scale(16), 16);
 
+    await tester.tap(find.text('1×'));
+    await tester.pumpAndSettle();
+    expect(MediaQuery.textScalerOf(tester.element(title)).scale(16), 16);
+
     await tester.tap(find.text('1,5×'));
     await tester.pumpAndSettle();
     expect(MediaQuery.textScalerOf(tester.element(title)).scale(16), 24);
@@ -40,5 +44,10 @@ void main() {
     await tester.pumpAndSettle();
     expect(MediaQuery.textScalerOf(tester.element(find.text('2×'))).scale(16), 32);
     expect(tester.takeException(), isNull);
+
+    await tester.ensureVisible(find.text('Sistema'));
+    await tester.tap(find.text('Sistema'));
+    await tester.pumpAndSettle();
+    expect(MediaQuery.textScalerOf(tester.element(find.byType(Scaffold))).scale(16), 16);
   });
 }

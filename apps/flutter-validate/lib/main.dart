@@ -15,7 +15,7 @@ class TypographyValidationApp extends StatefulWidget {
 
 class _TypographyValidationAppState extends State<TypographyValidationApp> {
   bool dark = false;
-  double textScale = 1.0;
+  double? textScale;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,9 @@ class _TypographyValidationAppState extends State<TypographyValidationApp> {
       darkTheme: HarpiaTheme.dark,
       themeMode: dark ? ThemeMode.dark : ThemeMode.light,
       builder: (context, child) => MediaQuery(
-        data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(textScale)),
+        data: textScale == null
+            ? MediaQuery.of(context)
+            : MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(textScale!)),
         child: child!,
       ),
       home: Scaffold(
@@ -55,6 +57,11 @@ class _TypographyValidationAppState extends State<TypographyValidationApp> {
                   spacing: 8,
                   runSpacing: 8,
                   children: [
+                    ChoiceChip(
+                      label: const Text('Sistema'),
+                      selected: textScale == null,
+                      onSelected: (_) => setState(() => textScale = null),
+                    ),
                     for (final scale in [1.0, 1.5, 2.0])
                       ChoiceChip(
                         label: Text(scale == 1.0 ? '1×' : scale == 1.5 ? '1,5×' : '2×'),

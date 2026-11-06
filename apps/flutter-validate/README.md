@@ -15,8 +15,10 @@ flutter pub get
 flutter analyze
 flutter test
 flutter run -d chrome
+flutter build apk --debug
+flutter build apk --release
 ```
 
 As cópias locais de `harpia_theme.dart`, `harpia_typography.dart` e das duas fontes, além de `typography_samples.dart` aqui e `typography-samples.ts` na aplicação Angular, são produzidas por `node tools/sync-validate.mjs` na raiz do repositório. Após qualquer alteração nos tokens, execute esse comando novamente e verifique com `--check`. O aplicativo declara Montserrat em `pubspec.yaml`.
 
-Confira os seis papéis nos dois temas, largura estreita e quebra de linha. O controle **Escala de texto** oferece 1×, 1,5× e 2× por `MediaQuery.textScaler`; o teste de widget confere os três fatores. Isso simula a escala de texto para a validação visual web, sem substituir uma prova nas configurações de acessibilidade de Android ou iOS. A análise, os testes de widget e o build web passaram com Flutter 3.47.9; o [registro da validação](../../docs/context/phase2-validation-apps.md) contém as capturas e os cenários ainda pendentes.
+Confira os seis papéis nos dois temas, largura estreita e quebra de linha. O controle **Escala de texto** inicia em **Sistema**, respeitando a escala configurada no Android. As opções 1×, 1,5× e 2× aplicam fatores explícitos por `MediaQuery.textScaler` para comparação. `flutter build apk --release` gera `build/app/outputs/flutter-apk/app-release.apk` (46,6 MB) para instalação manual; `--debug` gera uma versão maior. Ambos são APKs de validação local assinados com a chave de depuração configurada pelo template Flutter, sem assinatura de publicação.
