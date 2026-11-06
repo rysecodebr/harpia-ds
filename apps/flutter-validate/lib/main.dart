@@ -24,10 +24,11 @@ class _TypographyValidationAppState extends State<TypographyValidationApp> {
       themeMode: dark ? ThemeMode.dark : ThemeMode.light,
       home: Scaffold(
         body: SafeArea(
-          child: Builder(builder: (context) {
+          child: LayoutBuilder(builder: (context, constraints) {
             final colors = Theme.of(context).extension<HarpiaColorTokens>()!;
+            final compact = constraints.maxWidth < 240;
             return ListView(
-              padding: const EdgeInsets.all(24),
+              padding: EdgeInsets.all(compact ? 8 : 24),
               children: [
                 Text('Harpia DS · Flutter Validate', style: HarpiaTypography.supporting.copyWith(color: colors.textMuted)),
                 const SizedBox(height: 12),
@@ -36,6 +37,7 @@ class _TypographyValidationAppState extends State<TypographyValidationApp> {
                 Text('Compare Montserrat, quebras de linha e legibilidade. Amplie o texto nas configurações do dispositivo e redimensione a janela.', style: HarpiaTypography.body.copyWith(color: colors.textPrimary)),
                 const SizedBox(height: 20),
                 SwitchListTile(
+                  contentPadding: EdgeInsets.zero,
                   title: Text('Tema escuro', style: HarpiaTypography.controlLabel),
                   value: dark,
                   onChanged: (value) => setState(() => dark = value),
@@ -47,7 +49,7 @@ class _TypographyValidationAppState extends State<TypographyValidationApp> {
                 const SizedBox(height: 24),
                 Card(
                   child: Padding(
-                    padding: const EdgeInsets.all(24),
+                    padding: EdgeInsets.all(compact ? 12 : 24),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

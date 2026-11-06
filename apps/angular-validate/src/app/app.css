@@ -7,6 +7,7 @@
 .theme-button { cursor: pointer; }
 .theme-button:focus-visible, input:focus-visible { outline: 3px solid var(--harpia-color-focus-ring); outline-offset: 2px; }
 input { display: block; width: min(100%, 25rem); margin-top: 0.5rem; }
+input::placeholder { color: var(--harpia-color-text-muted); opacity: 1; }
 .role-page-title { font-size: var(--harpia-text-page-title-size); font-weight: var(--harpia-text-page-title-weight); line-height: var(--harpia-text-page-title-line-height); letter-spacing: var(--harpia-text-page-title-letter-spacing); }
 .role-section-title { font-size: var(--harpia-text-section-title-size); font-weight: var(--harpia-text-section-title-weight); line-height: var(--harpia-text-section-title-line-height); letter-spacing: var(--harpia-text-section-title-letter-spacing); }
 .role-component-title { font-size: var(--harpia-text-component-title-size); font-weight: var(--harpia-text-component-title-weight); line-height: var(--harpia-text-component-title-line-height); letter-spacing: var(--harpia-text-component-title-letter-spacing); }

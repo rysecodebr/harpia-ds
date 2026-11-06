@@ -19,16 +19,17 @@ As aplicações contêm os mesmos textos em português e os mesmos seis cenário
 - `npm test -- --watch=false` em `angular-validate`: 2 testes aprovados, incluindo presença dos papéis e troca de tema.
 - Servidor Angular respondeu com HTTP 200 em `http://localhost:4200/`. Chrome headless carregou Montserrat, renderizou os seis papéis e alternou o tema; não houve erro de página nem overflow horizontal em 390, 1280 e 195 px.
 - O analista informou o SDK em `L:\Android\Flutter`. Flutter 3.47.9/Dart 3.13.7 executou `pub get`, `analyze` (sem problemas), `test` (1 teste aprovado) e `build web` (aprovado). O build respondeu com HTTP 200 em `http://localhost:4201/`. Chrome headless carregou os TTF Montserrat com status 200 e renderizou os temas claro e escuro; não houve erro de página nem overflow horizontal nas larguras testadas.
-- Capturas de 390 px: [Angular claro](images/angular-light-390.png), [Angular escuro](images/angular-dark-390.png), [Flutter claro](images/flutter-light-390.png), [Flutter escuro](images/flutter-dark-390.png).
-- A largura extrema de 195 px, usada como teste de estresse, revelou quebra dentro das palavras do título e do rótulo de tema no Flutter. Isso ainda não foi classificado como defeito da escala tipográfica: a largura é inferior ao cenário móvel de 390 px e precisa de critério de suporte. Não ajustar tokens sem decisão do analista.
-- A captura Angular em tema escuro mostra o placeholder do campo com contraste visual fraco. O placeholder usa a apresentação nativa da aplicação de validação, sem papel Harpia aprovado; avaliar o caso ao definir estados e formulários, sem alterar a paleta por inferência.
+- Capturas de 390 px: [Angular claro](images/angular-light-390.png), [Angular escuro após correção](images/angular-dark-390.png), [Flutter claro](images/flutter-light-390.png), [Flutter escuro](images/flutter-dark-390.png). O [teste de largura extrema de 195 px](images/flutter-narrow-195.png) registra a correção Flutter.
+- **Correção autorizada pelo analista:** o placeholder Angular usa o token semântico de texto atenuado com `opacity: 1`. No tema escuro, Chrome calculou `rgb(132, 147, 169)` (`#8493a9`) sobre `rgb(21, 26, 35)` (`#151a23`); a captura mostra o texto legível. O catálogo de tokens não mudou.
+- **Correção autorizada pelo analista:** abaixo de 240 px de largura útil, a aplicação Flutter reduz somente os paddings de validação e remove o padding interno do `SwitchListTile`. Na captura a 195 px, “Tipografia” e “Tema escuro” não são divididos dentro das palavras; não houve overflow horizontal. Os seis `TextStyle` gerados permaneceram intactos.
+- Após as correções, Angular: build aprovado e 2 testes aprovados; Flutter: `analyze` sem problemas, 1 teste aprovado e build web aprovado. Chrome headless confirmou o placeholder e a largura de 195 px.
 - O painel de navegador integrado foi solicitado para as duas URLs, mas sua ferramenta de controle retornou `failed to write kernel assets`; a inspeção automatizada foi feita em Chrome headless separado. As capturas confirmam a aparência local, mas não substituem teste manual no painel integrado.
 
 ## Validação adicional pendente
 
 1. Repetir no navegador integrado ou manualmente em navegador interativo, incluindo teclado e foco. Confirmar os pesos 400, 500 e 600 com inspeção visual detalhada.
 2. Na web, testar zoom real do navegador em 200%; no Flutter, escala de texto 1,5× e 2× do dispositivo. O teste de largura de 195 px não equivale a essa prova.
-3. Definir a largura mínima suportada e avaliar a quebra de palavras observada no Flutter a 195 px. Registrar decisão antes de qualquer mudança visual.
+3. Definir a largura mínima suportada. A aplicação de validação ficou legível a 195 px após ajuste de composição, mas isso não estabelece uma garantia para futuros componentes.
 4. Comparar capturas das duas plataformas com mesma largura útil e condições de escala; registrar diferenças de métricas, quebras de linha e contraste. Qualquer ajuste dos valores aprovados exige nova decisão do analista.
 
 ## Limites
