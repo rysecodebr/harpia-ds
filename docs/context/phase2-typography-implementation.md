@@ -43,7 +43,7 @@ Os tamanhos abaixo são pixels de referência no catálogo. O CSS usa `rem` com 
 
 O valor CSS de `1rem` equivale a 16 CSS px apenas na raiz de referência; o número correspondente em Dart é uma unidade lógica Flutter. A igualdade numérica é verificada, mas não estabelece a mesma renderização. Montserrat pode produzir quebras de linha diferentes de Exo 2; os tamanhos **10, 11 e 12** são especialmente sensíveis à legibilidade. Nenhum tamanho foi declarado adequado para texto comum sem teste contextual.
 
-Faltam: validar visualmente os papéis aprovados, zoom, escala de texto, comprimento de linha, contraste e renderização real em web/Flutter; decidir variantes de controle e tracking adicional; declarar os assets de fonte em `pubspec.yaml` quando o pacote Flutter for estruturado. Não existe SDK Flutter/Dart no PATH desta sessão.
+As aplicações `validate` [compilaram e renderizaram os seis papéis em web](phase2-validation-apps.md). Faltam: validar zoom real, escala de texto ampliada, comprimento de linha, contraste e diferenças de renderização; decidir variantes de controle e tracking adicional. A aplicação Flutter de validação declara os assets no próprio `pubspec.yaml`; a forma de distribuição do futuro pacote Flutter continua em aberto. O SDK Flutter foi encontrado fora do PATH em `L:\Android\Flutter`.
 
 ## Verificação local
 

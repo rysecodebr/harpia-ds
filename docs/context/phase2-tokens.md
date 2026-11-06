@@ -14,7 +14,7 @@ O analista aprovou **um catálogo de tokens independente de Angular e Flutter co
 
 **Fonte e escala inicial aprovadas:** Montserrat oficial, com arquivos e licença fixados por revisão; tamanhos, pesos e alturas de linha da fonte Aurum usados como ponto inicial. Seis [papéis de texto](phase2-typography-roles-proposal.md) foram aprovados com tracking `0` e implementados localmente nas duas saídas. Outros valores de tracking e a validação visual ainda dependem de decisão e prova. Ver [fonte](phase2-font-implementation.md) e [escala](phase2-typography-implementation.md).
 
-Duas [aplicações exclusivas de validação](phase2-validation-apps.md) foram criadas. O Angular compilou e passou em testes; a execução Flutter e a comparação visual continuam abertas.
+Duas [aplicações exclusivas de validação](phase2-validation-apps.md) foram criadas. Angular e Flutter compilaram em web, passaram em testes e renderizaram os dois temas no navegador. Zoom real, escala de texto ampliada e comparação visual final continuam abertos.
 
 **Integridade entre plataformas:** o analista exige que Angular e Flutter mantenham a mesma linguagem visual. Para cada token compartilhado, registrar uma chave conceitual e o mesmo significado nos dois destinos; documentar conversões de unidade, aproximações e exceções justificadas. Diferenças próprias da plataforma podem existir, mas não devem alterar silenciosamente cor semântica, hierarquia tipográfica, espaçamento ou estado. Alterações em um token compartilhado exigirão avaliação das duas saídas e atualização conjunta da documentação e dos testes.
 

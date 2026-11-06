@@ -22,4 +22,4 @@ Os três hashes foram conferidos localmente e passaram em `npm test`. O aviso e 
 
 ## Validação e limites
 
-`npm run tokens:build`, `npm run tokens:check` e `npm test` passaram; o registro tipográfico contém a contagem atual de testes. A [aplicação Angular de validação](phase2-validation-apps.md) compilou com os arquivos TTF no bundle; o carregamento visual real no navegador ainda não foi confirmado. Não há compilação Dart ou prova visual Flutter: o SDK não apareceu no PATH desta sessão. Ainda faltam comparar fontes, pesos, quebras de linha e escala de texto nas duas plataformas.
+`npm run tokens:build`, `npm run tokens:check` e `npm test` passaram; o registro tipográfico contém a contagem atual de testes. As [aplicações de validação](phase2-validation-apps.md) compilaram em web; Chrome headless carregou os TTF Montserrat e produziu capturas nos dois temas. O SDK Flutter 3.47.9 foi encontrado fora do PATH em `L:\Android\Flutter`. Ainda faltam comparar detalhadamente pesos e quebras de linha sob zoom e escala de texto ampliada nas duas plataformas.
