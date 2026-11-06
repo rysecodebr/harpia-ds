@@ -26,6 +26,8 @@ Leitura reconfirmada em 06/11/2026 no código do Aurum UI 1.0.18, sem alteraçã
 
 **Decisão concreta pendente do analista:** autorizar o desenho e a implementação de tokens Harpia para sombras e camadas, após uma matriz de usos e uma proposta de valores/ordem em Angular e Flutter. Este inventário não aprova valores nem APIs.
 
+Os conflitos e os testes de CSS calculado estão detalhados na [auditoria de sombras e camadas](phase2-shadow-layer-audit.md).
+
 ## Origem da Montserrat
 
 O [repositório oficial de fontes do Google](https://github.com/google/fonts/tree/main/ofl/montserrat) distribui Montserrat sob licença **OFL**, com arquivos variáveis normal e itálico identificados no [METADATA.pb](https://github.com/google/fonts/blob/main/ofl/montserrat/METADATA.pb). Os arquivos e o commit exatos estão fixados no [registro de implementação](phase2-font-implementation.md). O [guia Flutter](https://docs.flutter.dev/cookbook/design/fonts) exige declarar os arquivos no `pubspec.yaml` para incluí-los no app; essa integração foi validada nas [aplicações de prova](phase2-validation-apps.md).

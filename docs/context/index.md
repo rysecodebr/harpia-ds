@@ -19,6 +19,7 @@ Este índice roteia somente o contexto necessário. O projeto tem uma primeira i
 | Contrato técnico da fase 2 para decisão | [Proposta de implementação](phase2-contract-proposal.md) |
 | Primeira implementação local de cores e temas | [Implementação de cores](phase2-color-implementation.md) |
 | Próximas famílias de tokens para decisão | [Proposta de sequência](phase2-next-families.md) |
+| Conflitos de sombras e camadas no Aurum UI | [Auditoria e testes](phase2-shadow-layer-audit.md) |
 | Espaçamento, tamanhos e raios locais | [Implementação de dimensões](phase2-dimension-implementation.md) |
 | Montserrat oficial e licença | [Implementação da fonte](phase2-font-implementation.md) |
 | Escala tipográfica Montserrat | [Implementação da tipografia](phase2-typography-implementation.md) |
