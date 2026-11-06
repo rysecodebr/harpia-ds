@@ -14,3 +14,9 @@ input::placeholder { color: var(--harpia-color-text-muted); opacity: 1; }
 .role-body { font-size: var(--harpia-text-body-size); font-weight: var(--harpia-text-body-weight); line-height: var(--harpia-text-body-line-height); letter-spacing: var(--harpia-text-body-letter-spacing); }
 .role-supporting { font-size: var(--harpia-text-supporting-size); font-weight: var(--harpia-text-supporting-weight); line-height: var(--harpia-text-supporting-line-height); letter-spacing: var(--harpia-text-supporting-letter-spacing); color: var(--harpia-color-text-muted); }
 .role-control-label { display: block; font-size: var(--harpia-text-control-label-size); font-weight: var(--harpia-text-control-label-weight); line-height: var(--harpia-text-control-label-line-height); letter-spacing: var(--harpia-text-control-label-letter-spacing); }
+.sample-list { display: grid; gap: 0.75rem; }
+.sample-row { min-width: 0; padding: 1rem; background: var(--harpia-color-background-surface); border: 1px solid var(--harpia-color-border-default); border-radius: 0.75rem; }
+.sample-meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 1rem; margin-bottom: 0.75rem; color: var(--harpia-color-text-muted); font-size: var(--harpia-font-size-md); line-height: var(--harpia-line-height-normal); }
+.sample-meta code { color: var(--harpia-color-text-primary); }
+.sample-text { margin: 0; overflow-wrap: anywhere; }
+.weight-demo, .line-height-demo { font-size: var(--harpia-font-size-base); }

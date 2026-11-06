@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_validate/main.dart';
+import 'package:flutter_validate/typography_samples.dart';
 
 void main() {
   testWidgets('exibe os seis papéis e alterna o tema', (tester) async {
@@ -14,5 +15,14 @@ void main() {
     await tester.tap(find.byType(SwitchListTile));
     await tester.pumpAndSettle();
     expect(tester.widget<MaterialApp>(find.byType(MaterialApp)).themeMode, ThemeMode.dark);
+  });
+
+  test('inclui todas as variações tipográficas documentadas', () {
+    expect(sizeSamples, hasLength(12));
+    expect(weightSamples, hasLength(5));
+    expect(lineHeightSamples, hasLength(6));
+    expect(roleSamples, hasLength(6));
+    expect(sizeSamples.first.key, '2xs');
+    expect(sizeSamples.last.key, '6xl');
   });
 }

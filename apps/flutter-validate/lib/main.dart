@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'harpia_theme.dart';
 import 'harpia_typography.dart';
+import 'typography_samples.dart';
 
 void main() => runApp(const TypographyValidationApp());
 
@@ -65,6 +66,37 @@ class _TypographyValidationAppState extends State<TypographyValidationApp> {
                     ),
                   ),
                 ),
+                const SizedBox(height: 32),
+                Text('Tamanhos · 12 tokens', style: HarpiaTypography.sectionTitle.copyWith(color: colors.textPrimary)),
+                Text('Pixels de referência; no Flutter a saída usa unidades lógicas.', style: HarpiaTypography.body.copyWith(color: colors.textPrimary)),
+                const SizedBox(height: 12),
+                for (final item in sizeSamples)
+                  _sampleCard(colors, compact, 'size.${item.key}', '${item.value.toStringAsFixed(0)} px',
+                    TextStyle(fontFamily: HarpiaTypography.fontFamily, fontSize: item.value, fontWeight: HarpiaTypography.fontWeightRegular, height: HarpiaTypography.lineHeightNormal),
+                    'Harpia, árvore e pássaro.'),
+                const SizedBox(height: 24),
+                Text('Pesos · 5 tokens', style: HarpiaTypography.sectionTitle.copyWith(color: colors.textPrimary)),
+                Text('Todos usam o tamanho base de 16 px para comparar apenas o peso.', style: HarpiaTypography.body.copyWith(color: colors.textPrimary)),
+                const SizedBox(height: 12),
+                for (final item in weightSamples)
+                  _sampleCard(colors, compact, 'weight.${item.key}', '${item.value}',
+                    TextStyle(fontFamily: HarpiaTypography.fontFamily, fontSize: HarpiaTypography.fontSizeBase, fontWeight: item.weight, height: HarpiaTypography.lineHeightNormal),
+                    'Harpia, árvore e pássaro.'),
+                const SizedBox(height: 24),
+                Text('Alturas de linha · 6 tokens', style: HarpiaTypography.sectionTitle.copyWith(color: colors.textPrimary)),
+                Text('Multiplicadores adimensionais; todas as amostras usam 16 px.', style: HarpiaTypography.body.copyWith(color: colors.textPrimary)),
+                const SizedBox(height: 12),
+                for (final item in lineHeightSamples)
+                  _sampleCard(colors, compact, 'line-height.${item.key}', '${item.value}',
+                    TextStyle(fontFamily: HarpiaTypography.fontFamily, fontSize: HarpiaTypography.fontSizeBase, fontWeight: HarpiaTypography.fontWeightRegular, height: item.value),
+                    'Primeira linha: harpia e floresta.\nSegunda linha: árvore e pássaro.'),
+                const SizedBox(height: 24),
+                Text('Papéis aprovados · 6 combinações', style: HarpiaTypography.sectionTitle.copyWith(color: colors.textPrimary)),
+                Text('Cada linha reúne tamanho, peso, altura e tracking. O exemplo em contexto aparece no início da página.', style: HarpiaTypography.body.copyWith(color: colors.textPrimary)),
+                const SizedBox(height: 12),
+                for (final item in roleSamples)
+                  _sampleCard(colors, compact, 'role.${item.key}', '${item.sizeValue} px · ${item.weightValue} · ${item.lineHeightValue} · tracking ${item.letterSpacing}',
+                    item.style, 'Harpia, árvore e pássaro.'),
               ],
             );
           }),
@@ -72,4 +104,21 @@ class _TypographyValidationAppState extends State<TypographyValidationApp> {
       ),
     );
   }
+}
+
+Widget _sampleCard(HarpiaColorTokens colors, bool compact, String key, String value, TextStyle style, String sample) {
+  return Card(
+    child: Padding(
+      padding: EdgeInsets.all(compact ? 12 : 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(key, style: HarpiaTypography.controlLabel.copyWith(color: colors.textPrimary)),
+          Text(value, style: HarpiaTypography.supporting.copyWith(color: colors.textMuted)),
+          const SizedBox(height: 8),
+          Text(sample, style: style.copyWith(color: colors.textPrimary)),
+        ],
+      ),
+    ),
+  );
 }

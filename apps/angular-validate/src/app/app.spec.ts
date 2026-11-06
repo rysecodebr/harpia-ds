@@ -26,4 +26,14 @@ describe('App', () => {
     await fixture.whenStable();
     expect(compiled.querySelector('main')?.getAttribute('data-harpia-theme')).toBe('dark');
   });
+
+  it('should show every documented typography variation', async () => {
+    const fixture = TestBed.createComponent(App);
+    await fixture.whenStable();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelectorAll('[data-token^="size."]')).toHaveLength(12);
+    expect(compiled.querySelectorAll('[data-token^="weight."]')).toHaveLength(5);
+    expect(compiled.querySelectorAll('[data-token^="line-height."]')).toHaveLength(6);
+    expect(compiled.querySelectorAll('[data-token^="role."]')).toHaveLength(6);
+  });
 });

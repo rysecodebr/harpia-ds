@@ -18,4 +18,56 @@
       <input id="sample-field" type="text" placeholder="Digite uma palavra com acento" />
     </article>
   </section>
+
+  <section class="validation-section" aria-labelledby="sizes-heading">
+    <h2 id="sizes-heading" class="role-section-title">Tamanhos · 12 tokens</h2>
+    <p class="role-body">Pixels de referência; na web a saída usa rem com raiz de 16 px.</p>
+    <div class="sample-list">
+      @for (item of sizes; track item.key) {
+        <div class="sample-row" [attr.data-token]="'size.' + item.key">
+          <div class="sample-meta"><code>{{ item.key }}</code><span>{{ item.value }} px</span></div>
+          <p class="sample-text" [style.font-size]="'var(--harpia-font-size-' + item.key + ')'">Harpia, árvore e pássaro.</p>
+        </div>
+      }
+    </div>
+  </section>
+
+  <section class="validation-section" aria-labelledby="weights-heading">
+    <h2 id="weights-heading" class="role-section-title">Pesos · 5 tokens</h2>
+    <p class="role-body">Todos usam o tamanho base de 16 px para comparar apenas o peso.</p>
+    <div class="sample-list">
+      @for (item of weights; track item.key) {
+        <div class="sample-row" [attr.data-token]="'weight.' + item.key">
+          <div class="sample-meta"><code>{{ item.key }}</code><span>{{ item.value }}</span></div>
+          <p class="sample-text weight-demo" [style.font-weight]="'var(--harpia-font-weight-' + item.key + ')'">Harpia, árvore e pássaro.</p>
+        </div>
+      }
+    </div>
+  </section>
+
+  <section class="validation-section" aria-labelledby="line-heights-heading">
+    <h2 id="line-heights-heading" class="role-section-title">Alturas de linha · 6 tokens</h2>
+    <p class="role-body">Multiplicadores adimensionais; todas as amostras usam 16 px.</p>
+    <div class="sample-list">
+      @for (item of lineHeights; track item.key) {
+        <div class="sample-row" [attr.data-token]="'line-height.' + item.key">
+          <div class="sample-meta"><code>{{ item.key }}</code><span>{{ item.value }}</span></div>
+          <p class="sample-text line-height-demo" [style.line-height]="'var(--harpia-line-height-' + item.key + ')'">Primeira linha: harpia e floresta.<br>Segunda linha: árvore e pássaro.</p>
+        </div>
+      }
+    </div>
+  </section>
+
+  <section class="validation-section" aria-labelledby="roles-heading">
+    <h2 id="roles-heading" class="role-section-title">Papéis aprovados · 6 combinações</h2>
+    <p class="role-body">Cada linha reúne tamanho, peso, altura e tracking. O exemplo em contexto aparece no início da página.</p>
+    <div class="sample-list">
+      @for (item of roles; track item.key) {
+        <div class="sample-row" [attr.data-token]="'role.' + item.key">
+          <div class="sample-meta"><code>{{ item.key }}</code><span>{{ item.sizeValue }} px · {{ item.weightValue }} · {{ item.lineHeightValue }} · tracking {{ item.letterSpacing }}</span></div>
+          <p class="sample-text" [style.font-size]="'var(--harpia-text-' + item.cssKey + '-size)'" [style.font-weight]="'var(--harpia-text-' + item.cssKey + '-weight)'" [style.line-height]="'var(--harpia-text-' + item.cssKey + '-line-height)'" [style.letter-spacing]="'var(--harpia-text-' + item.cssKey + '-letter-spacing)'">Harpia, árvore e pássaro.</p>
+        </div>
+      }
+    </div>
+  </section>
 </main>

@@ -48,6 +48,8 @@ As aplicações `validate` [compilaram e renderizaram os seis papéis em web](ph
 ## Verificação local
 
 - `npm run tokens:build` e `npm run tokens:check`: catálogo e saídas sincronizados.
-- `npm test`: **10 testes aprovados**, incluindo paridade de todos os tamanhos, pesos e alturas de linha e rejeição de peso inválido.
+- `npm test`: **11 testes aprovados**, incluindo paridade de todos os tamanhos, pesos, alturas de linha e papéis, além de rejeição de peso inválido.
+
+As [aplicações de validação](phase2-validation-apps.md) apresentam amostras das 29 entradas das tabelas tipográficas em Angular e Flutter.
 
 A fase 2 continua aberta; tipografia em execução e as demais famílias de tokens ainda exigem validação e decisões.

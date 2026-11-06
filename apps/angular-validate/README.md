@@ -1,6 +1,6 @@
 # Angular Validate
 
-Aplicação local exclusiva de validação visual da tipografia do Harpia DS. Não é a vitrine do produto nem um pacote publicável. Usa os tokens CSS gerados no repositório e os arquivos oficiais Montserrat.
+Aplicação local exclusiva de validação visual da tipografia do Harpia DS. Não é a vitrine do produto nem um pacote publicável. Usa os tokens CSS gerados no repositório e os arquivos oficiais Montserrat. Exibe os seis papéis em contexto e tabelas com 12 tamanhos, 5 pesos, 6 alturas de linha e 6 papéis aprovados. Os dados das tabelas vêm de `tokens/typography.json` por `tools/sync-validate.mjs`.
 
 Na pasta do projeto:
 
@@ -11,4 +11,4 @@ npm test -- --watch=false
 npm start
 ```
 
-Abra `http://localhost:4200/`. Confira os seis papéis, claro/escuro, largura de 390 px, zoom de 100%/200% e quebra de linha. A aplicação usa Angular 22. A validação de compatibilidade da futura biblioteca com Angular 21 ainda é outra etapa.
+Abra `http://localhost:4200/`. Confira as 29 amostras, claro/escuro, largura de 390 px, zoom de 100%/200% e quebra de linha. A aplicação usa Angular 22. A validação de compatibilidade da futura biblioteca com Angular 21 ainda é outra etapa.

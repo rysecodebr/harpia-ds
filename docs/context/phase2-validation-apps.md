@@ -11,6 +11,8 @@ Estado em 06/11/2026: **contrato validado; Angular e Flutter compilados, testado
 
 As aplicações contêm os mesmos textos em português e os mesmos seis cenários: título de página, título de seção, título de componente, corpo, texto auxiliar e rótulo de controle. O contraste e o tamanho visual não são presumidos equivalentes apenas por números iguais.
 
+**Ampliação aprovada:** ambas agora exibem todas as variações das [tabelas tipográficas](phase2-typography-implementation.md) e dos [papéis aprovados](phase2-typography-roles-proposal.md): 12 tamanhos, 5 pesos, 6 alturas de linha e 6 combinações de papel, total de 29 amostras por aplicação. Os módulos `typography-samples.ts` e `typography_samples.dart` são gerados do mesmo `tokens/typography.json` por `tools/sync-validate.mjs`; `--check` detecta cópias desatualizadas. As amostras aplicam as variáveis CSS e as constantes Dart geradas, sem criar novos tokens.
+
 ## Verificações executadas
 
 - `npm run tokens:check` e `npm test` na raiz: geração sincronizada e 11 testes aprovados.
@@ -23,6 +25,8 @@ As aplicações contêm os mesmos textos em português e os mesmos seis cenário
 - **Correção autorizada pelo analista:** o placeholder Angular usa o token semântico de texto atenuado com `opacity: 1`. No tema escuro, Chrome calculou `rgb(132, 147, 169)` (`#8493a9`) sobre `rgb(21, 26, 35)` (`#151a23`); a captura mostra o texto legível. O catálogo de tokens não mudou.
 - **Correção autorizada pelo analista:** abaixo de 240 px de largura útil, a aplicação Flutter reduz somente os paddings de validação e remove o padding interno do `SwitchListTile`. Na captura a 195 px, “Tipografia” e “Tema escuro” não são divididos dentro das palavras; não houve overflow horizontal. Os seis `TextStyle` gerados permaneceram intactos.
 - Após as correções, Angular: build aprovado e 2 testes aprovados; Flutter: `analyze` sem problemas, 1 teste aprovado e build web aprovado. Chrome headless confirmou o placeholder e a largura de 195 px.
+- Após a ampliação das tabelas, `npm run tokens:check`, `npm test` e `node tools/sync-validate.mjs --check` passaram. Angular compilou e passou em **3 testes**; Flutter teve `analyze` sem problemas, passou em **2 testes** e compilou para web. Chrome headless contou as 29 amostras no DOM Angular e inspecionou as seções Flutter sem overflow horizontal a 390 px.
+- Capturas das tabelas: [Angular completo](images/angular-typography-all-390.png); Flutter [tamanhos grandes](images/flutter-sizes-390.png), [pesos](images/flutter-weights-390.png), [alturas de linha](images/flutter-line-heights-390.png), [papéis](images/flutter-roles-390.png) e [pesos no escuro](images/flutter-weights-dark-390.png). Em Chrome headless, Angular manteve as 29 amostras no tema escuro e Flutter renderizou a tabela de pesos no mesmo tema, sem overflow horizontal.
 - O painel de navegador integrado foi solicitado para as duas URLs, mas sua ferramenta de controle retornou `failed to write kernel assets`; a inspeção automatizada foi feita em Chrome headless separado. As capturas confirmam a aparência local, mas não substituem teste manual no painel integrado.
 
 ## Validação adicional pendente
