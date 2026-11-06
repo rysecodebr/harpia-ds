@@ -1,6 +1,6 @@
 # Plano sequencial de implementação, importação e adoção
 
-Estado: **planejado**. Nenhuma etapa de implementação foi iniciada. Este plano organiza decisões e entregas; não autoriza alterações nos repositórios Aurum-UI, Aurum-Smart ou demais consumidores. Base: [fundação](foundation.md), [auditoria inicial](audit-aurum.md) e [grafo](graph.md).
+Estado: **em execução**. As fases 0 e 1 foram validadas nos limites registrados abaixo; a fase 2 tem tokens, temas, tipografia e aplicações de prova locais, com fundamentos ainda pendentes. Este plano organiza decisões e entregas; não autoriza alterações nos repositórios Aurum-UI, Aurum-Smart ou demais consumidores. Base: [fundação](foundation.md), [auditoria inicial](audit-aurum.md) e [grafo](graph.md).
 
 ## Regras que valem em todas as etapas
 
@@ -148,4 +148,4 @@ Após **cada** passo, atualizar a matriz de equivalência e obter decisão do an
 
 ## Registro de acompanhamento
 
-Cada fase deve receber estado `pendente`, `em andamento`, `validada` ou `bloqueada`, responsável, evidências, decisões e riscos residuais. A fase 0 está **validada para planejamento**. A fase 1 da biblioteca web está **validada para avançar à implementação**, com verificações de escopo npm, compatibilidade, caminhos e versionamento adiadas por decisão do analista para depois da implementação e dos testes locais; publicação segue bloqueada até fechá-las. A arquitetura Flutter para distribuição permanece por definir. A fase 2 está **em andamento**, com [cores e temas locais](phase2-color-implementation.md) implementados parcialmente; as fases 3–7 continuam **pendentes**.
+Cada fase deve receber estado `pendente`, `em andamento`, `validada` ou `bloqueada`, responsável, evidências, decisões e riscos residuais. A fase 0 está **validada para planejamento**. A fase 1 da biblioteca web está **validada para avançar à implementação**, com verificações de escopo npm, compatibilidade, caminhos e versionamento adiadas por decisão do analista para depois da implementação e dos testes locais; publicação segue bloqueada até fechá-las. A arquitetura Flutter para distribuição permanece por definir. A fase 2 está **em andamento**, com [cores e temas locais](phase2-color-implementation.md), [dimensões](phase2-dimension-implementation.md), [tipografia](phase2-typography-implementation.md) e [aplicações de prova](phase2-validation-apps.md) implementadas; o analista aprovou a prova do APK Android em todas as escalas e nos dois temas. Sombras, camadas, movimento e demais verificações da porta de saída permanecem abertos. As fases 3–7 continuam **pendentes**.

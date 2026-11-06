@@ -14,6 +14,18 @@ Estado: **cores, dimensões e escala tipográfica inicial implementadas localmen
 
 **Lotes executados:** espaçamento, dimensões de controle, raios, escala tipográfica e seis papéis de texto, no catálogo JSON e nas saídas CSS/Dart. A prova visual em ambas as plataformas ainda é necessária antes de declarar paridade concluída. Sombras, camadas e movimento seguem em decisões próprias.
 
+## Próximo lote proposto — sombras e camadas
+
+Leitura reconfirmada em 06/11/2026 no código do Aurum UI 1.0.18, sem alteração desse repositório:
+
+| Ponto | Evidência executável | Tratamento proposto para decisão |
+| --- | --- | --- |
+| Escala de sombra | `tokens/shadows.scss` define `none`, `xs`, `sm`, `md`, `lg`, com valores distintos nos temas. `card`, `panel` e `rich-text-editor` usam `--aurum-shadow-xl` sem definição; somente `app-shell` fornece fallback para `lg`. | Não copiar `xl` ausente. Decidir os papéis Harpia primeiro e comparar amostras em claro/escuro antes de aprovar números e conversão para Flutter. |
+| Duas escalas de camada | `tokens/z-index.scss` define `--aurum-z-*` e `--aurum-z-index-*`. `header` é 100 numa escala e 1200 na outra; `tooltip`, 1150 e 1500; `toast`, 1400 e 2147483647. | Definir uma única ordem semântica, incluindo coexistência de dropdown, cabeçalho, overlay, modal, tooltip e toast, antes de escolher valores CSS. Flutter precisa de contrato de ordem de composição próprio. |
+| Uso cruzado nos componentes | Modal/dialog/drawer usam `--aurum-z-*`; card/panel, `--aurum-z-index-*`; popover usa `--aurum-z-index-popover` sem declaração em `z-index.scss`, com fallback numérico 1300. | Testar sobreposição entre famílias em cenários reais, sem transportar os fallbacks como API pública Harpia. |
+
+**Decisão concreta pendente do analista:** autorizar o desenho e a implementação de tokens Harpia para sombras e camadas, após uma matriz de usos e uma proposta de valores/ordem em Angular e Flutter. Este inventário não aprova valores nem APIs.
+
 ## Origem da Montserrat
 
-O [repositório oficial de fontes do Google](https://github.com/google/fonts/tree/main/ofl/montserrat) distribui Montserrat sob licença **OFL**, com arquivos variáveis normal e itálico identificados no [METADATA.pb](https://github.com/google/fonts/blob/main/ofl/montserrat/METADATA.pb). Os arquivos e o commit exatos estão fixados no [registro de implementação](phase2-font-implementation.md). O [guia Flutter](https://docs.flutter.dev/cookbook/design/fonts) exige declarar os arquivos no `pubspec.yaml` para incluí-los no app; essa integração ainda não foi validada.
+O [repositório oficial de fontes do Google](https://github.com/google/fonts/tree/main/ofl/montserrat) distribui Montserrat sob licença **OFL**, com arquivos variáveis normal e itálico identificados no [METADATA.pb](https://github.com/google/fonts/blob/main/ofl/montserrat/METADATA.pb). Os arquivos e o commit exatos estão fixados no [registro de implementação](phase2-font-implementation.md). O [guia Flutter](https://docs.flutter.dev/cookbook/design/fonts) exige declarar os arquivos no `pubspec.yaml` para incluí-los no app; essa integração foi validada nas [aplicações de prova](phase2-validation-apps.md).
