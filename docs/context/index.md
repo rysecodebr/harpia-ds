@@ -21,6 +21,7 @@ Este índice roteia somente o contexto necessário. O projeto tem uma primeira i
 | Próximas famílias de tokens para decisão | [Proposta de sequência](phase2-next-families.md) |
 | Conflitos de sombras e camadas no Aurum UI | [Auditoria e testes](phase2-shadow-layer-audit.md) |
 | Próxima decisão sobre backdrop, sombras e camadas Harpia | [Proposta de contrato](phase2-shadow-layer-contract-proposal.md) |
+| Backdrop e sombras aprovados em CSS e Flutter | [Implementação dos efeitos](phase2-effects-implementation.md) |
 | Espaçamento, tamanhos e raios locais | [Implementação de dimensões](phase2-dimension-implementation.md) |
 | Montserrat oficial e licença | [Implementação da fonte](phase2-font-implementation.md) |
 | Escala tipográfica Montserrat | [Implementação da tipografia](phase2-typography-implementation.md) |

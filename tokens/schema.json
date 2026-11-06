@@ -5,9 +5,58 @@
     { "$ref": "#/$defs/palette" },
     { "$ref": "#/$defs/theme" },
     { "$ref": "#/$defs/dimensions" },
-    { "$ref": "#/$defs/typography" }
+    { "$ref": "#/$defs/typography" },
+    { "$ref": "#/$defs/effects" }
   ],
   "$defs": {
+    "shadow": {
+      "type": ["object", "null"],
+      "required": ["x", "y", "blur", "spread", "color"],
+      "properties": {
+        "x": { "type": "number" },
+        "y": { "type": "number" },
+        "blur": { "type": "number", "minimum": 0 },
+        "spread": { "type": "number" },
+        "color": { "type": "string", "pattern": "^rgba\\([0-9]{1,3}, [0-9]{1,3}, [0-9]{1,3}, (0|1|0\\.[0-9]+)\\)$" }
+      },
+      "additionalProperties": false
+    },
+    "effects": {
+      "type": "object",
+      "required": ["kind", "source", "layers", "shadows"],
+      "properties": {
+        "$schema": { "type": "string" },
+        "kind": { "const": "effects" },
+        "source": { "type": "string" },
+        "layers": {
+          "type": "array",
+          "prefixItems": [
+            { "const": "card" }, { "const": "popover" }, { "const": "backdrop" },
+            { "const": "dialog" }, { "const": "tooltip" }, { "const": "toast" }
+          ],
+          "minItems": 6,
+          "maxItems": 6
+        },
+        "shadows": {
+          "type": "object",
+          "required": ["card", "popover", "dialog", "tooltip"],
+          "properties": {
+            "card": { "$ref": "#/$defs/shadowThemes" },
+            "popover": { "$ref": "#/$defs/shadowThemes" },
+            "dialog": { "$ref": "#/$defs/shadowThemes" },
+            "tooltip": { "$ref": "#/$defs/shadowThemes" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "shadowThemes": {
+      "type": "object",
+      "required": ["light", "dark"],
+      "properties": { "light": { "$ref": "#/$defs/shadow" }, "dark": { "$ref": "#/$defs/shadow" } },
+      "additionalProperties": false
+    },
     "colorValue": {
       "type": "string",
       "pattern": "^(#[0-9a-fA-F]{6}|rgba\\([0-9]{1,3}, [0-9]{1,3}, [0-9]{1,3}, (0|1|0\\.[0-9]+)\\)|\\{color\\.[A-Za-z0-9.]+\\})$"

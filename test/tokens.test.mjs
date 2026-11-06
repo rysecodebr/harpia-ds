@@ -5,9 +5,9 @@ import { createHash } from 'node:crypto';
 import { buildOutputs, parseColor } from '../tools/build-tokens.mjs';
 
 const read = async (name) => JSON.parse(await readFile(new URL(`../tokens/${name}.json`, import.meta.url), 'utf8'));
-const [palette, light, dark, dimensions, typography] = await Promise.all(['palette', 'light', 'dark', 'dimensions', 'typography'].map(read));
-const build = (paletteValue = palette, lightValue = light, darkValue = dark, dimensionsValue = dimensions, typographyValue = typography) =>
-  buildOutputs(paletteValue, lightValue, darkValue, dimensionsValue, typographyValue);
+const [palette, light, dark, dimensions, typography, effects] = await Promise.all(['palette', 'light', 'dark', 'dimensions', 'typography', 'effects'].map(read));
+const build = (paletteValue = palette, lightValue = light, darkValue = dark, dimensionsValue = dimensions, typographyValue = typography, effectsValue = effects) =>
+  buildOutputs(paletteValue, lightValue, darkValue, dimensionsValue, typographyValue, effectsValue);
 
 test('shared keys resolve to identical CSS and Dart colors', async () => {
   const output = build();
@@ -156,4 +156,27 @@ test('approved typography roles resolve through the same scale on CSS and Flutte
   const invalid = structuredClone(typography);
   invalid.roles.body.size = 'missing';
   assert.throws(() => build(palette, light, dark, dimensions, invalid), /Invalid typography role/);
+});
+
+test('approved backdrop and shadow roles agree in CSS and Flutter', async () => {
+  const output = build();
+  const dart = await readFile(new URL('../generated/harpia_shadows.dart', import.meta.url), 'utf8');
+  assert.equal(dart, output.effects.dart);
+  assert.equal(output.dark['color.background.overlay'], 'rgba(5, 6, 8, 0.4)');
+  assert.deepEqual(output.effects.roles, ['card', 'popover', 'dialog', 'tooltip']);
+  assert.deepEqual(output.effects.layers, ['card', 'popover', 'backdrop', 'dialog', 'tooltip', 'toast']);
+  assert.ok(output.css.includes('--harpia-shadow-card: none;'));
+  for (const theme of ['light', 'dark']) {
+    for (const role of ['popover', 'dialog', 'tooltip']) {
+      const shadow = effects.shadows[role][theme];
+      assert.ok(output.css.includes(`--harpia-shadow-${role}: ${shadow.x}px ${shadow.y}px ${shadow.blur}px ${shadow.spread}px ${shadow.color};`));
+      assert.ok(dart.includes(`${theme}${role[0].toUpperCase() + role.slice(1)} = [BoxShadow(`));
+    }
+  }
+  const invalid = structuredClone(effects);
+  invalid.shadows.popover.dark.blur = -1;
+  assert.throws(() => build(palette, light, dark, dimensions, typography, invalid), /Invalid shadow/);
+  const invalidOrder = structuredClone(effects);
+  invalidOrder.layers.reverse();
+  assert.throws(() => build(palette, light, dark, dimensions, typography, invalidOrder), /Invalid partial layer order/);
 });

@@ -38,3 +38,5 @@ As capturas a 390 px mostram a mesma hierarquia geral nas duas plataformas. A po
 **Próxima decisão:** avaliar se a ordem semântica proposta e a intensidade `0,40` da prova devem se tornar contrato Harpia, além de decidir os papéis/valores de sombra para claro e escuro. Só depois disso converter a prova em tokens compartilhados e validar componentes reais.
 
 Os valores e as decisões estão discriminados na [proposta de contrato](phase2-shadow-layer-contract-proposal.md).
+
+Os três pontos foram aprovados posteriormente e estão registrados na [implementação dos efeitos](phase2-effects-implementation.md); esta auditoria preserva os resultados anteriores à alteração do catálogo.

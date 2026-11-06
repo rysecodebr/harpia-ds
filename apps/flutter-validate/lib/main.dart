@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'harpia_theme.dart';
+import 'harpia_shadows.dart';
 import 'harpia_typography.dart';
 import 'typography_samples.dart';
 
@@ -139,7 +140,7 @@ class _TypographyValidationAppState extends State<TypographyValidationApp> {
 }
 
 Widget _layerScene(HarpiaColorTokens colors, bool dark) {
-  Widget box(String label, {double? width, double? height, double blur = 0, double dy = 0, double alpha = 0}) => Container(
+  Widget box(String label, {double? width, double? height, List<BoxShadow> shadows = const []}) => Container(
     width: width,
     height: height,
     padding: const EdgeInsets.all(12),
@@ -147,7 +148,7 @@ Widget _layerScene(HarpiaColorTokens colors, bool dark) {
       color: colors.backgroundElevated,
       border: Border.all(color: colors.borderDefault),
       borderRadius: BorderRadius.circular(8),
-      boxShadow: blur == 0 ? const [] : [BoxShadow(color: Colors.black.withValues(alpha: alpha), offset: Offset(0, dy), blurRadius: blur)],
+      boxShadow: shadows,
     ),
     child: Text(label, style: HarpiaTypography.supporting.copyWith(color: colors.textPrimary)),
   );
@@ -160,12 +161,12 @@ Widget _layerScene(HarpiaColorTokens colors, bool dark) {
         height: 368,
         child: Stack(children: [
           Container(color: colors.backgroundMuted),
-          Positioned(top: 16, left: 16, child: box('Card · superfície', width: width * 0.65, height: 144)),
-          Positioned(top: 64, left: width * 0.15, child: box('Popover · elevação média', width: width * 0.7, blur: dark ? 32 : 24, dy: dark ? 12 : 8, alpha: dark ? 0.34 : 0.12)),
-          Positioned.fill(child: ColoredBox(key: const ValueKey('diagnostic-backdrop'), color: dark ? colors.backgroundOverlay.withValues(alpha: 0.4) : colors.backgroundOverlay)),
-          Positioned(top: 128, left: width * 0.1, child: box('Diálogo · elevação alta', width: width * 0.8, height: 112, blur: dark ? 64 : 48, dy: dark ? 24 : 18, alpha: dark ? 0.42 : 0.16)),
-          Positioned(top: 208, right: 16, child: box('Tooltip', width: width * 0.35, blur: 2, dy: 1, alpha: dark ? 0.24 : 0.08)),
-          Positioned(bottom: 16, right: 16, child: box('Toast', width: width * 0.5, blur: dark ? 32 : 24, dy: dark ? 12 : 8, alpha: dark ? 0.34 : 0.12)),
+          Positioned(top: 16, left: 16, child: box('Card · superfície', width: width * 0.65, height: 144, shadows: dark ? HarpiaShadows.darkCard : HarpiaShadows.lightCard)),
+          Positioned(top: 64, left: width * 0.15, child: box('Popover · elevação média', width: width * 0.7, shadows: dark ? HarpiaShadows.darkPopover : HarpiaShadows.lightPopover)),
+          Positioned.fill(child: ColoredBox(key: const ValueKey('diagnostic-backdrop'), color: colors.backgroundOverlay)),
+          Positioned(top: 128, left: width * 0.1, child: box('Diálogo · elevação alta', width: width * 0.8, height: 112, shadows: dark ? HarpiaShadows.darkDialog : HarpiaShadows.lightDialog)),
+          Positioned(top: 208, right: 16, child: box('Tooltip', width: width * 0.35, shadows: dark ? HarpiaShadows.darkTooltip : HarpiaShadows.lightTooltip)),
+          Positioned(bottom: 16, right: 16, child: box('Toast', width: width * 0.5, shadows: dark ? HarpiaShadows.darkPopover : HarpiaShadows.lightPopover)),
         ]),
       ),
     );

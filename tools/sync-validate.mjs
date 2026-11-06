@@ -8,6 +8,7 @@ const check = process.argv.includes('--check');
 const files = [
   ['generated/harpia_theme.dart', 'lib/harpia_theme.dart'],
   ['generated/harpia_typography.dart', 'lib/harpia_typography.dart'],
+  ['generated/harpia_shadows.dart', 'lib/harpia_shadows.dart'],
   ['assets/fonts/montserrat/Montserrat[wght].ttf', 'assets/fonts/Montserrat[wght].ttf'],
   ['assets/fonts/montserrat/Montserrat-Italic[wght].ttf', 'assets/fonts/Montserrat-Italic[wght].ttf']
 ];

@@ -172,6 +172,10 @@
   --harpia-text-supporting-weight: var(--harpia-font-weight-regular);
   --harpia-text-supporting-line-height: var(--harpia-line-height-normal);
   --harpia-text-supporting-letter-spacing: 0;
+  --harpia-shadow-card: none;
+  --harpia-shadow-popover: 0px 8px 24px 0px rgba(0, 0, 0, 0.12);
+  --harpia-shadow-dialog: 0px 18px 48px 0px rgba(0, 0, 0, 0.16);
+  --harpia-shadow-tooltip: 0px 1px 2px 0px rgba(0, 0, 0, 0.08);
 }
 
 [data-harpia-theme="dark"] {
@@ -184,7 +188,7 @@
   --harpia-color-action-secondary-hover: #ffffff;
   --harpia-color-background-elevated: #050608;
   --harpia-color-background-muted: #111722;
-  --harpia-color-background-overlay: rgba(5, 6, 8, 0.72);
+  --harpia-color-background-overlay: rgba(5, 6, 8, 0.4);
   --harpia-color-background-page: #0b0e14;
   --harpia-color-background-surface: #151a23;
   --harpia-color-border-default: rgba(255, 255, 255, 0.12);
@@ -212,4 +216,8 @@
   --harpia-color-text-muted: #8493a9;
   --harpia-color-text-primary: #e2e8f0;
   --harpia-color-text-secondary: #94a3b8;
+  --harpia-shadow-card: none;
+  --harpia-shadow-popover: 0px 12px 32px 0px rgba(0, 0, 0, 0.34);
+  --harpia-shadow-dialog: 0px 24px 64px 0px rgba(0, 0, 0, 0.42);
+  --harpia-shadow-tooltip: 0px 1px 2px 0px rgba(0, 0, 0, 0.24);
 }

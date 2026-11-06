@@ -1,6 +1,6 @@
 # Fase 2 — proposta de contrato para sombras e camadas
 
-Estado em 06/11/2026: **proposta para decisão do analista; nenhum token ou API novo aprovado**. Base: [auditoria e testes](phase2-shadow-layer-audit.md), [cenas Angular/Flutter](phase2-validation-apps.md) e catálogo local em `tokens/`. Aurum UI é somente referência; não será alterado.
+Estado em 06/11/2026: **três pontos aprovados pelo analista e implementados localmente**. O estado efetivo está na [implementação dos efeitos](phase2-effects-implementation.md). Esta nota preserva a proposta e os valores anteriores para rastreabilidade. Base: [auditoria e testes](phase2-shadow-layer-audit.md), [cenas Angular/Flutter](phase2-validation-apps.md) e catálogo local em `tokens/`. Aurum UI é somente referência; não será alterado.
 
 ## 1. Backdrop
 

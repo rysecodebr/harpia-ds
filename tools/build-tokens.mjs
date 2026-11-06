@@ -115,6 +115,58 @@ export function buildDimensions(document) {
   return { keys, css, dart };
 }
 
+export function buildEffects(document) {
+  const roles = ['card', 'popover', 'dialog', 'tooltip'];
+  if (document?.kind !== 'effects' || !document.source || !document.shadows ||
+      Object.keys(document.shadows).length !== roles.length || roles.some((role) => !(role in document.shadows))) {
+    throw new Error('Invalid effects document');
+  }
+  if (JSON.stringify(document.layers) !== JSON.stringify(['card', 'popover', 'backdrop', 'dialog', 'tooltip', 'toast'])) {
+    throw new Error('Invalid partial layer order');
+  }
+  for (const role of roles) {
+    const themes = document.shadows[role];
+    if (!themes || Object.keys(themes).length !== 2 || !('light' in themes) || !('dark' in themes)) {
+      throw new Error(`Invalid shadow themes: ${role}`);
+    }
+    for (const theme of ['light', 'dark']) {
+      const shadow = themes[theme];
+      if (shadow === null) {
+        if (role !== 'card') throw new Error(`Unexpected empty shadow: ${role}.${theme}`);
+        continue;
+      }
+      if (!shadow || Object.keys(shadow).length !== 5 ||
+          ['x', 'y', 'blur', 'spread'].some((key) => typeof shadow[key] !== 'number' || !Number.isFinite(shadow[key])) ||
+          shadow.blur < 0 || typeof shadow.color !== 'string') {
+        throw new Error(`Invalid shadow: ${role}.${theme}`);
+      }
+      parseColor(shadow.color);
+    }
+  }
+  const css = (theme) => roles.map((role) => {
+    const shadow = document.shadows[role][theme];
+    const value = shadow === null ? 'none' : `${shadow.x}px ${shadow.y}px ${shadow.blur}px ${shadow.spread}px ${shadow.color}`;
+    return `  --harpia-shadow-${role}: ${value};`;
+  });
+  const dart = [
+    '// Generated from tokens/effects.json. CSS pixels are references; Flutter uses logical pixels.',
+    "import 'package:flutter/material.dart';",
+    '',
+    'class HarpiaShadows {',
+    '  HarpiaShadows._();',
+    ...['light', 'dark'].flatMap((theme) => roles.map((role) => {
+      const shadow = document.shadows[role][theme];
+      if (shadow === null) return `  static const List<BoxShadow> ${theme}${upperFirst(role)} = [];`;
+      const [red, green, blue, alpha] = parseColor(shadow.color);
+      const color = `0x${[alpha, red, green, blue].map((part) => part.toString(16).padStart(2, '0')).join('').toUpperCase()}`;
+      return `  static const List<BoxShadow> ${theme}${upperFirst(role)} = [BoxShadow(color: Color(${color}), offset: Offset(${shadow.x}, ${shadow.y}), blurRadius: ${shadow.blur}.0, spreadRadius: ${shadow.spread}.0)];`;
+    })),
+    '}',
+    ''
+  ].join('\n');
+  return { roles, layers: document.layers, css, dart };
+}
+
 function validateTypography(document) {
   if (document.kind !== 'typography' || document.family !== 'Montserrat' ||
       document.sizeUnit !== 'reference-px-at-16px-root' || !document.source) {
@@ -195,7 +247,7 @@ export function buildTypography(document) {
   return { sizes, weights, lineHeights, roles, css, dart };
 }
 
-export function buildOutputs(paletteDocument, lightDocument, darkDocument, dimensionsDocument, typographyDocument) {
+export function buildOutputs(paletteDocument, lightDocument, darkDocument, dimensionsDocument, typographyDocument, effectsDocument) {
   validateDocument(paletteDocument, 'palette');
   validateDocument(lightDocument, 'theme', 'light');
   validateDocument(darkDocument, 'theme', 'dark');
@@ -212,6 +264,7 @@ export function buildOutputs(paletteDocument, lightDocument, darkDocument, dimen
   const semanticKeys = lightKeys.sort();
   const dimensions = buildDimensions(dimensionsDocument);
   const typography = buildTypography(typographyDocument);
+  const effects = buildEffects(effectsDocument);
   const baseCss = paletteKeys.map((key) => `  ${cssName(key)}: ${light[key]};`);
   const themeCss = (values) => semanticKeys.map((key) => `  ${cssName(key)}: ${values[key]};`);
   const css = [
@@ -240,11 +293,13 @@ export function buildOutputs(paletteDocument, lightDocument, darkDocument, dimen
     ...themeCss(light),
     ...dimensions.css,
     ...typography.css,
+    ...effects.css('light'),
     '}',
     '',
     '[data-harpia-theme="dark"] {',
     '  color-scheme: dark;',
     ...themeCss(dark),
+    ...effects.css('dark'),
     '}',
     ''
   ].join('\n');
@@ -313,16 +368,17 @@ export function buildOutputs(paletteDocument, lightDocument, darkDocument, dimen
     '}',
     ''
   ].join('\n');
-  return { css, dart, dimensions, typography, paletteKeys, semanticKeys, light, dark };
+  return { css, dart, dimensions, typography, effects, paletteKeys, semanticKeys, light, dark };
 }
 
 async function main() {
-  const output = buildOutputs(await readJson('palette.json'), await readJson('light.json'), await readJson('dark.json'), await readJson('dimensions.json'), await readJson('typography.json'));
+  const output = buildOutputs(await readJson('palette.json'), await readJson('light.json'), await readJson('dark.json'), await readJson('dimensions.json'), await readJson('typography.json'), await readJson('effects.json'));
   const files = [
     [path.join(outputDir, 'harpia-tokens.css'), output.css],
     [path.join(outputDir, 'harpia_theme.dart'), output.dart],
     [path.join(outputDir, 'harpia_dimensions.dart'), output.dimensions.dart],
-    [path.join(outputDir, 'harpia_typography.dart'), output.typography.dart]
+    [path.join(outputDir, 'harpia_typography.dart'), output.typography.dart],
+    [path.join(outputDir, 'harpia_shadows.dart'), output.effects.dart]
   ];
   if (process.argv.includes('--check')) {
     for (const [file, expected] of files) {

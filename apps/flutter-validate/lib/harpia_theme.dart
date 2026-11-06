@@ -104,7 +104,7 @@ class HarpiaTheme {
     'color.action.secondaryHover': Color(0xFFFFFFFF),
     'color.background.elevated': Color(0xFF050608),
     'color.background.muted': Color(0xFF111722),
-    'color.background.overlay': Color(0xB8050608),
+    'color.background.overlay': Color(0x66050608),
     'color.background.page': Color(0xFF0B0E14),
     'color.background.surface': Color(0xFF151A23),
     'color.border.default': Color(0x1FFFFFFF),
