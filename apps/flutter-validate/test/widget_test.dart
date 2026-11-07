@@ -95,10 +95,15 @@ void main() {
     await tester.pumpWidget(const TypographyValidationApp());
     await tester.scrollUntilVisible(find.text('Estado inativo'), 300, scrollable: find.byType(Scrollable).first);
     final sample = find.byKey(const ValueKey('motion-sample'));
+    final initialSize = tester.getSize(sample);
     expect(tester.widget<AnimatedContainer>(sample).duration, const Duration(milliseconds: 150));
     expect(tester.widget<AnimatedContainer>(sample).curve, Curves.ease);
     await tester.tap(find.text('Estado inativo'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 75));
+    expect(tester.getSize(sample), initialSize);
     await tester.pumpAndSettle();
+    expect(tester.getSize(sample), initialSize);
     expect(find.text('Estado ativo'), findsOneWidget);
 
     tester.binding.platformDispatcher.accessibilityFeaturesTestValue =

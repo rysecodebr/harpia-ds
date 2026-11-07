@@ -194,7 +194,25 @@ class _MotionSampleState extends State<_MotionSample> with WidgetsBindingObserve
         child: TextButton(
           onPressed: () => setState(() => active = !active),
           style: ButtonStyle(foregroundColor: WidgetStatePropertyAll(colors.textPrimary)),
-          child: Text('Estado ${active ? 'ativo' : 'inativo'}'),
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Visibility(
+                visible: !active,
+                maintainState: true,
+                maintainAnimation: true,
+                maintainSize: true,
+                child: const Text('Estado inativo'),
+              ),
+              Visibility(
+                visible: active,
+                maintainState: true,
+                maintainAnimation: true,
+                maintainSize: true,
+                child: const Text('Estado ativo'),
+              ),
+            ],
+          ),
         ),
       ),
     );
