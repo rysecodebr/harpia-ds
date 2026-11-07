@@ -49,7 +49,8 @@
     { "id": "phase2-accessibility-audit", "path": "docs/context/phase2-accessibility-audit.md" },
     { "id": "phase2-motion-audit", "path": "docs/context/phase2-motion-audit.md" },
     { "id": "phase2-motion-contract-proposal", "path": "docs/context/phase2-motion-contract-proposal.md" },
-    { "id": "phase2-motion-implementation", "path": "docs/context/phase2-motion-implementation.md" }
+    { "id": "phase2-motion-implementation", "path": "docs/context/phase2-motion-implementation.md" },
+    { "id": "phase3-layout-inventory", "path": "docs/context/phase3-layout-inventory.md" }
   ],
   "relatedRepositories": [
     { "id": "Aurum-UI", "relation": "existing-design-system", "status": "verified", "evidence": "../Aurum-UI/aurum-workspace/angular.json" },
