@@ -19,6 +19,12 @@
     </article>
   </section>
 
+  <section class="validation-section" aria-labelledby="motion-heading">
+    <h2 id="motion-heading" class="role-section-title">Movimento · estado de controle</h2>
+    <p class="role-body">Acione o botão para comparar o feedback de cor e borda. Com movimento reduzido, a mudança é imediata.</p>
+    <button type="button" class="motion-button" [class.motion-button-active]="motionActive()" [attr.aria-pressed]="motionActive()" (click)="toggleMotion()">Estado {{ motionActive() ? 'ativo' : 'inativo' }}</button>
+  </section>
+
   <section class="validation-section" aria-labelledby="focus-heading">
     <h2 id="focus-heading" class="role-section-title">Anel de foco · superfícies</h2>
     <p class="role-body">Use Tab para percorrer os botões. O contorno usa o token principal de foco nos dois temas.</p>

@@ -60,7 +60,8 @@
     { "id": "montserrat-typography-scale", "status": "local-partial", "evidence": "docs/context/phase2-typography-implementation.md" },
     { "id": "montserrat-typography-roles", "status": "local-partial", "evidence": "docs/context/phase2-typography-roles-proposal.md" },
     { "id": "typography-validation-apps", "status": "angular-flutter-web-android-tested", "evidence": "docs/context/phase2-validation-apps.md" },
-    { "id": "backdrop-and-shadow-tokens", "status": "local-partial", "evidence": "docs/context/phase2-effects-implementation.md" }
+    { "id": "backdrop-and-shadow-tokens", "status": "local-partial", "evidence": "docs/context/phase2-effects-implementation.md" },
+    { "id": "control-state-motion-pilot", "status": "validate-apps-only", "evidence": "docs/context/phase2-motion-audit.md" }
   ],
   "plannedCapabilities": ["simple-adoption", "component-variants", "grid", "rows", "simple-groups", "form-groups", "flutter-support"],
   "platformRequirements": ["angular-21-or-newer", "flutter"],

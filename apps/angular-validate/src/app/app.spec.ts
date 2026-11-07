@@ -54,4 +54,15 @@ describe('App', () => {
       expect(compiled.querySelector(`.focus-${surface} button`)).toBeTruthy();
     }
   });
+
+  it('should expose the control state without depending on motion', async () => {
+    const fixture = TestBed.createComponent(App);
+    await fixture.whenStable();
+    const button = fixture.nativeElement.querySelector('.motion-button') as HTMLButtonElement;
+    expect(button.getAttribute('aria-pressed')).toBe('false');
+    button.click();
+    await fixture.whenStable();
+    expect(button.getAttribute('aria-pressed')).toBe('true');
+    expect(button.classList.contains('motion-button-active')).toBe(true);
+  });
 });

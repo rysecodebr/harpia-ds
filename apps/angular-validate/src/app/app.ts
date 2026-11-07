@@ -9,6 +9,7 @@ import { lineHeightSamples, roleSamples, sizeSamples, weightSamples } from './ty
 })
 export class App {
   protected readonly theme = signal<'light' | 'dark'>('light');
+  protected readonly motionActive = signal(false);
   protected readonly sizes = sizeSamples;
   protected readonly weights = weightSamples;
   protected readonly lineHeights = lineHeightSamples;
@@ -16,5 +17,9 @@ export class App {
 
   protected toggleTheme(): void {
     this.theme.update((current) => current === 'light' ? 'dark' : 'light');
+  }
+
+  protected toggleMotion(): void {
+    this.motionActive.update((current) => !current);
   }
 }

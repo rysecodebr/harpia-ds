@@ -95,6 +95,11 @@ class _TypographyValidationAppState extends State<TypographyValidationApp> {
                   ),
                 ),
                 const SizedBox(height: 32),
+                Text('Movimento · estado de controle', style: HarpiaTypography.sectionTitle.copyWith(color: colors.textPrimary)),
+                Text('Acione o botão para comparar o feedback de cor e borda. Com movimento reduzido, a mudança é imediata.', style: HarpiaTypography.body.copyWith(color: colors.textPrimary)),
+                const SizedBox(height: 12),
+                const _MotionSample(),
+                const SizedBox(height: 32),
                 Text('Anel de foco · superfícies', style: HarpiaTypography.sectionTitle.copyWith(color: colors.textPrimary)),
                 Text('Use Tab para percorrer os botões. A borda focada usa o token principal nos dois temas.', style: HarpiaTypography.body.copyWith(color: colors.textPrimary)),
                 const SizedBox(height: 12),
@@ -138,6 +143,57 @@ class _TypographyValidationAppState extends State<TypographyValidationApp> {
               ],
             );
           }),
+        ),
+      ),
+    );
+  }
+}
+
+class _MotionSample extends StatefulWidget {
+  const _MotionSample();
+
+  @override
+  State<_MotionSample> createState() => _MotionSampleState();
+}
+
+class _MotionSampleState extends State<_MotionSample> with WidgetsBindingObserver {
+  bool active = false;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAccessibilityFeatures() => setState(() {});
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).extension<HarpiaColorTokens>()!;
+    final reduceMotion = MediaQuery.disableAnimationsOf(context) ||
+        View.of(context).platformDispatcher.accessibilityFeatures.reduceMotion;
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: AnimatedContainer(
+        key: const ValueKey('motion-sample'),
+        duration: reduceMotion ? Duration.zero : const Duration(milliseconds: 150),
+        curve: Curves.ease,
+        decoration: BoxDecoration(
+          color: active ? colors.backgroundMuted : colors.backgroundSurface,
+          border: Border.all(color: active ? colors.actionPrimary : colors.borderControl),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: TextButton(
+          onPressed: () => setState(() => active = !active),
+          style: ButtonStyle(foregroundColor: WidgetStatePropertyAll(colors.textPrimary)),
+          child: Text('Estado ${active ? 'ativo' : 'inativo'}'),
         ),
       ),
     );

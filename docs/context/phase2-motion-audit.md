@@ -1,6 +1,6 @@
 # Fase 2 — inventário de movimento e redução
 
-Estado em 07/11/2026: **inventário concluído para os exemplos examinados; contrato e tokens Harpia pendentes de decisão do analista**. Aurum UI 1.0.18 é somente referência; nenhum arquivo da fonte foi alterado. Este inventário não transforma tempos locais do Aurum em valores aprovados para Harpia.
+Estado em 07/11/2026: **inventário concluído e piloto local de feedback de controle implementado; tokens públicos Harpia pendentes de decisão do analista**. Aurum UI 1.0.18 é somente referência; nenhum arquivo da fonte foi alterado. Os tempos observados no Aurum não foram publicados como API Harpia.
 
 ## Evidência na fonte Aurum UI
 
@@ -18,7 +18,7 @@ Estado em 07/11/2026: **inventário concluído para os exemplos examinados; cont
 
 ## Estado Harpia verificado
 
-- `tokens/`, `generated/`, `apps/angular-validate/src/` e `apps/flutter-validate/lib/` não contêm tokens de duração/easing, regra `prefers-reduced-motion` ou animação própria encontrada pela busca de CSS/Dart. Os exemplos atuais mudam de tema e foco sem contrato de movimento Harpia.
+- No momento deste inventário, `tokens/`, `generated/`, `apps/angular-validate/src/` e `apps/flutter-validate/lib/` não continham tokens de duração/easing, regra `prefers-reduced-motion` ou animação própria encontrada pela busca de CSS/Dart. O piloto local posterior está descrito abaixo.
 - O app Flutter usa widgets Material; a ausência de animação escrita no app não prova ausência de animações internas do framework.
 - Não há componente Harpia de botão, acordeão, drawer, carousel ou spinner. Não há comportamento visual de movimento Harpia para comparar entre Angular e Flutter.
 
@@ -35,3 +35,20 @@ Na web, [`prefers-reduced-motion`](https://developer.mozilla.org/en-US/docs/Web/
 5. Implementar no catálogo neutro apenas papéis compartilhados aprovados, gerar CSS/Dart, criar cenários `validate`, testar preferência `reduce` no navegador e os sinais de acessibilidade relevantes no Flutter. Registrar diferenças inevitáveis por plataforma.
 
 Nenhum token, componente ou política de movimento Harpia foi implementado por este inventário. A [porta de saída da fase 2](implementation-plan.md) para movimento reduzido continua aberta.
+
+## Piloto local autorizado pelo analista
+
+Após a proposta de definir e testar primeiro o feedback de estado de controles nas duas plataformas, o analista respondeu “Vamos lá”. O recorte implementado é **somente diagnóstico nos aplicativos `validate`**: um botão alterna `Estado inativo`/`Estado ativo`, com a mudança de estado preservada mesmo quando não há transição. Não existe componente Harpia nem token público de movimento neste piloto.
+
+| Plataforma | Movimento normal | Preferência de redução | Verificação |
+| --- | --- | --- | --- |
+| Angular web | `background-color` e `border-color` transitam em `150ms ease` no botão de diagnóstico. | `@media (prefers-reduced-motion: reduce)` define `transition: none`. | Chrome headless calculou `0.15s, 0.15s` e `ease, ease` nos dois temas; com `reduce`, `0s`. O estado `aria-pressed` alternou nas quatro combinações. |
+| Flutter | `AnimatedContainer` muda fundo e borda em `Duration(milliseconds: 150)` com `Curves.ease`. | Duração `Duration.zero` se `MediaQuery.disableAnimationsOf(context)` ou `AccessibilityFeatures.reduceMotion` estiver ativo. | Teste de widget confirmou 150 ms, `Curves.ease`, mudança de estado e duração zero com os dois sinais simulados separadamente. |
+
+O [Flutter documenta `Curves.ease`](https://api.flutter.dev/flutter/animation/Curves/ease-constant.html) como a mesma curva de `ease` CSS, com parâmetros cúbicos `(0.25, 0.1, 0.25, 1.0)`. Essa equivalência de curva e duração não comprova igualdade visual de pixels entre renderizadores. O sinal Android é lido via [`MediaQuery.disableAnimationsOf`](https://api.flutter.dev/flutter/widgets/MediaQuery/disableAnimationsOf.html); o sinal iOS é lido via [`AccessibilityFeatures.reduceMotion`](https://api.flutter.dev/flutter/dart-ui/AccessibilityFeatures/reduceMotion.html). O widget observa mudanças de recursos de acessibilidade para atualizar o caso iOS. Os testes usaram sinais simulados; nenhum dispositivo físico foi testado para movimento.
+
+Build e 6 testes Angular passaram sem aviso de orçamento de estilo após separar o CSS do piloto em `motion-sample.css`. `flutter analyze`, 7 testes Flutter e `flutter build web` passaram. O Chrome testou o build Angular atualizado em servidor local isolado para evitar cache do servidor de desenvolvimento.
+
+O navegador integrado exibiu os dois pilotos, alternou `Estado inativo` para `Estado ativo` e mostrou o feedback visual nos apps Angular e Flutter. O servidor Angular em `localhost:4200` foi reiniciado após uma atualização transitória incompleta do CSS e passou a entregar o piloto; o build isolado em `localhost:4202` também foi inspecionado. O build Flutter atualizado está em `localhost:4201`. Essas URLs são ambientes locais de validação, não distribuição pública.
+
+**Decisão ainda aberta:** antes de gerar tokens no catálogo neutro, o analista deve aprovar nome, escopo e valor do papel de feedback de estado, além da política para outros movimentos. O piloto demonstra uma opção concreta; não define duração para overlays, acordeão, carousel ou indicadores contínuos. A porta de saída da fase 2 ainda depende de validar os cenários relevantes de componentes reais nas duas plataformas.

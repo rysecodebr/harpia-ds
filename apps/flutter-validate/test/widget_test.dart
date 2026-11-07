@@ -90,4 +90,29 @@ void main() {
     expect(button.style!.side!.resolve({WidgetState.focused})!.color, HarpiaTheme.darkColors.focusRing);
     expect(button.style!.side!.resolve({})!.color, HarpiaTheme.darkColors.borderControl);
   });
+
+  testWidgets('reduz a transição do controle sem perder o estado', (tester) async {
+    await tester.pumpWidget(const TypographyValidationApp());
+    await tester.scrollUntilVisible(find.text('Estado inativo'), 300, scrollable: find.byType(Scrollable).first);
+    final sample = find.byKey(const ValueKey('motion-sample'));
+    expect(tester.widget<AnimatedContainer>(sample).duration, const Duration(milliseconds: 150));
+    expect(tester.widget<AnimatedContainer>(sample).curve, Curves.ease);
+    await tester.tap(find.text('Estado inativo'));
+    await tester.pumpAndSettle();
+    expect(find.text('Estado ativo'), findsOneWidget);
+
+    tester.binding.platformDispatcher.accessibilityFeaturesTestValue =
+        const FakeAccessibilityFeatures(disableAnimations: true);
+    addTearDown(tester.binding.platformDispatcher.clearAccessibilityFeaturesTestValue);
+    await tester.pump();
+    expect(tester.widget<AnimatedContainer>(sample).duration, Duration.zero);
+    await tester.tap(find.text('Estado ativo'));
+    await tester.pump();
+    expect(find.text('Estado inativo'), findsOneWidget);
+
+    tester.binding.platformDispatcher.accessibilityFeaturesTestValue =
+        const FakeAccessibilityFeatures(reduceMotion: true);
+    await tester.pump();
+    expect(tester.widget<AnimatedContainer>(sample).duration, Duration.zero);
+  });
 }

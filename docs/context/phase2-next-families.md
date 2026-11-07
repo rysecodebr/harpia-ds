@@ -14,6 +14,8 @@ Estado: **cores, dimensões, tipografia e sombras iniciais implementadas localme
 
 **Lotes executados:** espaçamento, dimensões de controle, raios, escala tipográfica, seis papéis de texto e [quatro papéis de sombra](phase2-effects-implementation.md), no catálogo JSON e nas saídas CSS/Dart. A prova visual em ambas as plataformas ainda é necessária antes de declarar paridade final. A ordem parcial de camadas está aprovada; hierarquia global, movimento e componentes reais seguem em decisões próprias.
 
+**Atualização de movimento em 07/11/2026:** existe um [piloto local de feedback de controle](phase2-motion-audit.md) em Angular e Flutter, com 150 ms/`ease` e redução para duração zero. Nenhum papel de movimento foi adicionado ao catálogo compartilhado.
+
 ## Próximo lote proposto — sombras e camadas
 
 Leitura reconfirmada em 06/11/2026 no código do Aurum UI 1.0.18, sem alteração desse repositório:
