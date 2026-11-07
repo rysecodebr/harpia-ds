@@ -61,6 +61,8 @@ O teste do catálogo exige que a borda seja opaca e tenha pelo menos 3:1 sobre o
 
 No navegador integrado, a aplicação Angular apresentou a borda calculada `rgb(100, 116, 139)` no tema claro e `rgb(148, 163, 184)` no escuro; as capturas mostraram botão de tema, campo e quatro botões de exemplo com borda visível. O build Flutter atualizado foi recarregado no navegador integrado; as capturas dos temas claro e escuro mostraram os quatro botões com borda visível. Esta é inspeção visual, sem medição de pixels Flutter.
 
+**Retorno do analista em 07/11/2026:** após receber o resultado da correção, respondeu “Excelente. Registre e vamos seguir”. Esta aprovação se aplica à correção de borda documentada acima; não amplia a prova para outros controles, componentes ou plataformas.
+
 ## Sequência proposta, ainda sem implementação
 
 1. Para novos componentes e outras superfícies, decidir o contrato de foco completo, incluindo estados e comportamento Flutter.

@@ -45,7 +45,9 @@
     { "id": "phase2-shadow-layer-audit", "path": "docs/context/phase2-shadow-layer-audit.md" },
     { "id": "phase2-shadow-layer-contract-proposal", "path": "docs/context/phase2-shadow-layer-contract-proposal.md" },
     { "id": "phase2-effects-implementation", "path": "docs/context/phase2-effects-implementation.md" },
-    { "id": "phase2-global-layers-validation", "path": "docs/context/phase2-global-layers-validation.md" }
+    { "id": "phase2-global-layers-validation", "path": "docs/context/phase2-global-layers-validation.md" },
+    { "id": "phase2-accessibility-audit", "path": "docs/context/phase2-accessibility-audit.md" },
+    { "id": "phase2-motion-audit", "path": "docs/context/phase2-motion-audit.md" }
   ],
   "relatedRepositories": [
     { "id": "Aurum-UI", "relation": "existing-design-system", "status": "verified", "evidence": "../Aurum-UI/aurum-workspace/angular.json" },
