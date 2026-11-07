@@ -1,6 +1,6 @@
 # Fase 2 — próximas famílias de tokens para decisão
 
-Estado: **cores, dimensões, tipografia e sombras iniciais implementadas localmente; camadas globais e movimento pendentes**. Fonte: `Aurum-UI/aurum-workspace/projects/aurum-ui/src/lib/tokens/` na versão 1.0.18. A paleta e as cores estão [implementadas localmente](phase2-color-implementation.md). Os lotes de [dimensões](phase2-dimension-implementation.md) e [tipografia](phase2-typography-implementation.md) foram gerados em CSS/Dart. O analista aprovou a correção `#8493a9` para texto atenuado legível no tema escuro.
+Estado: **cores, dimensões, tipografia, sombras e primeiro papel de movimento implementados localmente; camadas globais e demais movimentos pendentes**. Fonte: `Aurum-UI/aurum-workspace/projects/aurum-ui/src/lib/tokens/` na versão 1.0.18. A paleta e as cores estão [implementadas localmente](phase2-color-implementation.md). Os lotes de [dimensões](phase2-dimension-implementation.md) e [tipografia](phase2-typography-implementation.md) foram gerados em CSS/Dart. O analista aprovou a correção `#8493a9` para texto atenuado legível no tema escuro.
 
 | Família | Evidência na fonte Aurum | Próxima decisão concreta |
 | --- | --- | --- |
@@ -10,11 +10,11 @@ Estado: **cores, dimensões, tipografia e sombras iniciais implementadas localme
 | Sombras | `shadows.scss` define none/xs/sm/md/lg e papéis card/popover/dialog por tema. Componentes usam `--aurum-shadow-xl` sem definição. | Quatro papéis foram aprovados e gerados para CSS/Flutter; ver [implementação dos efeitos](phase2-effects-implementation.md). Não há `xl`. |
 | Camadas | `z-index.scss` contém `--aurum-z-*` e `--aurum-z-index-*` com números incompatíveis para header, sticky, drawer, modal, tooltip e toast. | A ordem parcial card < popover < backdrop < diálogo < tooltip < toast foi aprovada; a hierarquia global ainda exige cenários adicionais. Não copiar nenhuma escala Aurum inteira. |
 | Breakpoints | `layout.scss` declara 360/480/768/1024/1280 px e usa esses números literalmente em media queries; `form-group` usa 720 px. | Tratar na fase 3 junto de grid/layout responsivo e da adaptação Flutter, evitando congelar números antes dos cenários. |
-| Movimento | Não há tokens globais de duração/easing em `tokens/index.scss`; vários componentes usam valores locais. | O [inventário de movimento](phase2-motion-audit.md) separa estados, deslocamentos e indicadores contínuos; decidir a política de redução e os primeiros papéis compartilhados antes de implementar. |
+| Movimento | Não há tokens globais de duração/easing em `tokens/index.scss`; vários componentes usam valores locais. | O [primeiro papel de feedback de estado](phase2-motion-implementation.md) foi gerado. Deslocamentos e indicadores contínuos ainda exigem decisões próprias. |
 
-**Lotes executados:** espaçamento, dimensões de controle, raios, escala tipográfica, seis papéis de texto e [quatro papéis de sombra](phase2-effects-implementation.md), no catálogo JSON e nas saídas CSS/Dart. A prova visual em ambas as plataformas ainda é necessária antes de declarar paridade final. A ordem parcial de camadas está aprovada; hierarquia global, movimento e componentes reais seguem em decisões próprias.
+**Lotes executados:** espaçamento, dimensões de controle, raios, escala tipográfica, seis papéis de texto e [quatro papéis de sombra](phase2-effects-implementation.md), no catálogo JSON e nas saídas CSS/Dart. A prova visual em ambas as plataformas ainda é necessária antes de declarar paridade final. A ordem parcial de camadas está aprovada; hierarquia global, demais movimentos e componentes reais seguem em decisões próprias.
 
-**Atualização de movimento em 07/11/2026:** existe um [piloto local de feedback de controle](phase2-motion-audit.md) em Angular e Flutter, com 150 ms/`ease` e redução para duração zero. Nenhum papel de movimento foi adicionado ao catálogo compartilhado.
+**Atualização de movimento em 07/11/2026:** existe um [piloto local de feedback de controle](phase2-motion-audit.md) em Angular e Flutter, com 150 ms/`ease` e redução para duração zero. O [papel compartilhado](phase2-motion-implementation.md) agora é gerado para CSS e Dart.
 
 ## Próximo lote proposto — sombras e camadas
 

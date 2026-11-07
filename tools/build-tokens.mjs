@@ -167,6 +167,30 @@ export function buildEffects(document) {
   return { roles, layers: document.layers, css, dart };
 }
 
+export function buildMotion(document) {
+  if (document?.kind !== 'motion' || !document.source || document.durationUnit !== 'ms' ||
+      !document.durations || Object.keys(document.durations).length !== 1 || document.durations.controlState !== 150 ||
+      !document.easings || Object.keys(document.easings).length !== 1 || document.easings.controlState !== 'ease') {
+    throw new Error('Invalid motion document');
+  }
+  const css = [
+    `  --harpia-motion-duration-control-state: ${document.durations.controlState}ms;`,
+    `  --harpia-motion-easing-control-state: ${document.easings.controlState};`
+  ];
+  const dart = [
+    '// Generated from tokens/motion.json. Durations use milliseconds.',
+    "import 'package:flutter/material.dart';",
+    '',
+    'class HarpiaMotion {',
+    '  HarpiaMotion._();',
+    `  static const Duration controlStateDuration = Duration(milliseconds: ${document.durations.controlState});`,
+    '  static const Curve controlStateEasing = Curves.ease;',
+    '}',
+    ''
+  ].join('\n');
+  return { css, dart };
+}
+
 function validateTypography(document) {
   if (document.kind !== 'typography' || document.family !== 'Montserrat' ||
       document.sizeUnit !== 'reference-px-at-16px-root' || !document.source) {
@@ -247,7 +271,7 @@ export function buildTypography(document) {
   return { sizes, weights, lineHeights, roles, css, dart };
 }
 
-export function buildOutputs(paletteDocument, lightDocument, darkDocument, dimensionsDocument, typographyDocument, effectsDocument) {
+export function buildOutputs(paletteDocument, lightDocument, darkDocument, dimensionsDocument, typographyDocument, effectsDocument, motionDocument) {
   validateDocument(paletteDocument, 'palette');
   validateDocument(lightDocument, 'theme', 'light');
   validateDocument(darkDocument, 'theme', 'dark');
@@ -265,6 +289,7 @@ export function buildOutputs(paletteDocument, lightDocument, darkDocument, dimen
   const dimensions = buildDimensions(dimensionsDocument);
   const typography = buildTypography(typographyDocument);
   const effects = buildEffects(effectsDocument);
+  const motion = buildMotion(motionDocument);
   const baseCss = paletteKeys.map((key) => `  ${cssName(key)}: ${light[key]};`);
   const themeCss = (values) => semanticKeys.map((key) => `  ${cssName(key)}: ${values[key]};`);
   const css = [
@@ -293,6 +318,7 @@ export function buildOutputs(paletteDocument, lightDocument, darkDocument, dimen
     ...themeCss(light),
     ...dimensions.css,
     ...typography.css,
+    ...motion.css,
     ...effects.css('light'),
     '}',
     '',
@@ -368,17 +394,18 @@ export function buildOutputs(paletteDocument, lightDocument, darkDocument, dimen
     '}',
     ''
   ].join('\n');
-  return { css, dart, dimensions, typography, effects, paletteKeys, semanticKeys, light, dark };
+  return { css, dart, dimensions, typography, effects, motion, paletteKeys, semanticKeys, light, dark };
 }
 
 async function main() {
-  const output = buildOutputs(await readJson('palette.json'), await readJson('light.json'), await readJson('dark.json'), await readJson('dimensions.json'), await readJson('typography.json'), await readJson('effects.json'));
+  const output = buildOutputs(await readJson('palette.json'), await readJson('light.json'), await readJson('dark.json'), await readJson('dimensions.json'), await readJson('typography.json'), await readJson('effects.json'), await readJson('motion.json'));
   const files = [
     [path.join(outputDir, 'harpia-tokens.css'), output.css],
     [path.join(outputDir, 'harpia_theme.dart'), output.dart],
     [path.join(outputDir, 'harpia_dimensions.dart'), output.dimensions.dart],
     [path.join(outputDir, 'harpia_typography.dart'), output.typography.dart],
-    [path.join(outputDir, 'harpia_shadows.dart'), output.effects.dart]
+    [path.join(outputDir, 'harpia_shadows.dart'), output.effects.dart],
+    [path.join(outputDir, 'harpia_motion.dart'), output.motion.dart]
   ];
   if (process.argv.includes('--check')) {
     for (const [file, expected] of files) {

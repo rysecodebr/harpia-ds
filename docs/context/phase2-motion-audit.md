@@ -1,6 +1,6 @@
 # Fase 2 — inventário de movimento e redução
 
-Estado em 07/11/2026: **inventário concluído e piloto local de feedback de controle implementado; tokens públicos Harpia pendentes de decisão do analista**. Aurum UI 1.0.18 é somente referência; nenhum arquivo da fonte foi alterado. Os tempos observados no Aurum não foram publicados como API Harpia.
+Estado em 07/11/2026: **inventário concluído, piloto aprovado e primeiro papel de feedback de controle implementado; demais movimentos pendentes**. Aurum UI 1.0.18 é somente referência; nenhum arquivo da fonte foi alterado. Os tempos observados no Aurum não foram publicados como API Harpia.
 
 ## Evidência na fonte Aurum UI
 
@@ -56,3 +56,5 @@ O navegador integrado exibiu os dois pilotos, alternou `Estado inativo` para `Es
 A [proposta de contrato para feedback de estado](phase2-motion-contract-proposal.md) detalha o primeiro papel candidato, seu alcance, a regra de redução e o trabalho necessário após aprovação.
 
 **Atualização de validação física em 07/11/2026:** o analista testou e aprovou o APK Android com o piloto. O retorno não especificou as configurações de movimento reduzido exercitadas; os limites estão no [registro dos aplicativos de validação](phase2-validation-apps.md).
+
+Após o comando “Avance”, o papel limitado de feedback de estado foi [implementado no catálogo e nas saídas CSS/Dart](phase2-motion-implementation.md). As decisões para outras classes de movimento continuam abertas.

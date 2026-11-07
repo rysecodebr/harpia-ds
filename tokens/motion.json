@@ -1,0 +1,8 @@
+{
+  "$schema": "./schema.json",
+  "kind": "motion",
+  "source": "docs/context/phase2-motion-contract-proposal.md",
+  "durationUnit": "ms",
+  "durations": { "controlState": 150 },
+  "easings": { "controlState": "ease" }
+}

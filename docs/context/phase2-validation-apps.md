@@ -43,7 +43,9 @@ As aplicações contêm os mesmos textos em português e os mesmos seis cenário
 
 **Exemplos de foco aprovados pelo analista em 07/11/2026:** após a inclusão e inspeção dos quatro exemplos sobre superfícies claras e escuras em Angular e Flutter web, informou que realizou a validação e que o resultado está OK. Evidências, testes e limites estão na [auditoria de acessibilidade](phase2-accessibility-audit.md). Esta aprovação não fecha as verificações de cores forçadas, movimento reduzido ou acessibilidade de componentes futuros.
 
-**Piloto de movimento de controle em 07/11/2026:** os dois apps agora oferecem um botão de diagnóstico que alterna estado visual. Na web, `prefers-reduced-motion: reduce` remove a transição; no Flutter, os sinais de redução do Android e iOS tornam a duração zero. O [inventário de movimento](phase2-motion-audit.md) contém as evidências e os limites. O piloto ainda não é um token ou componente público.
+**Piloto de movimento de controle em 07/11/2026:** os dois apps agora oferecem um botão de diagnóstico que alterna estado visual. Na web, `prefers-reduced-motion: reduce` remove a transição; no Flutter, os sinais de redução do Android e iOS tornam a duração zero. O [inventário de movimento](phase2-motion-audit.md) contém as evidências e os limites. O botão de diagnóstico não é um componente público.
+
+**Consumo do primeiro papel compartilhado em 07/11/2026:** o piloto passou a usar a duração e curva do [catálogo de movimento](phase2-motion-implementation.md), geradas para CSS e Dart. Os testes locais e o build web passaram; o APK aprovado anteriormente continha o mesmo comportamento com valores locais e não foi reconstruído após esta integração.
 
 1. Confirmar os pesos 400, 500 e 600 com inspeção visual detalhada. A inspeção dos exemplos de foco no navegador integrado foi aprovada separadamente, nos limites registrados na auditoria.
 2. Caso seja necessária reprodução exata do teste Android, registrar modelo/versão do aparelho e os valores de escala configurados no sistema. Os controles de escala e os dois temas foram aprovados no teste físico comunicado pelo analista. iOS continua sem prova.

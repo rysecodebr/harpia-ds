@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'harpia_theme.dart';
 import 'harpia_shadows.dart';
+import 'harpia_motion.dart';
 import 'harpia_typography.dart';
 import 'typography_samples.dart';
 
@@ -183,8 +184,8 @@ class _MotionSampleState extends State<_MotionSample> with WidgetsBindingObserve
       alignment: Alignment.centerLeft,
       child: AnimatedContainer(
         key: const ValueKey('motion-sample'),
-        duration: reduceMotion ? Duration.zero : const Duration(milliseconds: 150),
-        curve: Curves.ease,
+        duration: reduceMotion ? Duration.zero : HarpiaMotion.controlStateDuration,
+        curve: HarpiaMotion.controlStateEasing,
         decoration: BoxDecoration(
           color: active ? colors.backgroundMuted : colors.backgroundSurface,
           border: Border.all(color: active ? colors.actionPrimary : colors.borderControl),

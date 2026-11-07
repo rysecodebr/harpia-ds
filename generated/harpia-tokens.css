@@ -173,6 +173,8 @@
   --harpia-text-supporting-weight: var(--harpia-font-weight-regular);
   --harpia-text-supporting-line-height: var(--harpia-line-height-normal);
   --harpia-text-supporting-letter-spacing: 0;
+  --harpia-motion-duration-control-state: 150ms;
+  --harpia-motion-easing-control-state: ease;
   --harpia-shadow-card: none;
   --harpia-shadow-popover: 0px 8px 24px 0px rgba(0, 0, 0, 0.12);
   --harpia-shadow-dialog: 0px 18px 48px 0px rgba(0, 0, 0, 0.16);

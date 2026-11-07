@@ -5,9 +5,22 @@ import { createHash } from 'node:crypto';
 import { buildOutputs, parseColor } from '../tools/build-tokens.mjs';
 
 const read = async (name) => JSON.parse(await readFile(new URL(`../tokens/${name}.json`, import.meta.url), 'utf8'));
-const [palette, light, dark, dimensions, typography, effects] = await Promise.all(['palette', 'light', 'dark', 'dimensions', 'typography', 'effects'].map(read));
-const build = (paletteValue = palette, lightValue = light, darkValue = dark, dimensionsValue = dimensions, typographyValue = typography, effectsValue = effects) =>
-  buildOutputs(paletteValue, lightValue, darkValue, dimensionsValue, typographyValue, effectsValue);
+const [palette, light, dark, dimensions, typography, effects, motion] = await Promise.all(['palette', 'light', 'dark', 'dimensions', 'typography', 'effects', 'motion'].map(read));
+const build = (paletteValue = palette, lightValue = light, darkValue = dark, dimensionsValue = dimensions, typographyValue = typography, effectsValue = effects, motionValue = motion) =>
+  buildOutputs(paletteValue, lightValue, darkValue, dimensionsValue, typographyValue, effectsValue, motionValue);
+
+test('control state motion matches CSS and Flutter outputs', async () => {
+  const output = build();
+  const css = await readFile(new URL('../generated/harpia-tokens.css', import.meta.url), 'utf8');
+  const dart = await readFile(new URL('../generated/harpia_motion.dart', import.meta.url), 'utf8');
+  assert.equal(css, output.css);
+  assert.equal(dart, output.motion.dart);
+  assert.match(css, /--harpia-motion-duration-control-state: 150ms;/);
+  assert.match(css, /--harpia-motion-easing-control-state: ease;/);
+  assert.match(dart, /Duration\(milliseconds: 150\)/);
+  assert.match(dart, /Curves\.ease/);
+  assert.throws(() => build(palette, light, dark, dimensions, typography, effects, { ...motion, durations: { controlState: 200 } }), /Invalid motion document/);
+});
 
 test('shared keys resolve to identical CSS and Dart colors', async () => {
   const output = build();

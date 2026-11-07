@@ -1,6 +1,6 @@
 # Fase 2 — proposta de contrato para feedback de estado
 
-Estado em 07/11/2026: **proposta para decisão do analista; nenhum token público de movimento implementado**. Base: [inventário e piloto](phase2-motion-audit.md), [plano de execução](implementation-plan.md) e exemplos `apps/angular-validate` e `apps/flutter-validate`. Aurum UI 1.0.18 permanece somente como referência.
+Estado em 07/11/2026: **proposta aprovada e implementada localmente**. O contrato efetivo e seus testes estão na [implementação de movimento](phase2-motion-implementation.md). Esta nota preserva a proposta anterior para rastreabilidade. Base: [inventário e piloto](phase2-motion-audit.md), [plano de execução](implementation-plan.md) e exemplos `apps/angular-validate` e `apps/flutter-validate`. Aurum UI 1.0.18 permanece somente como referência.
 
 ## Recorte verificado
 

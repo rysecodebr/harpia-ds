@@ -1,4 +1,4 @@
-.motion-button { padding: 0.75rem 1rem; color: var(--harpia-color-text-primary); background: var(--harpia-color-background-surface); border: 1px solid var(--harpia-color-border-control); border-radius: 0.5rem; cursor: pointer; transition: background-color 150ms ease, border-color 150ms ease; }
+.motion-button { padding: 0.75rem 1rem; color: var(--harpia-color-text-primary); background: var(--harpia-color-background-surface); border: 1px solid var(--harpia-color-border-control); border-radius: 0.5rem; cursor: pointer; transition: background-color var(--harpia-motion-duration-control-state) var(--harpia-motion-easing-control-state), border-color var(--harpia-motion-duration-control-state) var(--harpia-motion-easing-control-state); }
 .motion-button-active { background: var(--harpia-color-background-muted); border-color: var(--harpia-color-action-primary); }
 .motion-button:focus-visible { outline: 3px solid var(--harpia-color-focus-ring); outline-offset: 2px; }
 @media (prefers-reduced-motion: reduce) { .motion-button { transition: none; } }

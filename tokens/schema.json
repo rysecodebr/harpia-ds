@@ -6,9 +6,33 @@
     { "$ref": "#/$defs/theme" },
     { "$ref": "#/$defs/dimensions" },
     { "$ref": "#/$defs/typography" },
-    { "$ref": "#/$defs/effects" }
+    { "$ref": "#/$defs/effects" },
+    { "$ref": "#/$defs/motion" }
   ],
   "$defs": {
+    "motion": {
+      "type": "object",
+      "required": ["kind", "source", "durationUnit", "durations", "easings"],
+      "properties": {
+        "$schema": { "type": "string" },
+        "kind": { "const": "motion" },
+        "source": { "type": "string" },
+        "durationUnit": { "const": "ms" },
+        "durations": {
+          "type": "object",
+          "required": ["controlState"],
+          "properties": { "controlState": { "const": 150 } },
+          "additionalProperties": false
+        },
+        "easings": {
+          "type": "object",
+          "required": ["controlState"],
+          "properties": { "controlState": { "const": "ease" } },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
     "shadow": {
       "type": ["object", "null"],
       "required": ["x", "y", "blur", "spread", "color"],

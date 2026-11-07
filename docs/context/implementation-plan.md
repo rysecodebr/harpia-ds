@@ -53,6 +53,8 @@ Em cada etapa de componente, registre na matriz: selector atual, elemento HTML r
 
 **Porta de saída:** tokens usados pelos primeiros componentes existem e resolvem em todos os temas de ambas as plataformas, sem exigir valores fixos em aplicações consumidoras para casos comuns. Divergências entre Angular e Flutter devem estar justificadas e aprovadas. Validar também escala/zoom, contraste, forced colors na web e movimento reduzido nos cenários relevantes.
 
+**Estado do movimento em 07/11/2026:** o primeiro papel compartilhado para feedback de cor e borda de controles está [gerado e validado localmente](phase2-motion-implementation.md). Movimento espacial, indicadores contínuos e a prova final da porta de saída continuam pendentes.
+
 **Ordem de conferência:**
 
 1. Ler todos os arquivos em `AU/lib/tokens/` e listar definições, aliases e usos em `AU/lib/components/`. Distinguir variáveis globais de variáveis locais deliberadas.

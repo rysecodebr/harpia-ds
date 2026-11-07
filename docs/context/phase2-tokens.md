@@ -1,6 +1,6 @@
 # Fase 2 — fundação visual e tokens
 
-Estado: **fase 2 em andamento; cores, temas, dimensões e escala tipográfica inicial implementados localmente**. Fontes: Aurum UI 1.0.18 e sua vitrine Aurum-Smart. **Decisão do analista:** o Harpia Design System deve oferecer suporte a Flutter, além de Angular. O primeiro recorte Flutter incluirá **tokens e temas**; componentes serão acrescentados em etapas posteriores. A forma de distribuição Flutter ainda não foi definida. Ver [cores](phase2-color-implementation.md), [dimensões](phase2-dimension-implementation.md) e [tipografia](phase2-typography-implementation.md).
+Estado: **fase 2 em andamento; cores, temas, dimensões, escala tipográfica inicial e primeiro papel de movimento implementados localmente**. Fontes: Aurum UI 1.0.18 e sua vitrine Aurum-Smart. **Decisão do analista:** o Harpia Design System deve oferecer suporte a Flutter, além de Angular. O primeiro recorte Flutter incluirá **tokens e temas**; componentes serão acrescentados em etapas posteriores. A forma de distribuição Flutter ainda não foi definida. Ver [cores](phase2-color-implementation.md), [dimensões](phase2-dimension-implementation.md) e [tipografia](phase2-typography-implementation.md).
 
 ## Consequência para a arquitetura
 
