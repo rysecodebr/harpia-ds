@@ -10,6 +10,7 @@ npm run build
 npm test -- --watch=false
 npm start
 npm run test:zoom
+npm run test:layers
 ```
 
 Abra `http://localhost:4200/`. O teste `test:zoom` requer o servidor ativo e Google Chrome instalado; use `HARPIA_CHROME_PATH` para outro caminho e `HARPIA_VALIDATE_URL` para outra URL. Ele abre perfis descartáveis com zoom real do Chrome em 100% e 200%, verifica as 29 amostras, Montserrat, largura útil e overflow, e grava capturas em `artifacts/zoom/`. A aplicação usa Angular 22. A validação de compatibilidade da futura biblioteca com Angular 21 ainda é outra etapa.

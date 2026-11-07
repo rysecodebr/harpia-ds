@@ -22,3 +22,5 @@ As cenas de `angular-validate` e `flutter-validate` consomem o token de backdrop
 ## Limites
 
 Esta é a base de tokens e uma relação parcial de camadas; não há componentes Harpia, pacote publicado ou API global de z-index. Antes de ampliar a hierarquia, adicionar cenários com cabeçalho, dropdown, drawer, modal aninhado e toast simultâneo, além de foco, teclado, Escape e contextos de empilhamento externos. Novos valores e papéis exigem decisão própria.
+
+Os primeiros cenários com cabeçalho, dropdown, drawer, diálogo, popover e toast foram executados como [prova isolada da hierarquia global](phase2-global-layers-validation.md). Eles revelaram uma diferença entre a camada superior nativa da web e a ordem de inserção do Flutter; ainda não autorizam números globais nem componentes.
