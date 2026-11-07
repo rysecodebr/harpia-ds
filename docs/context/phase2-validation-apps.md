@@ -37,7 +37,9 @@ As aplicações contêm os mesmos textos em português e os mesmos seis cenário
 
 ## Validação adicional pendente
 
-1. Repetir no navegador integrado ou manualmente em navegador interativo, incluindo teclado e foco. Confirmar os pesos 400, 500 e 600 com inspeção visual detalhada.
+**Exemplos de foco aprovados pelo analista em 07/11/2026:** após a inclusão e inspeção dos quatro exemplos sobre superfícies claras e escuras em Angular e Flutter web, informou que realizou a validação e que o resultado está OK. Evidências, testes e limites estão na [auditoria de acessibilidade](phase2-accessibility-audit.md). Esta aprovação não fecha as verificações de cores forçadas, movimento reduzido ou acessibilidade de componentes futuros.
+
+1. Confirmar os pesos 400, 500 e 600 com inspeção visual detalhada. A inspeção dos exemplos de foco no navegador integrado foi aprovada separadamente, nos limites registrados na auditoria.
 2. Caso seja necessária reprodução exata do teste Android, registrar modelo/versão do aparelho e os valores de escala configurados no sistema. Os controles de escala e os dois temas foram aprovados no teste físico comunicado pelo analista. iOS continua sem prova.
 3. Definir a largura mínima suportada. A aplicação de validação ficou legível a 195 px após ajuste de composição, mas isso não estabelece uma garantia para futuros componentes.
 4. Comparar capturas das duas plataformas com mesma largura útil e condições de escala; registrar diferenças de métricas, quebras de linha e contraste. Qualquer ajuste dos valores aprovados exige nova decisão do analista.
