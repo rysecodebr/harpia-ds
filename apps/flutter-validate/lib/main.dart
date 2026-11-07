@@ -193,7 +193,13 @@ class _MotionSampleState extends State<_MotionSample> with WidgetsBindingObserve
         ),
         child: TextButton(
           onPressed: () => setState(() => active = !active),
-          style: ButtonStyle(foregroundColor: WidgetStatePropertyAll(colors.textPrimary)),
+          clipBehavior: Clip.antiAlias,
+          style: ButtonStyle(
+            foregroundColor: WidgetStatePropertyAll(colors.textPrimary),
+            shape: const WidgetStatePropertyAll(
+              RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
+            ),
+          ),
           child: Stack(
             alignment: Alignment.center,
             children: [

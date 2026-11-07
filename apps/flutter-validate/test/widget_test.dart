@@ -96,6 +96,10 @@ void main() {
     await tester.scrollUntilVisible(find.text('Estado inativo'), 300, scrollable: find.byType(Scrollable).first);
     final sample = find.byKey(const ValueKey('motion-sample'));
     final initialSize = tester.getSize(sample);
+    final button = tester.widget<TextButton>(find.widgetWithText(TextButton, 'Estado inativo'));
+    expect(button.clipBehavior, Clip.antiAlias);
+    final shape = button.style!.shape!.resolve({})! as RoundedRectangleBorder;
+    expect(shape.borderRadius, const BorderRadius.all(Radius.circular(8)));
     expect(tester.widget<AnimatedContainer>(sample).duration, const Duration(milliseconds: 150));
     expect(tester.widget<AnimatedContainer>(sample).curve, Curves.ease);
     await tester.tap(find.text('Estado inativo'));

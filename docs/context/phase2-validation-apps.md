@@ -49,6 +49,8 @@ As aplicações contêm os mesmos textos em português e os mesmos seis cenário
 
 **APK corrigido para o layout do movimento em 07/11/2026:** o exemplo Flutter passou a manter a dimensão do controle ao alternar os rótulos. `flutter build apk --release` gerou `apps/flutter-validate/build/app/outputs/flutter-apk/app-release.apk` (48.920.467 bytes; SHA-256 `3BE059EB45DCEE53645F669D5929E0E947229D65CE9E7F5AA3AA4E8132D047B2`). `apksigner verify --print-certs` passou, com certificado Android Debug do projeto de validação. Este APK substitui o artefato local anterior para o próximo teste físico; ainda não há aprovação do analista para esta correção.
 
+**Novo APK para corrigir o contorno do efeito em 07/11/2026:** após o retorno do analista de que o efeito tinha cantos mais arredondados que o elemento, o `TextButton` recebeu a mesma forma de 8 px e recorte. O novo `app-release.apk` (48.920.467 bytes; SHA-256 `D39FA672B49E4168AED2A5E230902AB5C1DB01D6BC2AFFC1C5C932E049F3C518`) substitui o APK anterior no caminho local. Build e `apksigner verify` passaram. O resultado no dispositivo ainda precisa de validação.
+
 1. Confirmar os pesos 400, 500 e 600 com inspeção visual detalhada. A inspeção dos exemplos de foco no navegador integrado foi aprovada separadamente, nos limites registrados na auditoria.
 2. Caso seja necessária reprodução exata do teste Android, registrar modelo/versão do aparelho e os valores de escala configurados no sistema. Os controles de escala e os dois temas foram aprovados no teste físico comunicado pelo analista. iOS continua sem prova.
 3. Definir a largura mínima suportada. A aplicação de validação ficou legível a 195 px após ajuste de composição, mas isso não estabelece uma garantia para futuros componentes.
