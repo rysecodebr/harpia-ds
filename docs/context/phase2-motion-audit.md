@@ -54,3 +54,5 @@ O navegador integrado exibiu os dois pilotos, alternou `Estado inativo` para `Es
 **Decisão ainda aberta:** antes de gerar tokens no catálogo neutro, o analista deve aprovar nome, escopo e valor do papel de feedback de estado, além da política para outros movimentos. O piloto demonstra uma opção concreta; não define duração para overlays, acordeão, carousel ou indicadores contínuos. A porta de saída da fase 2 ainda depende de validar os cenários relevantes de componentes reais nas duas plataformas.
 
 A [proposta de contrato para feedback de estado](phase2-motion-contract-proposal.md) detalha o primeiro papel candidato, seu alcance, a regra de redução e o trabalho necessário após aprovação.
+
+**Atualização de validação física em 07/11/2026:** o analista testou e aprovou o APK Android com o piloto. O retorno não especificou as configurações de movimento reduzido exercitadas; os limites estão no [registro dos aplicativos de validação](phase2-validation-apps.md).

@@ -41,3 +41,5 @@ Em 07/11/2026, sem alteração de código ou token, `npm run build` e `npm test 
 No navegador integrado, o botão Angular passou de `aria-pressed="false"`/`Estado inativo` para `aria-pressed="true"`/`Estado ativo`; a duração calculada foi `0.15s` para fundo e borda, com `ease`. O botão Flutter também mudou de `Estado inativo` para `Estado ativo` na tela. A verificação anterior de `prefers-reduced-motion: reduce` no Chrome e os testes Flutter com sinais Android/iOS simulados constam no [registro do piloto](phase2-motion-audit.md). A inspeção atual do Flutter foi no build web local; não equivale a teste físico de preferência de movimento no Android ou iOS.
 
 **Resultado:** o piloto local permanece válido para a proposta limitada acima. A revalidação não aprova identificadores públicos nem conclui a paridade visual entre renderizadores.
+
+**Validação física comunicada em 07/11/2026:** o analista instalou/testou o [APK gerado para o piloto](phase2-validation-apps.md) e respondeu “Testado e aprovado”. Não especificou os ajustes de movimento usados; por isso a aprovação do APK não é tratada como escolha dos nomes ou valores dos tokens propostos.
