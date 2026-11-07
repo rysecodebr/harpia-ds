@@ -76,6 +76,27 @@ test('dark muted text remains readable and distinct from secondary text', () => 
   }
 });
 
+test('focus ring has sufficient contrast on validation surfaces in both themes', () => {
+  const output = build();
+  const luminance = (hex) => {
+    const channels = parseColor(hex).slice(0, 3).map((channel) => channel / 255);
+    return channels.reduce((sum, channel, index) =>
+      sum + [0.2126, 0.7152, 0.0722][index] *
+        (channel <= 0.04045 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4), 0);
+  };
+  for (const theme of ['light', 'dark']) {
+    const colors = output[theme];
+    const ring = colors['color.focus.ring'];
+    assert.equal(parseColor(ring)[3], 255, `${theme} ring must be opaque`);
+    for (const surface of ['page', 'surface', 'muted', 'elevated']) {
+      const background = colors[`color.background.${surface}`];
+      const [lighter, darker] = [luminance(ring), luminance(background)].sort((a, b) => b - a);
+      assert.ok((lighter + 0.05) / (darker + 0.05) >= 3,
+        `${theme} focus ring lacks contrast on ${surface}`);
+    }
+  }
+});
+
 test('invalid references and divergent theme surfaces fail generation', () => {
   const badLight = structuredClone(light);
   badLight.colors['color.text.primary'] = '{color.missing}';

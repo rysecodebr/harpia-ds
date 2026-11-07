@@ -70,7 +70,7 @@
   --harpia-color-border-default: rgba(31, 42, 68, 0.16);
   --harpia-color-border-strong: rgba(31, 42, 68, 0.24);
   --harpia-color-border-subtle: rgba(31, 42, 68, 0.1);
-  --harpia-color-focus-ring: rgba(47, 111, 237, 0.32);
+  --harpia-color-focus-ring: #2f6fed;
   --harpia-color-focus-ring-muted: rgba(47, 111, 237, 0.16);
   --harpia-color-state-active-surface: rgba(47, 111, 237, 0.1);
   --harpia-color-state-disabled-surface: rgba(31, 42, 68, 0.06);
@@ -194,7 +194,7 @@
   --harpia-color-border-default: rgba(255, 255, 255, 0.12);
   --harpia-color-border-strong: rgba(255, 255, 255, 0.2);
   --harpia-color-border-subtle: rgba(255, 255, 255, 0.08);
-  --harpia-color-focus-ring: rgba(47, 111, 237, 0.42);
+  --harpia-color-focus-ring: #2f6fed;
   --harpia-color-focus-ring-muted: rgba(47, 111, 237, 0.2);
   --harpia-color-state-active-surface: rgba(47, 111, 237, 0.16);
   --harpia-color-state-disabled-surface: rgba(255, 255, 255, 0.06);

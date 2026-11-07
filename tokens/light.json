@@ -23,7 +23,7 @@
     "color.action.onPrimary": "{color.white}",
     "color.action.secondary": "{color.brand.blueDeep}",
     "color.action.secondaryHover": "{color.black}",
-    "color.focus.ring": "rgba(47, 111, 237, 0.32)",
+    "color.focus.ring": "{color.blue.500}",
     "color.focus.ringMuted": "rgba(47, 111, 237, 0.16)",
     "color.state.hoverSurface": "rgba(31, 42, 68, 0.05)",
     "color.state.activeSurface": "rgba(47, 111, 237, 0.1)",
