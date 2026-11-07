@@ -33,3 +33,11 @@ Os nomes acima são **candidatos**, não identificadores existentes em `tokens/`
 O inventário mostra durações distintas para acordeão, drawer, carousel e spinner. Seus movimentos e a política para indicadores contínuos precisam de cenários próprios. A ordem global de camadas também permanece aberta. A aprovação deste papel não conclui a porta de saída da fase 2.
 
 **Decisão solicitada:** aprovar ou ajustar o nome, a duração de 150 ms, a curva `ease` e a regra de duração zero para feedback de cor/borda dos controles. Após a decisão, implementar e validar o contrato nas duas plataformas.
+
+## Revalidação dos projetos `validate` antes da decisão
+
+Em 07/11/2026, sem alteração de código ou token, `npm run build` e `npm test -- --watch=false` passaram no Angular (6 testes). No Flutter, `flutter test` passou (7 testes) e `flutter analyze` não encontrou problemas. O SDK Flutter instalado em `L:\Android\Flutter` precisou de execução com acesso ao próprio cache fora do workspace; as primeiras tentativas em sandbox ficaram aguardando o bloqueio do SDK e não geraram resultado de teste.
+
+No navegador integrado, o botão Angular passou de `aria-pressed="false"`/`Estado inativo` para `aria-pressed="true"`/`Estado ativo`; a duração calculada foi `0.15s` para fundo e borda, com `ease`. O botão Flutter também mudou de `Estado inativo` para `Estado ativo` na tela. A verificação anterior de `prefers-reduced-motion: reduce` no Chrome e os testes Flutter com sinais Android/iOS simulados constam no [registro do piloto](phase2-motion-audit.md). A inspeção atual do Flutter foi no build web local; não equivale a teste físico de preferência de movimento no Android ou iOS.
+
+**Resultado:** o piloto local permanece válido para a proposta limitada acima. A revalidação não aprova identificadores públicos nem conclui a paridade visual entre renderizadores.
