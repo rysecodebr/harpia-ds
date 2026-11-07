@@ -43,3 +43,7 @@ O analista rejeitou usar `#94a3b8`, pois coincide com o texto secundário, e apr
 | Texto secundário `#94a3b8` | 6,80:1 | 7,00:1 | 5,72:1 |
 
 As relações foram calculadas pela fórmula de luminância relativa da [WCAG 2.2](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum) para pares opacos. A cor corrigida permanece mais discreta que o texto secundário, embora a diferença visual seja pequena; testar nos tamanhos e superfícies reais antes de concluir.
+
+### Evolução do catálogo em 07/11/2026
+
+O registro acima descreve a primeira geração de 36 papéis. O catálogo atual tem **37 papéis por tema** após a adição de `color.border.control`, condicionada pelo analista à verificação de contraste. A [auditoria de acessibilidade](phase2-accessibility-audit.md) registra os valores, os pares testados e o uso nos aplicativos de validação. A API pública e a distribuição permanecem pendentes.

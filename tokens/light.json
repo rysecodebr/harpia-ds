@@ -16,6 +16,7 @@
     "color.text.inverted": "{color.white}",
     "color.border.subtle": "rgba(31, 42, 68, 0.1)",
     "color.border.default": "rgba(31, 42, 68, 0.16)",
+    "color.border.control": "{color.gray.600}",
     "color.border.strong": "rgba(31, 42, 68, 0.24)",
     "color.action.primary": "{color.blue.500}",
     "color.action.primaryHover": "{color.info.strong}",

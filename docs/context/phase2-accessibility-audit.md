@@ -1,6 +1,6 @@
 # Fase 2 — auditoria inicial de acessibilidade dos fundamentos
 
-Estado em 07/11/2026: **anel de foco principal corrigido; exemplos Angular e Flutter aprovados pelo analista após validação**. Escopo: catálogo Harpia e aplicações `validate`. Esta nota não declara conformidade WCAG dos futuros componentes.
+Estado em 07/11/2026: **anel de foco corrigido e aprovado; borda dos controles sem foco corrigida após validação da condição definida pelo analista**. Escopo: catálogo Harpia e aplicações `validate`. Esta nota não declara conformidade WCAG dos futuros componentes.
 
 ## Evidências verificadas
 
@@ -8,7 +8,7 @@ Estado em 07/11/2026: **anel de foco principal corrigido; exemplos Angular e Flu
 | --- | --- | --- |
 | Texto em contexto | `tokens/light.json`, `tokens/dark.json`, `apps/angular-validate/src/app/app.css` e `apps/flutter-validate/lib/main.dart` | Razões calculadas sobre a superfície: texto principal 14,26:1 claro e 14,15:1 escuro; secundário 4,76:1 e 6,80:1; atenuado 7,56:1 e 5,59:1. São pares específicos da amostra, não cobertura de todos os tokens. |
 | Foco na web | `.theme-button:focus-visible, input:focus-visible` em `apps/angular-validate/src/app/app.css` usa contorno de 3 px com `color.focus.ring`. | O anel anterior tinha entre 1,52:1 e 1,68:1 sobre os fundos da amostra. O token principal foi corrigido conforme registro abaixo; os exemplos foram inspecionados no navegador integrado e aprovados pelo analista. |
-| Controles sem foco | `border.default` é translúcido nos dois temas; a amostra usa a borda de 1 px para identificar botão e campo. | Cálculo sobre os quatro fundos da amostra: aproximadamente 1,12:1–1,48:1, conforme o par comparado. Se a borda for necessária para identificar o controle, esse contraste não alcança os 3:1 de [contraste não textual](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast). Outras pistas visuais e estados ainda requerem avaliação. |
+| Controles sem foco | A borda anterior `border.default` é translúcida; o novo `border.control` é opaco e aplicado aos controles de diagnóstico. | A borda anterior media cerca de 1,12:1–1,48:1 nos pares avaliados. O novo papel mede pelo menos 4,34:1 no claro e 6,80:1 no escuro nos quatro fundos testados, acima dos 3:1 de [contraste não textual](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast). |
 | Cores forçadas na web | Não há regra `forced-colors` no app ou nos tokens. Chrome headless foi executado com `forcedColors: 'active'` em `localhost:4200`, nos dois temas. | O navegador aplicou cores de sistema: botão e campo com texto preto/fundo branco; borda do campo preta; botão focado com contorno sólido `rgb(55, 0, 110)`. A aplicação permaneceu navegável no cenário testado. Isso não comprova comportamento em Windows High Contrast, outros navegadores ou futuros componentes. |
 | Movimento reduzido | Busca em `apps`, `tokens` e `generated` por `prefers-reduced-motion`, animações e transições; `HarpiaTheme` usa `ThemeData` sem contrato Harpia de movimento. | As amostras atuais não definem animações próprias. Isso não valida o comportamento de componentes futuros nem da animação padrão de widgets Flutter. Tokens de duração/easing e política de redução continuam sem aprovação. |
 | Paridade Angular/Flutter | CSS usa `color.focus.ring`; Flutter gera o mesmo valor em `HarpiaColorTokens` e os quatro `OutlinedButton` de diagnóstico o aplicam ao estado focado. | Os exemplos foram aprovados após validação do analista. A equivalência visual entre plataformas e a cobertura de futuros componentes ainda não foram medidas. |
@@ -44,12 +44,27 @@ O cálculo de `color.border.default` compôs o alfa sobre cada fundo aprovado. P
 
 No Chrome headless em modo de cores forçadas, o navegador substituiu as cores CSS por cores de sistema e preservou uma borda visível no campo e um contorno visível no botão focado. A prova é restrita ao Chrome emulado; não foi feito teste no sistema operacional com alto contraste ativado. Não houve alteração de CSS, token ou comportamento nesta verificação.
 
-**Correção para decisão do analista:** manter `border.default` como borda discreta estrutural e definir uma forma de identificar controles sem foco com contraste suficiente, ou elevar o papel de borda usado nesses controles. Antes de escolher, medir os pares reais de cada estado e verificar Angular e Flutter; uma mudança no token compartilhado afeta ambos os temas e as duas saídas.
+**Proposta que levou à correção:** manter `border.default` como borda discreta estrutural e definir uma forma de identificar controles sem foco com contraste suficiente. A decisão condicionada e sua implementação estão registradas a seguir.
+
+### Correção da borda dos controles — condição atendida
+
+O analista autorizou a correção **se a validação comprovasse conformidade**. Foi criado `color.border.control`, referenciado à paleta existente: `{color.gray.600}` (`#64748b`) no claro e `{color.gray.500}` (`#94a3b8`) no escuro. `color.border.default` continua reservado à borda estrutural discreta. O catálogo passa a ter 37 papéis semânticos por tema; CSS e Dart foram regenerados e a cópia Flutter de validação foi sincronizada.
+
+| Tema | Página | Superfície | Superfície discreta | Superfície elevada |
+| --- | ---: | ---: | ---: | ---: |
+| Claro | 4,51:1 | 4,76:1 | 4,34:1 | 4,76:1 |
+| Escuro | 7,53:1 | 6,80:1 | 7,00:1 | 7,91:1 |
+
+O teste do catálogo exige que a borda seja opaca e tenha pelo menos 3:1 sobre os quatro fundos em ambos os temas. Na aplicação Angular, botão de tema, campo e quatro botões de exemplo passaram a usar esse token. Chrome headless confirmou 4,76:1 sobre o preenchimento claro e 6,80:1 sobre o escuro para os seis controles; o modo de cores forçadas continuou a substituir as cores por cores de sistema. No Flutter, os quatro `OutlinedButton` de diagnóstico usam o novo papel sem foco e `focusRing` quando focados; o teste de widget verificou os dois estados em ambos os temas. Outros controles Material e bordas estruturais não foram alterados.
+
+`npm run tokens:check`, `npm test` (14 testes), sincronização Flutter `--check`, build Angular, 5 testes Angular, `flutter analyze`, 6 testes Flutter e `flutter build web` passaram. Essa evidência atende à condição do analista **para o papel de borda e os controles de diagnóstico avaliados**. Não declara conformidade de todo o design system, de outros estados ou de futuros componentes.
+
+No navegador integrado, a aplicação Angular apresentou a borda calculada `rgb(100, 116, 139)` no tema claro e `rgb(148, 163, 184)` no escuro; as capturas mostraram botão de tema, campo e quatro botões de exemplo com borda visível. O build Flutter atualizado foi recarregado no navegador integrado; as capturas dos temas claro e escuro mostraram os quatro botões com borda visível. Esta é inspeção visual, sem medição de pixels Flutter.
 
 ## Sequência proposta, ainda sem implementação
 
 1. Para novos componentes e outras superfícies, decidir o contrato de foco completo, incluindo estados e comportamento Flutter.
-2. Decidir a correção da identificação dos controles sem foco; testar a solução em Angular e Flutter. Repetir a inspeção de cores forçadas no sistema operacional e em outros navegadores quando houver ambiente disponível.
+2. Repetir a inspeção de cores forçadas no sistema operacional e em outros navegadores quando houver ambiente disponível. Avaliar os controles Material fora dos quatro exemplos e os futuros componentes separadamente.
 3. Inventariar animações reais dos componentes selecionados antes de propor durações/easings e redução de movimento. Quando houver contrato, testar a preferência web e a configuração correspondente no Flutter.
 4. Repetir a auditoria por componente e por estado quando houver componentes Harpia. A amostra de validação não representa essa cobertura.
 

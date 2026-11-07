@@ -161,7 +161,7 @@ Widget _focusSamples(HarpiaColorTokens colors) {
           style: ButtonStyle(
             foregroundColor: WidgetStatePropertyAll(colors.textPrimary),
             side: WidgetStateProperty.resolveWith((states) => BorderSide(
-              color: states.contains(WidgetState.focused) ? colors.focusRing : colors.borderDefault,
+              color: states.contains(WidgetState.focused) ? colors.focusRing : colors.borderControl,
               width: states.contains(WidgetState.focused) ? 3 : 1,
             )),
           ),

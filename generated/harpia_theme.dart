@@ -15,6 +15,7 @@ class HarpiaColorTokens extends ThemeExtension<HarpiaColorTokens> {
   Color get backgroundOverlay => values['color.background.overlay']!;
   Color get backgroundPage => values['color.background.page']!;
   Color get backgroundSurface => values['color.background.surface']!;
+  Color get borderControl => values['color.border.control']!;
   Color get borderDefault => values['color.border.default']!;
   Color get borderStrong => values['color.border.strong']!;
   Color get borderSubtle => values['color.border.subtle']!;
@@ -69,6 +70,7 @@ class HarpiaTheme {
     'color.background.overlay': Color(0x660F172A),
     'color.background.page': Color(0xFFF8F9FA),
     'color.background.surface': Color(0xFFFFFFFF),
+    'color.border.control': Color(0xFF64748B),
     'color.border.default': Color(0x291F2A44),
     'color.border.strong': Color(0x3D1F2A44),
     'color.border.subtle': Color(0x1A1F2A44),
@@ -107,6 +109,7 @@ class HarpiaTheme {
     'color.background.overlay': Color(0x66050608),
     'color.background.page': Color(0xFF0B0E14),
     'color.background.surface': Color(0xFF151A23),
+    'color.border.control': Color(0xFF94A3B8),
     'color.border.default': Color(0x1FFFFFFF),
     'color.border.strong': Color(0x33FFFFFF),
     'color.border.subtle': Color(0x14FFFFFF),

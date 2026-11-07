@@ -80,6 +80,7 @@ void main() {
       final button = tester.widget<OutlinedButton>(find.widgetWithText(OutlinedButton, 'Foco em $label'));
       expect(button.style!.side!.resolve({WidgetState.focused})!.color, HarpiaTheme.lightColors.focusRing);
       expect(button.style!.side!.resolve({WidgetState.focused})!.width, 3);
+      expect(button.style!.side!.resolve({})!.color, HarpiaTheme.lightColors.borderControl);
     }
     await tester.scrollUntilVisible(find.text('Tema escuro'), -300, scrollable: find.byType(Scrollable).first);
     await tester.tap(find.text('Tema escuro'));
@@ -87,5 +88,6 @@ void main() {
     await tester.scrollUntilVisible(find.text('Foco em Página'), 300, scrollable: find.byType(Scrollable).first);
     final button = tester.widget<OutlinedButton>(find.widgetWithText(OutlinedButton, 'Foco em Página'));
     expect(button.style!.side!.resolve({WidgetState.focused})!.color, HarpiaTheme.darkColors.focusRing);
+    expect(button.style!.side!.resolve({})!.color, HarpiaTheme.darkColors.borderControl);
   });
 }

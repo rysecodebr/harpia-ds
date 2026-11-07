@@ -3,12 +3,12 @@
 .validation-section { max-width: 48rem; margin-top: 3rem; }
 .eyebrow { margin: 0 0 0.75rem; color: var(--harpia-color-text-muted); }
 .sample-card { margin-top: 1.5rem; padding: 1.5rem; background: var(--harpia-color-background-surface); border: 1px solid var(--harpia-color-border-default); border-radius: 0.75rem; }
-.theme-button, input { padding: 0.75rem 1rem; color: var(--harpia-color-text-primary); background: var(--harpia-color-background-surface); border: 1px solid var(--harpia-color-border-default); border-radius: 0.5rem; }
+.theme-button, input { padding: 0.75rem 1rem; color: var(--harpia-color-text-primary); background: var(--harpia-color-background-surface); border: 1px solid var(--harpia-color-border-control); border-radius: 0.5rem; }
 .theme-button { cursor: pointer; }
 .theme-button:focus-visible, input:focus-visible { outline: 3px solid var(--harpia-color-focus-ring); outline-offset: 2px; }
 .focus-samples { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: 1rem; margin-top: 1rem; }
 .focus-sample { display: grid; align-content: center; gap: 1rem; min-height: 8rem; padding: 1rem; border-radius: 0.75rem; color: var(--harpia-color-text-primary); }
-.focus-sample button { width: fit-content; max-width: 100%; padding: 0.75rem; color: var(--harpia-color-text-primary); background: var(--harpia-color-background-surface); border: 1px solid var(--harpia-color-border-default); border-radius: 0.5rem; cursor: pointer; }
+.focus-sample button { width: fit-content; max-width: 100%; padding: 0.75rem; color: var(--harpia-color-text-primary); background: var(--harpia-color-background-surface); border: 1px solid var(--harpia-color-border-control); border-radius: 0.5rem; cursor: pointer; }
 .focus-sample button:focus-visible { outline: 3px solid var(--harpia-color-focus-ring); outline-offset: 2px; }
 .focus-page { background: var(--harpia-color-background-page); }
 .focus-surface { background: var(--harpia-color-background-surface); }

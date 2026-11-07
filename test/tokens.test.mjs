@@ -15,7 +15,7 @@ test('shared keys resolve to identical CSS and Dart colors', async () => {
   const dart = await readFile(new URL('../generated/harpia_theme.dart', import.meta.url), 'utf8');
   assert.equal(css, output.css);
   assert.equal(dart, output.dart);
-  assert.equal(output.semanticKeys.length, 36);
+  assert.equal(output.semanticKeys.length, 37);
   for (const key of output.semanticKeys) {
     const cssKey = `--harpia-${key.replace(/^color\./, 'color-').replace(/([a-z])([A-Z])/g, '$1-$2').replaceAll('.', '-').toLowerCase()}`;
     for (const theme of ['light', 'dark']) {
@@ -93,6 +93,26 @@ test('focus ring has sufficient contrast on validation surfaces in both themes',
       const [lighter, darker] = [luminance(ring), luminance(background)].sort((a, b) => b - a);
       assert.ok((lighter + 0.05) / (darker + 0.05) >= 3,
         `${theme} focus ring lacks contrast on ${surface}`);
+    }
+  }
+});
+
+test('control borders remain identifiable on validation surfaces in both themes', () => {
+  const output = build();
+  const luminance = (hex) => parseColor(hex).slice(0, 3).reduce((sum, channel, index) => {
+    const value = channel / 255;
+    const linear = value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
+    return sum + [0.2126, 0.7152, 0.0722][index] * linear;
+  }, 0);
+  for (const theme of ['light', 'dark']) {
+    const colors = output[theme];
+    const border = colors['color.border.control'];
+    assert.equal(parseColor(border)[3], 255, `${theme} control border must be opaque`);
+    for (const surface of ['page', 'surface', 'muted', 'elevated']) {
+      const background = colors[`color.background.${surface}`];
+      const [lighter, darker] = [luminance(border), luminance(background)].sort((a, b) => b - a);
+      assert.ok((lighter + 0.05) / (darker + 0.05) >= 3,
+        `${theme} control border lacks contrast on ${surface}`);
     }
   }
 });
