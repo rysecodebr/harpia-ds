@@ -95,6 +95,11 @@ class _TypographyValidationAppState extends State<TypographyValidationApp> {
                   ),
                 ),
                 const SizedBox(height: 32),
+                Text('Anel de foco · superfícies', style: HarpiaTypography.sectionTitle.copyWith(color: colors.textPrimary)),
+                Text('Use Tab para percorrer os botões. A borda focada usa o token principal nos dois temas.', style: HarpiaTypography.body.copyWith(color: colors.textPrimary)),
+                const SizedBox(height: 12),
+                _focusSamples(colors),
+                const SizedBox(height: 32),
                 Text('Cena de camadas e sombras', style: HarpiaTypography.sectionTitle.copyWith(color: colors.textPrimary)),
                 Text('Amostra de diagnóstico nos dois temas; ainda não são tokens ou componentes públicos.', style: HarpiaTypography.body.copyWith(color: colors.textPrimary)),
                 const SizedBox(height: 12),
@@ -137,6 +142,46 @@ class _TypographyValidationAppState extends State<TypographyValidationApp> {
       ),
     );
   }
+}
+
+Widget _focusSamples(HarpiaColorTokens colors) {
+  return LayoutBuilder(builder: (context, constraints) {
+  final sampleWidth = constraints.maxWidth < 260 ? constraints.maxWidth : 260.0;
+  Widget sample(String label, Color background) => Container(
+    width: sampleWidth,
+    padding: const EdgeInsets.all(16),
+    decoration: BoxDecoration(color: background, borderRadius: BorderRadius.circular(12)),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(label, style: HarpiaTypography.controlLabel.copyWith(color: colors.textPrimary)),
+        const SizedBox(height: 12),
+        OutlinedButton(
+          onPressed: () {},
+          style: ButtonStyle(
+            foregroundColor: WidgetStatePropertyAll(colors.textPrimary),
+            side: WidgetStateProperty.resolveWith((states) => BorderSide(
+              color: states.contains(WidgetState.focused) ? colors.focusRing : colors.borderDefault,
+              width: states.contains(WidgetState.focused) ? 3 : 1,
+            )),
+          ),
+          child: Text('Foco em $label'),
+        ),
+      ],
+    ),
+  );
+
+  return Wrap(
+    spacing: 12,
+    runSpacing: 12,
+    children: [
+      sample('Página', colors.backgroundPage),
+      sample('Superfície', colors.backgroundSurface),
+      sample('Superfície discreta', colors.backgroundMuted),
+      sample('Superfície elevada', colors.backgroundElevated),
+    ],
+  );
+  });
 }
 
 Widget _layerScene(HarpiaColorTokens colors, bool dark) {

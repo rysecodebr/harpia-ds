@@ -6,6 +6,14 @@
 .theme-button, input { padding: 0.75rem 1rem; color: var(--harpia-color-text-primary); background: var(--harpia-color-background-surface); border: 1px solid var(--harpia-color-border-default); border-radius: 0.5rem; }
 .theme-button { cursor: pointer; }
 .theme-button:focus-visible, input:focus-visible { outline: 3px solid var(--harpia-color-focus-ring); outline-offset: 2px; }
+.focus-samples { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: 1rem; margin-top: 1rem; }
+.focus-sample { display: grid; align-content: center; gap: 1rem; min-height: 8rem; padding: 1rem; border-radius: 0.75rem; color: var(--harpia-color-text-primary); }
+.focus-sample button { width: fit-content; max-width: 100%; padding: 0.75rem; color: var(--harpia-color-text-primary); background: var(--harpia-color-background-surface); border: 1px solid var(--harpia-color-border-default); border-radius: 0.5rem; cursor: pointer; }
+.focus-sample button:focus-visible { outline: 3px solid var(--harpia-color-focus-ring); outline-offset: 2px; }
+.focus-page { background: var(--harpia-color-background-page); }
+.focus-surface { background: var(--harpia-color-background-surface); }
+.focus-muted { background: var(--harpia-color-background-muted); }
+.focus-elevated { background: var(--harpia-color-background-elevated); }
 input { display: block; width: min(100%, 25rem); margin-top: 0.5rem; }
 input::placeholder { color: var(--harpia-color-text-muted); opacity: 1; }
 .role-page-title { font-size: var(--harpia-text-page-title-size); font-weight: var(--harpia-text-page-title-weight); line-height: var(--harpia-text-page-title-line-height); letter-spacing: var(--harpia-text-page-title-letter-spacing); }

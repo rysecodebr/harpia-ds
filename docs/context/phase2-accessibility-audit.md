@@ -26,7 +26,15 @@ O analista autorizou corrigir o anel de foco atual. `color.focus.ring` passou a 
 
 As razões são cálculos para os fundos do catálogo; o teste automatizado exige pelo menos 3:1 em todos esses pares. `color.focus.ringMuted` permaneceu como estava e **não deve ser usado sozinho** como indicador de foco sem avaliação própria. A saída Flutter contém o novo valor, mas os controles Material da aplicação não consomem diretamente esse papel; o comportamento visual de foco em Flutter continua pendente.
 
-**Verificação local:** `npm run tokens:check`, `npm test` (13 testes), sincronização Flutter `--check`, build Angular, testes Angular (4), `flutter analyze` e `flutter test` (5) passaram. O teste novo verifica opacidade e contraste do anel contra página, superfície, superfície discreta e superfície elevada em ambos os temas. A inspeção visual por teclado e cores forçadas continua aberta.
+**Verificação local da correção do token:** `npm run tokens:check`, `npm test` (13 testes), sincronização Flutter `--check`, build Angular, testes Angular (4), `flutter analyze` e `flutter test` (5) passaram. O teste novo verifica opacidade e contraste do anel contra página, superfície, superfície discreta e superfície elevada em ambos os temas. A inspeção por teclado foi ampliada com os exemplos abaixo; cores forçadas continuam abertas.
+
+### Exemplos nos aplicativos de validação
+
+Ambos os aplicativos `validate` exibem quatro botões sobre os fundos de página, superfície, superfície discreta e superfície elevada. Angular usa `:focus-visible` com o contorno existente de 3 px e o token `color.focus.ring`. Flutter usa `OutlinedButton` com borda de 3 px nesse token quando `WidgetState.focused` está ativo. São amostras de diagnóstico, não APIs públicas de componentes Harpia.
+
+No navegador integrado, `http://localhost:4200/` exibiu os quatro exemplos e o contorno calculado `rgb(47, 111, 237) solid 3px` após navegação por Tab nos temas claro e escuro. `http://localhost:4201/` exibiu os quatro exemplos Flutter em ambos os temas; a borda focada foi observada por Tab no tema claro. No tema escuro, a renderização dos fundos foi inspecionada e um teste de widget confirmou que o estado focado resolve para `HarpiaTheme.darkColors.focusRing`; falta a prova visual de foco por teclado nesse tema. O navegador integrado não expôs árvore de acessibilidade do canvas Flutter, portanto a inspeção desse aplicativo dependeu de capturas e teclado.
+
+Após a inclusão dos exemplos, o build Angular e seus 5 testes passaram; Flutter passou em `analyze`, 6 testes e `build web`. O servidor Angular está em `localhost:4200` e o build web Flutter em `localhost:4201` para inspeção do analista. Esses servidores são locais e temporários.
 
 ## Sequência proposta, ainda sem implementação
 

@@ -44,4 +44,14 @@ describe('App', () => {
     expect([...compiled.querySelectorAll('[data-layer]')].map((item) => item.getAttribute('data-layer')))
       .toEqual(['card', 'popover', 'backdrop', 'dialog', 'tooltip', 'toast']);
   });
+
+  it('should render focus examples on all four catalog surfaces', async () => {
+    const fixture = TestBed.createComponent(App);
+    await fixture.whenStable();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelectorAll('.focus-sample button')).toHaveLength(4);
+    for (const surface of ['page', 'surface', 'muted', 'elevated']) {
+      expect(compiled.querySelector(`.focus-${surface} button`)).toBeTruthy();
+    }
+  });
 });

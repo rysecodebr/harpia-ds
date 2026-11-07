@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_validate/main.dart';
 import 'package:flutter_validate/typography_samples.dart';
+import 'package:flutter_validate/harpia_theme.dart';
 
 void main() {
   testWidgets('exibe os seis papéis e alterna o tema', (tester) async {
@@ -70,5 +71,21 @@ void main() {
     await tester.scrollUntilVisible(find.text('Card · superfície'), 300, scrollable: find.byType(Scrollable).first);
     expect(tester.widget<ColoredBox>(backdrop).color.a, closeTo(0.4, 0.01));
     expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('usa o anel de foco do tema nos quatro exemplos', (tester) async {
+    await tester.pumpWidget(const TypographyValidationApp());
+    await tester.scrollUntilVisible(find.text('Foco em Página'), 300, scrollable: find.byType(Scrollable).first);
+    for (final label in ['Página', 'Superfície', 'Superfície discreta', 'Superfície elevada']) {
+      final button = tester.widget<OutlinedButton>(find.widgetWithText(OutlinedButton, 'Foco em $label'));
+      expect(button.style!.side!.resolve({WidgetState.focused})!.color, HarpiaTheme.lightColors.focusRing);
+      expect(button.style!.side!.resolve({WidgetState.focused})!.width, 3);
+    }
+    await tester.scrollUntilVisible(find.text('Tema escuro'), -300, scrollable: find.byType(Scrollable).first);
+    await tester.tap(find.text('Tema escuro'));
+    await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(find.text('Foco em Página'), 300, scrollable: find.byType(Scrollable).first);
+    final button = tester.widget<OutlinedButton>(find.widgetWithText(OutlinedButton, 'Foco em Página'));
+    expect(button.style!.side!.resolve({WidgetState.focused})!.color, HarpiaTheme.darkColors.focusRing);
   });
 }
