@@ -30,5 +30,6 @@ Este índice roteia somente o contexto necessário. O projeto tem uma primeira i
 | Aplicações de prova Angular e Flutter | [Validação da fase 2](phase2-validation-apps.md) |
 | Foco, contraste, cores forçadas e movimento reduzido | [Auditoria inicial de acessibilidade](phase2-accessibility-audit.md) |
 | Transições, animações e redução de movimento | [Inventário de movimento](phase2-motion-audit.md) |
+| Primeiro contrato de movimento para decisão | [Proposta de feedback de estado](phase2-motion-contract-proposal.md) |
 
 Fontes externas de evidência: `../../../../Aurum-UI/docs/context/index.md`, `../../../../Aurum-Smart/README.md` e `../../../../docs/context/index.md`. Consulte os respectivos `AGENTS.md` ao entrar nesses repositórios.

@@ -52,3 +52,5 @@ Build e 6 testes Angular passaram sem aviso de orçamento de estilo após separa
 O navegador integrado exibiu os dois pilotos, alternou `Estado inativo` para `Estado ativo` e mostrou o feedback visual nos apps Angular e Flutter. O servidor Angular em `localhost:4200` foi reiniciado após uma atualização transitória incompleta do CSS e passou a entregar o piloto; o build isolado em `localhost:4202` também foi inspecionado. O build Flutter atualizado está em `localhost:4201`. Essas URLs são ambientes locais de validação, não distribuição pública.
 
 **Decisão ainda aberta:** antes de gerar tokens no catálogo neutro, o analista deve aprovar nome, escopo e valor do papel de feedback de estado, além da política para outros movimentos. O piloto demonstra uma opção concreta; não define duração para overlays, acordeão, carousel ou indicadores contínuos. A porta de saída da fase 2 ainda depende de validar os cenários relevantes de componentes reais nas duas plataformas.
+
+A [proposta de contrato para feedback de estado](phase2-motion-contract-proposal.md) detalha o primeiro papel candidato, seu alcance, a regra de redução e o trabalho necessário após aprovação.
