@@ -21,7 +21,13 @@ As asserções web usam `document.elementFromPoint`, `:popover-open`, `dialog.op
 ## Consequência para o contrato Harpia
 
 1. Manter duas relações para conteúdo transitório: **popover da página abaixo do backdrop modal**; **popover do diálogo ativo acima da superfície modal**. O contexto ativo determina a posição, não apenas o tipo de componente.
-2. Para satisfazer a relação aprovada `dialog < toast` na web com `<dialog>` modal nativo, o toast precisa participar da camada superior ativa, por exemplo como conteúdo do diálogo ou outro mecanismo nativo testado. Um toast fixo na raiz com z-index alto não atende esse contrato. No Flutter, a posição da entrada no `Overlay` controla o resultado; é preciso definir o responsável pela inserção.
+2. A prova mostrou que, caso toast e diálogo fossem exibidos simultaneamente, um toast fixo na raiz da web não cobriria `<dialog>` modal nativo, enquanto uma entrada Flutter inserida por último poderia cobrir o diálogo. A política de execução decidida abaixo evita essa simultaneidade por padrão. A relação visual parcial `dialog < toast` da cena não obriga a exibição simultânea.
 3. Não publicar uma escala global de números nesta etapa. Antes de decidir a infraestrutura, testar drawer/modal aninhados, múltiplos toasts, portal de popover, foco, Escape e restauração em implementações Harpia reais nos dois ambientes. Decidir também se toasts devem continuar visíveis durante um diálogo modal.
 
-**Decisão pendente do analista:** escolher a política de toast durante diálogo e autorizar a infraestrutura real de overlays quando a família de componentes entrar no escopo. A prova atual não altera a [fase 2 de tokens](phase2-effects-implementation.md).
+## Política de toast aprovada
+
+O analista decidiu em 07/11/2026: **por padrão, não exibir toast enquanto um diálogo modal estiver aberto; aguardar o fechamento do diálogo para exibi-lo**. A mesma regra deve orientar Angular e Flutter quando a infraestrutura de toast e diálogo for implementada. Ainda não há componentes Harpia que executem essa fila, portanto a decisão está documentada, não implementada nem testada como comportamento de produto.
+
+A frase adicional do analista, “Caso não seja possível, então exiba”, ficou incompleta. Questionado, o analista escolheu **não definir o fallback agora**. O destino, a forma de exibição ou outra ação de contingência permanecem em aberto; não inferi-los. Também continuam por definir duração, ordem e descarte de múltiplos toasts aguardando, bem como o tratamento de diálogos sucessivos.
+
+**Próxima etapa:** confirmar o fallback e, na fase de componentes/overlays, projetar a coordenação da fila com testes de abertura, fechamento, foco e acessibilidade nas duas plataformas. A prova atual não altera a [fase 2 de tokens](phase2-effects-implementation.md).
