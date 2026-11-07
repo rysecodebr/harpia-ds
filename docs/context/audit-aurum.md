@@ -6,6 +6,8 @@ Estado: análise, sem decisão de migração ou implementação. Data: 04/11/202
 
 Foram lidos os contratos públicos, os oito grupos de tokens, código de componentes selecionados, documentação viva, configuração e uso no Aurum-Smart. Comparação externa: documentação oficial de [grid e gutters do Bootstrap](https://getbootstrap.com/docs/5.3/layout/grid/), [utilitários do Bootstrap](https://getbootstrap.com/docs/5.3/utilities/api/), [tema do Tailwind](https://tailwindcss.com/docs/theme), [grid do Tailwind](https://tailwindcss.com/docs/grid-template-columns) e [variantes de estado do Tailwind](https://tailwindcss.com/docs/hover-focus-and-other-states). Não houve execução visual, testes de acessibilidade, medição de bundle ou inventário completo dos consumidores. Assim, “faltando” abaixo significa ausência na API pública ou nos tokens globais inspecionados, não prova de impossibilidade em aplicações consumidoras.
 
+O [comparativo específico de layout da fase 3](phase3-bootstrap-tailwind-comparison.md) atualiza a leitura de Grid/Row/FormRow e registra a decisão posterior do analista por HTML nativo com classes/estilos, sem componente ou diretiva de layout obrigatórios.
+
 ## Tokens e fundamentos
 
 | Achado | Evidência | Avaliação para Harpia |

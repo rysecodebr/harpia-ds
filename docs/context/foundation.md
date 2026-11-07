@@ -29,6 +29,7 @@ Essas decisões aprovam a direção do projeto. Não aprovam automaticamente a c
 - O escopo deve contemplar sistemas de grid e linhas, agrupadores simples e agrupadores de formulários. Os contratos, nomes e responsabilidades exatos ainda serão definidos.
 - A API de marcação deve partir dos elementos HTML nativos. Quando o design system precisar acrescentar apresentação ou comportamento, deve preferir uma diretiva ou atributo sobre o elemento adequado, como no exemplo conceitual `<table hTable>`. Componentes com elemento próprio ficam reservados aos casos em que a estrutura ou a interação não possam ser expressas com clareza nessa abordagem.
 - O exemplo `<button>` substituindo `<aurum-button>` expressa a direção de uso, não uma API implementada nem uma decisão de migrar os consumidores atuais. Nomes e seletores do Harpia DS ainda serão definidos.
+- Para layout, o analista definiu consumo orgânico com HTML nativo e classes/estilos, sem `AurumGrid` ou diretiva obrigatória. O [comparativo da fase 3](phase3-bootstrap-tailwind-comparison.md) distingue esse princípio dos nomes de classes e valores, que continuam pendentes.
 
 Essas diretrizes são requisitos para o planejamento do Harpia DS, não descrição de recursos já implementados.
 

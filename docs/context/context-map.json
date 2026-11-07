@@ -50,7 +50,8 @@
     { "id": "phase2-motion-audit", "path": "docs/context/phase2-motion-audit.md" },
     { "id": "phase2-motion-contract-proposal", "path": "docs/context/phase2-motion-contract-proposal.md" },
     { "id": "phase2-motion-implementation", "path": "docs/context/phase2-motion-implementation.md" },
-    { "id": "phase3-layout-inventory", "path": "docs/context/phase3-layout-inventory.md" }
+    { "id": "phase3-layout-inventory", "path": "docs/context/phase3-layout-inventory.md" },
+    { "id": "phase3-layout-comparison", "path": "docs/context/phase3-bootstrap-tailwind-comparison.md" }
   ],
   "relatedRepositories": [
     { "id": "Aurum-UI", "relation": "existing-design-system", "status": "verified", "evidence": "../Aurum-UI/aurum-workspace/angular.json" },

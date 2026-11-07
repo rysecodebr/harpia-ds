@@ -30,10 +30,10 @@ A vitrine Aurum-Smart demonstra `aurum-grid` com `cl-12 cl-md-6`, `aurum-row` co
 
 ## Lacunas e decisões da fase 3
 
-1. **Papel de linha e grid:** decidir se Harpia oferecerá um primitivo Flexbox para linha e um CSS Grid distinto; não reutilizar `Grid` como nome de Flexbox sem decisão. Avaliar primeiro HTML nativo com classes e somente então necessidade de diretiva.
+1. **Papel de linha e grid:** o analista aprovou HTML nativo com classes/estilos como forma de consumo, sem componente ou diretiva obrigatória. Decidir se Harpia oferecerá classes para linha Flexbox e CSS Grid distinto; não reutilizar `Grid` como nome de Flexbox sem decisão. Ver [comparativo](phase3-bootstrap-tailwind-comparison.md).
 2. **Colunas:** definir uma única regra de span para conteúdo e campos, com fonte de verdade para breakpoints. Decidir se `auto`/`split` precisam de comportamentos distintos, e se offsets justificam API no primeiro lote.
 3. **Agrupadores:** separar contêiner de largura, seção semântica, agrupador visual simples e grupo de formulário. Preservar `fieldset`/`legend` e o efeito de `disabled`; decidir se título/descrição são responsabilidade do agrupador ou da marcação nativa.
 4. **Paridade Angular/Flutter:** os números de viewport CSS não definem automaticamente adaptação por largura disponível em Flutter. Definir cenários de largura útil e comportamento para ambas as saídas antes de catalogar breakpoints compartilhados.
 5. **Prova necessária:** 320–390 px, viewport ampla com contêiner estreito, zoom real de 200%, texto longo, colunas desiguais, erro de campo, direção RTL se offsets entrarem, e interação de `fieldset disabled`. Verificar DOM, overflow e geometria, além de classes.
 
-**Próximo passo proposto:** montar uma cena diagnóstica mínima em cada app `validate` para comparar linha flexível, grid de colunas e agrupamento semântico, usando apenas valores locais de prova. Após inspecionar essa cena, submeter nomes, breakpoints e contratos públicos ao analista. Nenhum código da fase 3 foi criado por este inventário.
+**Próximo passo proposto:** montar uma cena diagnóstica mínima em cada app `validate` com elementos nativos para comparar linha flexível, grid de colunas e agrupamento semântico, usando apenas valores locais de prova. Após inspecionar essa cena, submeter nomes, breakpoints e contratos públicos ao analista. A [sequência detalhada](phase3-bootstrap-tailwind-comparison.md) preserva a paridade Angular/Flutter sem exigir a mesma tecnologia de layout. Nenhum código da fase 3 foi criado por este inventário.

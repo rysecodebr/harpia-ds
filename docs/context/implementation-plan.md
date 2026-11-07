@@ -65,19 +65,21 @@ Em cada etapa de componente, registre na matriz: selector atual, elemento HTML r
 
 ## Fase 3 — Primitivos de layout e composição
 
+**Direção aprovada pelo analista:** layout orgânico sobre elementos HTML nativos com classes/estilos, sem `AurumGrid` ou diretiva obrigatória. O [comparativo Aurum UI × Bootstrap × Tailwind](phase3-bootstrap-tailwind-comparison.md) separa esse princípio dos nomes e valores ainda pendentes. Em Flutter, preservar a função semântica e a resposta à largura disponível com mecanismos próprios; não traduzir classes CSS literalmente.
+
 **Simplificações:** decidir um contrato para linha flexível e colunas, evitando a sobreposição atual de Grid/Row/FormRow; separar claramente CSS Grid de Flexbox. Unificar a regra de spans que hoje aparece em DivControl e FormControl. **Melhorias/novos recursos:** gaps por eixo e breakpoint, grid responsivo, alinhamento, agrupador simples de conteúdo e composição de formulário.
 
-**Entrega:** catálogo mínimo de layout com exemplos de página, seção, linha, coluna, grid e grupo, incluindo comportamento em viewport e container estreito. Indicar quando basta HTML + classe e quando uma diretiva agrega valor.
+**Entrega:** catálogo mínimo de layout com exemplos de página, seção, linha, coluna, grid e grupo aplicados ao HTML nativo, incluindo comportamento em viewport e container estreito. Diretiva ou componente só entra com necessidade comportamental demonstrada e aprovação específica.
 
 **Porta de saída:** os cenários de referência de layout e formulário responsivo são montados com a mesma escala de espaçamento, sem wrappers supérfluos, overflow acidental ou regras locais de compensação.
 
 **Ordem por recurso e referência:**
 
-1. Comparar `layout/grid/aurum-grid`, `layout/row/aurum-row` e `tokens/layout.scss`: ambos usam a mesma linha flexível. Decidir nomes e papéis de Flexbox e CSS Grid antes de propor seletor.
+1. Comparar `layout/grid/aurum-grid`, `layout/row/aurum-row` e `tokens/layout.scss`: ambos usam a mesma linha flexível. Separar papéis de Flexbox e CSS Grid; testar marcação nativa antes de propor nomes de classes.
 2. Comparar `layout/div-control/aurum-div-control` com `forms/form-control/aurum-form-control`: ambos expõem spans responsivos. Descrever uma regra de coluna aplicável sem acoplar layout à validação de campo.
 3. Comparar `layout/container/aurum-container`, `layout/page-section/aurum-page-section`, `forms/form-row/aurum-form-row` e `forms/form-section/aurum-form-section`: separar largura, espaçamento, estrutura de seção e semântica de formulário.
 4. Analisar `forms/form-group/aurum-form-group` e seu `fieldset`/`legend`; preservar essa semântica ao desenhar o agrupador de formulários. Projetar agrupador geral sem herdar obrigatoriamente o chrome de Card/Panel.
-5. Testar a proposta em conteúdo longo, zoom, RTL quando aplicável, 320–390 px, container estreito, campos com erro e linhas com colunas desiguais. Confirmar necessidade de offsets, gaps por eixo e breakpoint com exemplos reais.
+5. Testar a proposta com HTML nativo em conteúdo longo, zoom, RTL quando aplicável, 320–390 px, container estreito, campos com erro e linhas com colunas desiguais. Confirmar necessidade de offsets, gaps por eixo e breakpoint com exemplos reais. Aprovar contrato mínimo de classes/estilos antes de gerar CSS e definir a adaptação Flutter.
 
 ## Fase 4 — Elementos HTML aprimorados e formulários
 

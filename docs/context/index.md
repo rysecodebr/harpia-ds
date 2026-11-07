@@ -33,5 +33,6 @@ Este índice roteia somente o contexto necessário. O projeto tem uma primeira i
 | Primeiro contrato de movimento para decisão | [Proposta de feedback de estado](phase2-motion-contract-proposal.md) |
 | Feedback de estado gerado para Angular e Flutter | [Implementação de movimento](phase2-motion-implementation.md) |
 | Primeira leitura de layout e agrupadores da fase 3 | [Inventário de layout](phase3-layout-inventory.md) |
+| Comparativo de layout Aurum UI, Bootstrap e Tailwind | [Comparativo e sequência orgânica](phase3-bootstrap-tailwind-comparison.md) |
 
 Fontes externas de evidência: `../../../../Aurum-UI/docs/context/index.md`, `../../../../Aurum-Smart/README.md` e `../../../../docs/context/index.md`. Consulte os respectivos `AGENTS.md` ao entrar nesses repositórios.
